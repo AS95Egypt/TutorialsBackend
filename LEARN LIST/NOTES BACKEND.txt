@@ -1,0 +1,10 @@
+--- Study Encore Backend Framework 
+ - article
+	https://dev.to/encore/encorets-9x-faster-than-expressjs-3x-faster-than-bun-zod-4boe?ref=dailydev
+ - official docs
+	https://encore.dev/docs/quick-start
+
+ 
+--- Nestjs can better in building enterprise and large applications, it provides modularity and rich features comparing to express which requires
+packages , express can be faster and better for small applications
+

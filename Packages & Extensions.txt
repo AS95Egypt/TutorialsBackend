@@ -1,0 +1,83 @@
+========= Packages
+--- 	https://www.npmjs.com/package/app-root-path
+--- 	https://www.npmjs.com/package/http-errors
+---	https://www.npmjs.com/package/xlsx
+---	https://www.npmjs.com/package/nodemailer		nodemailer		(send emails)
+---	https://www.npmjs.com/package/morgan			morgan			(logging)
+---	https://www.npmjs.com/package/multer			multer			(upload files to server using multipart forms ...see the code )
+---	https://www.prisma.io/
+---	https://www.npmjs.com/package/slugify			slugify			(convert string into readable url format)
+--- 	https://express-validator.github.io/			express validator	(to validate inputs [params, body, query, ...])
+	https://express-validator.github.io/docs/api/validation-chain/#not
+
+- axios use it for making http requests in your API
+  but use supertest for integration test
+
+
+========= how to create packages in nodejs
+	https://www.youtube.com/watch?v=J4b_T-qH3BY&t=1s
+========= how to check for packages updates and update them
+=== way 1
+- install package `npm-check-update` globally (its used to check for udpates (report), and update pacakges)
+	npm install npm-check-update -g
+
+- list available updates 
+	ncu
+
+- update packages
+	ncu -u
+
+=== way 2
+- install package npm-check globally
+	npm install npm-check -g
+
+ 
+	npm-check    # Get a detailed report of your dependency situation
+	npm-check -u # Interactive update process, like a choose-your-own-adventure book
+========= Extensions
+--- add TODO highlight extension to list TODO, FIXME	or highlight them.
+--- or TODO tree
+
+--- How to use github copilot effectively
+	https://app.daily.dev/search?id=febcb94c-6db8-11ee-adf0-42010a007e0c
+
+--- bookmark
+--- Intellicode  add javascript auto complete 
+
+=========== Glob 		https://www.npmjs.com/package/glob
+- used to match files in directory based on pattern , see docs for more
+
+const { glob } = require("glob");
+
+let modelFiles = await glob("**/model.js", {			// return all model.js files 
+    ignore: "node_modules/**",
+});
+
+
+=========== @faker-js/faker
+https://www.npmjs.com/package/@faker-js/faker
+to generate fake data 
+
+//const { faker } = require("@faker-js/faker");
+const { fakerAR: faker } = require("@faker-js/faker");
+
+for (let i = 0; i < 10; i++) {
+  // Modify 10 to any desired number of names
+  console.log(faker.person.firstName());
+}
+
+=========== Path
+- return the full file path
+	path.resolve(file);
+- 
+
+=========== Promisify
+const { promisify } = require('util');
+ - use this package in order to support asynchrounous operations for code that does'nt support
+
+=========== Cloudinary 
+ optimize, transform, upload and manage your cloud's assets
+
+=========== moment
+A JavaScript date library for parsing, validating, manipulating, and formatting dates.
+

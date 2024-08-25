@@ -1,0 +1,114 @@
+====== Course
+   https://www.youtube.com/watch?v=ROjZy1WbCIA
+
+-- Note: you can use HELP to know how to do any thing on ubuntu.
+
+Note:  use TAB to complete filenames instead of typing a long complex names,
+	if theres a multiple files with the same starting characters you can press TAB twice, and it will list the files
+
+-- linux debian has 3 editions:  (server, desktop, core)
+
+-- click activities to see all running tasks.
+
+-- system monitor is like task manager
+
+-- Home is the root for file system.
+
+-- Ubuntu Software:  its a gallery to open source programs available on linux.
+    - just click the program then click install 
+
+-- go to settings if you want to adjust any of system settings, its like control panel.
+
+==== Terminal 
+ - from `perferences` you can change how app look and see shortcuts , and view help.
+ - by default terminal refer to the root directory which is Home.
+
+ - to see the manual of any command write: 
+
+  man command
+ex:	man ls,		man cd , ...
+
+in windows 
+
+command /?
+
+- cd /home
+
+- pwd:  print the current directory.
+
+-- to see the actual folder representation go to otherlocations in file system - then computer.
+
+=== Folders
+
+-- the file with . in the begining is a hidden file.
+
+-- ls -a 	to show all files and folders in a direcotry including hidden files.
+-- ls -l	show files as a list or table
+-- ls -la	show files and hidden files in a table, you don't have to use 2 dashes -a -l, use combine -la
+-- ls -lh	h to show sizes in readable format 
+-- mkdir -p src/models/users/		it will create parent and child folders
+-- rmdir foldername	to delete an empty folder
+-- rmdir -p .Doc/src	to delete a folder and its content
+
+=== Files
+file filename			to show information about the file
+touch filename.extension	to create a file
+touch file1.txt file2.doc file3.js	create multiple files
+rm filename 			to remove a file
+rm -i file1.txt file2.txt	to remove files interactivly (prompt when delete)
+rm -rf Documents		to delete a folder using rm , and delete folder content recursively.   f: force
+cp file1.txt file1copy.txt	to copy a file
+cp -r folder1 folder1copy	to copy a folder recursivly
+ls foldername			to list a content of a folder
+rm foldername/filename		to delete a file inside a folder
+mv filename.ext  newfilename.ext	to rename a file
+rm home*.*			remove any file starts with home and have any extension
+
+=== Files content
+head server.js			print the first 10 lines in file
+
+head -30 server.js		print the number of lines you specify
+
+tail server.js			print the last 10 lines in a file
+
+cat server.js			print all the content of a file
+
+echo record1 >file1.txt		add content to a file, if the file is not created it will create it.
+				echo will override the content of a file.
+
+echo ahmed salah salem >> file1.txt	in order to override the content use >> 
+
+				the same is also for cat when you want to append the selected output file.
+
+cat file1 file2 file3		concat and print all these files content
+
+cat constants.js db_collections.js index.js >const.js		put the conent of these files in a new file.
+
+cat > const.txt			to add content into a file , you can enter conent in the file using terminal , in order to finish press  `Ctrl+D`
+
+cat file1.txt > file2.txt	copy the content of file1 into file2
+
+cat *				to print the content of all files in this directory
+
+
+more filename			show a percent of a file , press enter to show more  
+
+less filename			decrease the printed content
+
+grep -r "require" --include=*.js .	search for `require` in all levels
+
+=== System information  
+
+ps -A 		to list all the proccess, search how to end a process depending on process ID (PID)
+uptime		how long the system is running
+free		to see free space
+df 		to list diskspace usage
+df -h		print the sizes in readable format
+
+sudo apt install package name 	to install a package
+
+sudo apt update 
+
+sudo apt upgrade
+
+sudo apt remove packagename

@@ -1,0 +1,7 @@
+--- Javascript cheat sheet
+	https://www.geeksforgeeks.org/javascript-cheat-sheet-a-basic-guide-to-javascript/?ref=outind
+
+--- https://www.youtube.com/@NeetCode/videos
+
+
+--- https://www.youtube.com/@codinginflow/videos

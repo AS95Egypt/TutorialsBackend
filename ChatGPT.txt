@@ -1,0 +1,36 @@
+
+======== https://www.youtube.com/watch?v=o_joulYVndM
+=> 10 ways to use chatgpt as a developer
+
+1- general learning tool
+	it will help get: steps, examples, resources
+2- getting feedback
+  - you can paste code into conversation and ask for feedback on this code
+
+3- find solution for a specific problems
+   -ex: check if number is power of 3
+
+4- brain storming 
+   - perform R&D & exploring & tradeOff.
+
+5- generating sample data.
+ask for a sample data (ex: for customers) , you can specify format like (json, xml, csv, text,... )
+
+6- generating documentation
+ - you can provide a github link and ask for this code documentation 
+ex: generate documentation for this api
+
+7- explaining errors
+- you can provide the sample code has error and the error message and ask for explaination and solution
+
+8- writing test
+  - you can ask for writing unit test for a function or file you provide, with any testing package.
+
+9- Natural language programming
+- ask chatgpt to write code that do something for you ex: restapi with php, and specify the requirments
+
+- if the response is big and it stops generating you can ask to continue where it stops.
+
+10- UI & layout help
+
+=========

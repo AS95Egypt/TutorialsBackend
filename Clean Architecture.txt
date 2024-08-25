@@ -1,0 +1,63 @@
+--- TODO: try to inject database to services to make it pluggable.
+
+======== https://medium.com/@ben.dev.io/clean-architecture-in-node-js-39c3358d46f3
+- high-level modules (ex: root or main) should not depend on low-level modules.
+
+--- Single Responsibility Principle (SRP)
+- Each module or function should have a single responsibility. This helps in creating a codebase that is easy to understand and maintain.
+
+--- Clean Architecture emphasizes the separation of concerns, decoupling of dependencies, and modularity. 
+
+--- The goal is to create a codebase that is easy to understand, test, and maintain.
+
+--- each layer of clean architecture has a specific responsibility. The layers communicate with each other through well-defined interfaces. 
+
+--- Clean Architecture Layers 
+- Infrastructure logic			concrete (domain specific, changes frequently)
+   like(database, api, filesystem)
+   should implement interfaces defined by the domain layer.
+   should be designed to be pluggable, allowing for easy replacement of external dependencies.
+- presentation logic
+    responsible for displaying the output of the application to the user and handling user input. 
+- application logic
+    responsible for orchestrating (التنسيق) the interaction between the domain layer and the infrastructure layer.
+- (Domain)enterprise logic			abstract (general purpose, changes rarely)
+   containing the business logic and rules. 
+
+
+========= https://merlino.agency/blog/clean-architecture-in-express-js-applications
+
+- The secret to building a large project that is easy to maintain and performs better is to separate files and classes into components 
+that can change independently without affecting other components.
+
+- Break your application into smaller, reusable components.
+	This makes your code more understandable, maintainable, and testable.
+
+- This lets you separate functionality and reuse code across your application, reducing redundancy while improving maintainability.
+
+========= https://dev.to/ezekiel_77/rest-api-design-rules-2c4j?ref=dailydev
+- No trailing forward slashes in your URI's
+	+soccer.api.org/teams/dortmond/players		[correct]
+	-soccer.api.org/teams/dortmond/players/		[wrong]
+
+- use dashes - instead of _ in uri
+
+- No file extensions in URI's
+
+========= how to structure your project
+	https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/breakintcomponents.md 
+- separate your system into microservices (only if needed)
+
+
+
+=========
+----------
+https://www.linkedin.com/feed/update/urn:li:activity:7180166848435404800/
+𝟭- 𝗗𝗥𝗬 : ( 𝗗𝗼𝗻'𝘁 𝗥𝗲𝗽𝗲𝗮𝘁 𝗬𝗼𝘂𝗿𝘀𝗲𝗹𝗳 )
+
+𝟮- 𝗞𝗜𝗦𝗦 : ( 𝗞𝗲𝗲𝗽 𝗜𝘁 𝗦𝗶𝗺𝗽𝗹𝗲 𝗦𝘁𝘂𝗽𝗶𝗱 )
+
+𝟯- 𝗗𝗬𝗖 : ( 𝗗𝗼𝗰𝘂𝗺𝗲𝗻𝘁 𝗬𝗼𝘂𝗿 𝗖𝗼𝗱𝗲 )
+-----------
+https://www.linkedin.com/feed/update/urn:li:activity:7180994208478945280/
+𝟰- 𝗦𝗟𝗔𝗣 : ( 𝗦𝗶𝗻𝗴𝗹𝗲 𝗟𝗲𝘃𝗲𝗹 𝗢𝗳 𝗔𝗯𝘀𝘁𝗿𝗮𝗰𝘁𝗶𝗼𝗻 ): hide implementation & expose interfaces.

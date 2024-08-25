@@ -1,0 +1,48 @@
+git add .
+git commit -m "Put your message here"
+git push
+
+
+=========== Github account
+AS95Egypt
+password: 
+
+=========== Tutorials
+https://dev.to/burakboduroglu/a-z-git-cheat-sheet-14pm
+
+--- Git & Github
+	https://www.youtube.com/watch?v=xuB1Id2Wxak&list=PL9ooVrP1hQOGwtQOt8ZBlVjFlI-9Vr5hx&pp=iAQB
+
+
+https://pinjarirehan.medium.com/essential-git-commands-for-beginners-4b16ca87df8a?source=user_profile---------8----------------------------
+
+--- شخبط  وانت مطمن
+	https://www.youtube.com/watch?v=Q6G-J54vgKc
+
+=========== learn how to integrate Github copilot in vscode
+	https://www.freecodecamp.org/news/developer-productivity-with-github-copilot/
+
+- install extension 
+- vscode will login to your github account, then authorize vscode,
+- add copilot to your github account ,and add payment method.
+
+- write in plain english , what you want to do in comments.
+- you can use github copilot for 
+   - Documenting
+   - Fixing bugs
+   - Explain code
+===========  EL Zero
+	https://www.youtube.com/watch?v=ACOiGZoqC8w&list=PLDoPjvoNmBAw4eOj58MZPakHjaO3frVMF
+
+
+===========
+
+- git checkout			to show current branch
+	
+- git checkout branch-nanme	to switch to another branch
+
+- git status 			also to show current branch
+
+	
+
+

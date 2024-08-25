@@ -1,0 +1,114 @@
+--- set default value in model 
+
+    tax_type: {
+      type: String,
+      default: null,
+    },
+
+
+
+--- add pagination to model 
+const mongoosePaginate = require("mongoose-paginate-v2");
+
+// add pagination support
+categoryTrxSchema.plugin(mongoosePaginate);
+
+
+--- remove unused requires 
+bcrypt	in category_model
+
+
+--- create reference field (FK)	, and set it as index
+    parent_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "categories", // Parent collection name
+      default: null,
+      index: true,
+    },
+
+--- set default enum value 
+    status: {
+      required: true,
+      type: String,
+      enum: [constants.StatusEnum.ACTIVE, constants.StatusEnum.INACTIVE],
+      default: constants.StatusEnum.ACTIVE,
+    },
+
+--- define field in a separate schema in order to pass it to array,   CAN we put the field inside [] ?
+templates_model.js
+const itemsSchema = new Schema({
+  item: {
+    type: mongoose.ObjectId,
+    ref: "items",
+  },
+});
+
+items: [itemsSchema],
+
+// also in item_model	for barcode shema
+
+
+--- what is terminal id
+
+
+--- what is custom labels 
+users_services.js
+// Fetching users data
+    const myCustomLabels = {
+      docs: "data",
+    };
+const users = await userModel.paginate(
+      {},
+      {
+        page: pageIndex,
+        limit: limitCount,
+        customLabels: myCustomLabels,
+      }
+    );
+
+--- user types 
+constants
+const UserTypes = {
+  ADMIN: "Admin",
+  MERCHANT: "Merchant",
+  PARTNER: "Partner",
+};
+
+--- select specific fields only 
+	let regularInvoiceItemsDoc = await invoiceModel.findOne({ invoiceno: regularInvoiceID },"items");
+
+
+--- pass callback to find()
+      regularItem = regularInvoiceItemsDoc["items"].find(
+        (item) =>
+          item.item_id.equals(value.item_id) && item.item_line_id === value.item_line_id
+      );  
+
+--- check property exist in the object 
+      barcodes.forEach((element) => {
+        if (!element.hasOwnProperty("barcode")) {		?
+          isvalidbarcodes = false;
+        }
+      });
+
+--- why not compare strings 
+if (apiKey && timingSafeEqual(apiKey, process.env.API_KEY)) {}
+
+
+--- configSchema	settings collection
+
+--- why not create enum 
+- invoice_model
+    type: {
+      required: true,
+      type: String,
+      enum: ["CASH", "CARD"],
+    },
+
+--- reference_uuid, reference_old_uuid
+
+--- 
+var ret = await sequencesModel.findOneAndUpdate(filter, update, {		// findOne , then save()
+    new: true,
+    upsert: true,				// what this means 
+  });

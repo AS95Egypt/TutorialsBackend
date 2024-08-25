@@ -1,0 +1,37 @@
+https://www.restapitutorial.com/httpstatuscodes.html
+
+ REST (Representational State Transfer)
+
+-- ignore 100 category 
+====== difference between PUT and PATCH
+PUT:
+	- typically sends the entire updated representation of the resource and is used for full updates or creation.
+	- If the resource doesn't exist at the specified URI, a new resource will be created.
+	- replace object
+
+PATCH: 
+	- sends only the changes to the resource and is used for partial updates.
+	- it includes only the changes to the resource, not the complete representation.
+	- update some properties
+
+====== 2**
+200:  OK
+201:  Created		, notify that a resouce is created like(item, user)	not just a successful request
+204:  No Content	the request is successful but you don't have any thing to return the client ex: when delete item.
+
+====== 3**
+304:  Not Modified	when request data from server, and data does'nt change since the last time, so send this code.
+
+====== 4**
+-- theses errors is from client side.
+-- means person using api sends you bad information.
+
+400:  bad request 	missing parameters for example , when user sends incorrect data, ex: when user is required to send email and name and send name only.
+401:  UnAuthroized	you don't have credintials to access this url , ex: when access api without API key.
+403:  Forbidden		ex: when a basic user tries to access an admin feature.
+404:  not found		when user tries to access url that does'nt exist.
+
+====== 5**
+500   Internal server error:   when somthing bad happend in the server like database is down , but you don't know exactly what it is.
+	
+

@@ -1,0 +1,102 @@
+https://expressjs.com/en/advanced/best-practice-performance.html
+
+https://pm2.keymetrics.io/docs/usage/quick-start/
+
+https://www.youtube.com/watch?v=4bS7KS_s8Go
+
+https://www.youtube.com/watch?v=ebdKIU6SDHI
+
+https://www.youtube.com/watch?v=gsPPaZ064yI
+
+https://blog.appsignal.com/2022/03/09/a-complete-guide-to-nodejs-process-management-with-pm2.html
+
+https://dev.to/mr_ali3n/how-to-configure-pm2-the-right-way-2m33
+
+======== Questions
+- does PM2 works with .env variables.
+
+
+======== https://www.youtube.com/watch?v=4bS7KS_s8Go
+PM2: 
+  - allow you to manage application with ease, restart them automatically when they crash.
+  - deploy application to multiple services with zero downtime.  (many instances of the same app)
+  - provides a build in load balancer, to automatically restart the application when they crash. 
+
+  - PM2 is a production process manager for Node.js applications with a built-in load balancer. 
+	It allows you to keep applications alive forever, 
+	to reload them without downtime, and to facilitate common system admin tasks.
+
+--- install pm2 globally
+	npm i -g pm2
+
+--- Disadvantages of running the application in the normal way:
+ 1- when you run your API the normal way and close the terminal the application stops.
+ 2- you have to open new tab or terminal window in order to continue execute commands. 
+
+--- Solve problem (cannot run pm2 scripts):
+when tryingto execute any pm2 nodejs package commands in the terminal i got this error:
+"..\pm2.ps1 cannot be loaded because running scripts is disabled on
+this system."
+
+  1- run terminal (not cmd) as Administrator
+  2- Check the Current Execution Policy			Get-ExecutionPolicy
+  3- Change Execution policy to RemoteSigned		Set-ExecutionPolicy RemoteSigned
+  4- check if policy changed				Get-ExecutionPolicy
+
+
+--- start the application using pm2
+  1- change directory to project root
+  2- run 	`pm2 start server.js`
+
+
+--- restart the application
+  pm2 restart appid/name
+
+--- stop the application
+  pm2 stop appid/name
+
+--- show application logs
+  pm2 logs appid/name
+
+--- to list all running services using pm2
+   `pm2 status`
+or `pm2 ls`  
+
+--- to preview performance metrices
+ `pm2 monit`
+
+--- run two instances of the same app 
+	pm2 start server.js --name forumApp
+
+--- delete existing service
+	pm2 delete forumApp
+
+--- delete all services
+	pm2 delete all
+
+--- enable watching when starting the app
+	pm2 start 0 --watch
+  `--watch` flag means 
+	PM2 will monitor the files in the application's directory for changes, and if it detects any modifications, 
+	it will automatically restart the application.
+     - you should do this in development only.
+
+--- create process from package.json
+in package.json
+   	"prodStart": "pm2 start server.js",
+in terminal
+	npm run prodStart
+
+--- NOTE: in production the app should be in Cluster mode not  in Fork mode.
+
+--- run pm2 processes using configuration file
+	https://dev.to/mr_ali3n/how-to-configure-pm2-the-right-way-2m33
+
+--- Difference between fork and cluster
+	https://stackoverflow.com/questions/34682035/cluster-and-fork-mode-difference-in-pm2
+
+--- start the process in cluster mode 
+	pm2 start app.js -i 0
+
+======== 
+

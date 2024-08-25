@@ -1,0 +1,1431 @@
+READ THIS
+	https://dev.to/_ndeyefatoudiop/javascript-data-types-27-quick-questions-you-need-to-master-1828?ref=dailydev	
+
+this. in javascript 
+	https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
+
+=========== understand
+https://www.udemy.com/course/draft/1350750/learn/quiz/411712#overview
+https://www.udemy.com/course/draft/1350750/learn/quiz/411716#overview
+https://www.udemy.com/course/draft/1350750/learn/quiz/411760#overview
+
+const MAX = 5;
+for (var i = 0; i < MAX; i++) {
+    setTimeout(function() {
+      console.log(i);
+    });
+}
+
+for (let i = 0; i < MAX; i++) {
+    setTimeout(function() {
+      console.log(i);
+    });
+}
+============
+-- site to learn js (ES6)
+	http://es6-features.org/#Constants
+
+https://www.infoworld.com/article/3196070/10-javascript-concepts-every-nodejs-developer-must-master.html?ref=dailydev#tk.rss_all
+=========== Leveling up to ES6
+
+- in vscode extensions install	`Quokka.js`
+ctrl+ shift + p  , then `quokka start on current file`
+
+this extension enables you to see variables value without printing it 
+ex:
+
+var x = 1;
+
+x;	1	// shows 1 as x's value
+
+var arr = [1,2,3,4];
+
+arr;  [1,2,3,4]
+
+=== const
+const x = 1;	// means once you assign it you can't change.
+you have to assing it once you declare it.
+
+// this is allowed for object or array constants 
+const a = [];
+x.push(1);		// add element to array
+const a = {};
+x['id'] = 1;
+
+--- the benefit of const keyward when deal with object or array 
+-> ex: (with var)
+var a = [1,2,3,4];
+
+function appendCodes(users){
+  a = users.map((user)=> {		// here you can assign new value to the array
+    return user.code;
+  });
+}
+
+appendCodes([{code: 5}, {code: 6}]);
+
+console.log(a);  // [5,6]
+-> ex: (with Const)
+function appendCodes(users){
+    users.forEach(element => {
+        a.push(element.code);		// you can append elements to const array
+    });
+}
+
+-- Note: its better to use const as much as you can, unless you know that variable will change.
+
+-- use let when you want the variable to be reassigned.
+
+-- difference beween let , var 
+var x = 1;
+var x = 2;	// allowed
+
+let y = 1;
+let y = 1;	// not allowed  	, you can only declare it once inside this scope
+
+-- declare many variables and assign them
+let x = y = z = 10; 
+
+--- function to get max number in array , declare using let
+let number = [3, 8, 9 , 12, 5];
+
+function getMax(arr){
+   let max = -Infinity;     // declare using let , because value will change.
+   arr.forEach(e =>{
+      max = Math.max(max,e);
+   });
+   return max;
+}
+
+console.log(getMax(number));	// 12
+
+==== Block Scope 
+-- block mean between {}
+// var 
+if(1===1) {
+    var x = 100;
+}
+console.log(x);		100		// x is visible outside the block 
+
+// const ,  let 
+if(1===1) {
+    const x = 100;
+}
+console.log(x);		// x is not defineed outside the block 
+
+--- scope with let & const 
+{
+  let x = 1;
+  {
+    let x = 2;
+  }
+  x;		// 1 , because x in 2nd block is considered another x
+}
+---
+{
+  let x = 1;
+  {
+    x = 2;
+  }
+  x;		// 2 , because its the same x
+}
+
+--- the same with function as variable 
+{ 
+  const fn = function(){return 1;};
+  console.log(fn());  				// 1
+  {
+    const fn = function(){return 2;};
+    console.log(fn()); 				// 2
+  }
+  console.log(fn()); 				// 1
+}
+
+"use strict";		// what it does
+
+
+
+==== arrow functions
+-- you can use this 
+const bytwo = arr.map(e=>{		// no () need for paramter if its one.
+  return e * 2
+}); 
+-- instead of this 
+const bytwo = arr.map(function(e){
+  return e * 2
+});
+
+--- expression body
+const bytwo = arr.map(e => e * 2);	// no return , no {}
+
+--- when return object you have to put extra ()
+const arr = [1,2,3,4];
+const bytwo = arr.map(e => ({number: e * 2}));
+bytwo;
+
+--- lexical this
+-- with => 
+var obj = {
+  value: 0,
+  increament: function(){			// NOTE: sometimes you can not use => , because we need to access this , so we made it function() to access the above this
+    setTimeout(() => {				// using => makes you access this in object, not in function 
+       this.value++;
+       console.log(this.value);			// 1
+    }, 1000);
+  }
+};
+
+obj.increament();
+
+-- with function(){} 
+var obj = {
+  value: 0,
+  increament: function(){
+    setTimeout(function() {
+       this.value++;
+       console.log(this.value);			// Nan
+    }, 1000);
+  }
+};
+
+==== optinal parameters
+function addItem(itemname= {item: 'milk'}, amount = 1){		// so you don't have check if parameter is undefined
+  console.log(itemname, amount);
+}
+
+addItem();
+
+
+---- it prints all the passed arugments
+function printargs(){
+    console.log(arguments);
+}
+
+printargs(1,2,'g', 'd', true);
+
+---- convert the passed arugments to array 
+function printargs(){
+   let arr = Array.prototype.slice.call(arguments);
+   console.log(arr);
+}
+
+--- or instead you can pass the arguments directly as an array 
+function printargs(...arr){ 
+   console.log(arr);
+}
+
+--- spread operator
+function printargs(age,siblings,...arr){		printargs(age,siblings,...arr, x){		you can not put paramter after spread operator
+   console.log(age);  		1
+   console.log(siblings);	2
+   console.log(arr);
+}
+
+printargs(1,2,'g', 'd', true);
+
+----
+function concatArgs(...args){
+  let htmlArr = ['<br>'].concat(args).concat(['</br>']);    // you can push elements to array this way 
+  // htmlArr = ['<br>', ...args ,'</br>'];			// or better concat like this using spread operator 
+  return htmlArr.join(' ');					// convert array to string 
+}
+
+console.log(concatArgs('Ahmed', 'Salah', 'Salem', 'Mahmoud'));  // <br> Ahmed Salah Salem Mahoumd </br>
+
+--- convert string (itertable) to array of char using spread operator 
+let name = 'ahmed salah';
+let chars = [...name];
+console.log(chars);
+
+--- pass array items as parameters
+function addNumber(a,b){
+  return a+b;  
+}
+
+console.log(addNumber(...[1, 2]));	a= 1, b = 2 
+
+--- you can push multiple elements to array 
+const arr = [];
+
+arr.push(1,2,3);
+
+
+--- add array to the beginning of a another array
+arr.push(1,2,3);
+arr.unshift(...[3,5]);		insert new elements at the beginning of array and returns new length,  
+				you can pass elements as array spread operator 
+
+arr;	// [3,5, 1, 2, 3]
+
+--- copy arrays 
+const arr = [1,2,3];
+const arr2 = [...arr];
+
+--- get max element in array 
+const arr = [1,2,3];
+let max = Math.max(...[100, 5, 500]);
+max;
+
+-- get the sum of array 
+function sum(...numbers) {
+    return numbers.	((acc, number) => acc + number);
+}
+ 
+
+==== template literal
+let name = 'Ahmed';
+let age  = 28;
+
+let x = `name is ${name} , age: ${age}`;
+
+--- you can put expressions too , not just variables 
+const activities = ['running', 'jumping', 'lifting', 'swimming'];
+let x = ` ${activities.join(', ')}`;
+
+-- you can put any expression you want inside template literal , like .map(), ...
+==== multi line template literal
+let x = `Ahmed 
+
+Salah`;			// you don't have to put \n
+			// taps and spaces will be taken into consideration 
+
+
+==== tagged template literal
+-- add more powerful features to template literal
+
+https://www.udemy.com/course/draft/1350750/learn/lecture/8023144#overview
+
+-- tag example
+function error (strings, err) {
+    error = `status: ${err.status}, message: ${err.message}`
+    return `${strings[0]}{${error}}`
+}
+ 
+const err = {
+    message: 'oh no, an error!',
+    status: 404
+}
+
+const message = error`An error has occurred: ${err}`
+ 
+console.log(message);
+
+==== Raw
+str.row[0]		// to print the string with \n 
+const myname = `ahmed\nsalah\nsalem`;
+
+==== convert js object or array to json 
+var persons = [
+   {
+    personName: 'Ahmed',
+    days: [1,2,4,5],
+    attend: true
+   },
+   {
+    personName: 'Salah',
+    days: [1,2,3,5],
+    attend: true
+   },
+] 
+
+const str = JSON.stringify(persons);
+[{"personName":"Ahmed","days":[1,2,4,5],"attend":true},{"personName":"Salah","days":[1,2,3,5],"attend":true}] 
+
+==== enchanced object properties 
+const firstname = 'Ahmed';
+const lastname = 'Salah';
+const age = 28
+
+var person= {
+firstname,			// you don't have to set property name
+lastname,
+age
+} 
+
+console.log(person);
+
+==== computed property names
+-- add property to object in es5
+const key = 'age';
+var person = {
+  firstname : 'Ahmed'
+} 
+
+person[key] = 28;
+
+console.log(person);
+
+-- in es6
+const key = 'age';
+var person = {
+  firstname : 'Ahmed',
+  [key]: 20
+} 
+or
+var person = {
+  firstname : 'Ahmed',
+  [key]: 20,
+  ['gender']: 'male',
+  [getKey()]: 'salah salem'
+} 
+
+==== Method properties 
+--- in es5
+var person = {
+  firstname : 'Ahmed',
+  age: 23,
+  hasABirthDay: function()  {
+    this.age++;
+  }
+} 
+
+--- in es6
+var person = {
+  firstname : 'Ahmed',
+  age: 23,
+  hasABirthDay (){
+    this.age++;
+  }
+}
+
+==== Import & Export 
+https://www.udemy.com/course/draft/1350750/learn/lecture/8028054#overview
+
+==== Classes
+-- in es5 we declare class using function 
+const Person = function(name, age){
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype.move = function (){			// add new function after declaring the class
+   console.log('Move');
+}
+
+var person1 = Person('ahmed', 28);			// instasiate
+Person.move;
+
+
+--- in es6
+
+class Person{
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+  } 
+}
+
+=== extends 
+class Person{
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+  } 
+}
+
+class Employee extends Person{
+    constructor(name, age,workyears){      
+       super(name,age);
+       this.workyears = workyears;      
+    } 
+}
+var e = new Employee('ahmed',28,4);
+
+==== Super
+class Person{
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+  } 
+
+  getName(){
+    return this.name;
+  }
+}
+
+class Employee extends Person{
+    constructor(name, age,workyears){      
+       super(name,age);
+       this.workyears = workyears;      
+    } 
+
+  getName(){
+    return super.getName()+' !';
+  }
+}
+var e = new Employee('ahmed',28,4);
+
+
+console.log(e.getName());   // ahmed !
+
+==== static members 
+-- return keys of object as array 
+
+var keys = Object.keys({a: `2`, b: 'd'});
+keys [a, b]
+
+--- declare static method 
+class Person{
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+  } 
+
+  static setName(person, name){
+     person.name = name;
+  }
+}
+
+var p = new Person('ahmed', 20);
+Person.setName(p, 'Ahmed salah');
+
+console.log(p);
+
+==== Getters and setters
+class Person{
+  constructor(name, age){
+    this._name = name;
+    this._age = age;
+  } 
+ 
+  get name(){
+    return this._name;
+  }
+
+  set name(aname){
+    this._name = aname;
+  }
+}
+
+var p = new Person('ahmed', 20);
+console.log(p.name); // ahmed
+p.name = 'Ahmed salah';
+console.log(p.name);  // Ahmed salah
+
+===== destructing
+-- set variable with array elements 
+
+const number = [1,2,3,4];
+var [a,b,c,d] = number;
+
+[c,b] = [a,d]	
+
+---
+function getConfig(){
+    return ['ahmed',true];
+}
+
+var [name, isOn] = getConfig();
+
+-- pass parameters as array 
+var isOn, name;
+function setConfig([_isOn, _name]){
+  isOn = _isOn;
+  name = _name;
+}
+setConfig([true,'ahmed']);
+
+
+==== Object matching
+function getConfig(){
+    return {
+        name: 'Ahmed',
+        age: 28
+    };
+}
+
+--- set object's value using parameters
+var {name, age} = getConfig();		// set variables equal to returned object. 
+var {name: variablename, age: variableAge , servers: { b: serverbname }} = getConfig();
+--- 
+var config = {};
+
+function setConfig({name, age}){
+  config.name = name;
+  config.age = age;
+}
+
+setConfig({name: 'ahmed', age: 10});
+
+--- 
+
+
+=== default values 
+
+var arr = [100];
+
+var [degree, b = 1 ] =  arr;
+
+degree 100
+b 1			b not exist in array , so set default value.
+
+==== 11 symbols 
+const symbolA = Symbol('description');
+
+
+var obj = {
+    [symbolA]: 'Ahmed'		// object with dynamic property
+}
+
+console.log(JSON.stringify(obj));  // {}
+
+console.log(Object.keys(obj));  // []
+
+console.log(Object.getOwnPropertyNames(obj));   // []
+
+// this is how to get symbols in a dynamic object
+console.log(Object.getOwnPropertySymbols(obj));   // [Symbol()]
+
+var symbol = Object.getOwnPropertySymbols(obj)[0];
+
+console.log(symbol === symbolA);  // true
+
+=== global symbols 
+const symbolA = Symbol('description');
+const symbolB = Symbol('description');
+
+console.log(symbolA === symbolB);  // false
+----
+const symbolA = Symbol.for('description');
+const symbolB = Symbol.for('description');
+
+console.log(symbolA === symbolB);  // true	as long as the description is the same
+--- check all symbols classes in the Doc
+
+--- example to show how to use symbols to do custom functionality
+const spliter = {
+    [Symbol.split]: function(string){
+        return string.split(' ').map(e=> e.toUpperCase());
+    }
+}
+
+var message = 'Hello World';
+
+var arr = message.split(spliter);
+
+console.log(arr);		//['HELLO', 'WORLD']
+
+
+==== 12 Iterators 
+var message = 'Hello World';
+
+for(char of message) {    // syntax to loop iterable object 
+    console.log(char);	  // prints all chars 
+}
+
+---- loop iterator object using symbols
+const message = 'Hello World';
+
+const itr = message[Symbol.iterator]();
+
+let cur = itr.next();
+
+while(cur.done === false){  
+  console.log(cur.value);  
+  cur = itr.next();  
+}
+
+
+---- define our own iterable object 
+https://www.udemy.com/course/draft/1350750/learn/lecture/8034000#overview
+
+solve quiz
+
+===== generator
+function* myGenerator(){
+    console.log('a');
+    yield 1;  //pauses	, until call again so it get the next
+    return;     // will stop generation
+    console.log('b');
+    yield 2;
+    console.log('c');
+    yield 3;        
+}
+
+let itr = myGenerator();
+
+console.log(itr.next());  // 1 print a
+console.log(itr.next());  // 2 print b
+console.log(itr.next());  // 3 print c
+
+console.log(itr.next());  // undefined done = true
+
+==== 34 generators pass value 
+
+==== 35 yields*
+function* myGenerator(){    
+    yield* [1,2,3];  //pauses        
+}
+
+let itr = myGenerator();
+
+console.log(itr.next());  // 1 
+console.log(itr.next());  // 2 
+console.log(itr.next());  // 3 
+
+console.log(itr.next());  // undefined done = true
+
+-- or 
+console.log([...itr]);    // [1, 2, 3]	using spread operator
+
+==== 36- Sync example 
+-- use generators to write sync code
+
+
+==== Promises
+-- before promieses we had to pass a call back in order to execute a code after async function finishes
+
+-- instead of passing callbacks to async functions
+you can use promises 
+-- it allows to handle async task
+=> example
+function getName(name){
+    return new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            resolve(`hi: ${name}`);
+        },2000);
+    });
+}
+
+getName('ahmed').then((name)=>{console.log(name);}); 		// when done execute .then
+
+=== 38- chaining 
+
+getName('ahmed').then(
+        (name)=>{
+            console.log(name); return 'salah';      // this is like resolve('salah') 	, or you can call another async function 
+        }
+    ).then(
+        name => {console.log(name)}
+    );  // chaining promises
+
+
+---- calling 2 async functions , and wait until each one finishes
+function getName(name){
+    return new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            resolve(`hi: ${name}`);
+        },2000);
+    });
+}
+
+function getAge(age){
+    return new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            resolve(`your Age: ${age}`);
+        },3000);
+    });
+}
+
+
+getName('ahmed').then(
+        (name)=>{
+            console.log(name); return getAge(20);      
+        }
+    ).then(
+        age => {console.log(age);}
+    );  // chaining promises
+ 
+
+--- or you can do this 
+getName('ahmed').then(
+        (name)=>{
+            console.log(name); //return getAge(20);      
+        }
+    )
+    .then(getAge)	// next then will catch the value returned from getAge
+    .then(
+        age => {console.log(age);}
+    );  // chaining promises
+
+
+=== 39 - all & race 
+--- in previous example to make the code more clean you can use Promise.all
+
+Promise.all([
+    getName('Ahmed'),
+    getAge('28')
+]).then(([name, age])=>{
+    console.log(name);
+    console.log(age);
+});
+
+--- race
+Promise.race([
+    getName('Ahmed'),
+    getAge('28')
+]).then((value)=>{
+    console.log(value);   // print the one to finish first 
+});
+
+=== 40 catch 
+function getName(name){
+    return new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            //resolve(`hi: ${name}`);
+            reject('something went wrong!');		// server return this error
+   	    //throw new Exception('something went wrong!');	// or throw exception
+		or // Error ...
+        },2000);
+    });
+}
+
+getName('ahmed')
+.then((name)=> console.log(name))
+.catch((err)=> console.log(err))
+.then(()=> console.log('hello'));	// you can attach .then again 
+
+=== 41- alternative to promises  (async - await)
+-- simple async await example 
+async function getMyName(){
+    setTimeout(()=>{
+        console.log('Ahmed');
+    },3000);
+}
+
+getMyName();
+
+--- you can use await on promises functions 
+function getName(){
+    return new Promise((resolve,reject)=>{
+        resolve('Ahmed');
+    });
+}
+
+function getAge(){
+    return new Promise((resolve,reject)=>{
+        resolve(28);
+    });
+}
+
+async function showData(){
+    var name = await  getName();
+    var age = await getAge();
+    console.log(name);
+    console.log(age);
+}
+
+showData();
+
+--- this makes the code cleaner
+
+function getAge(){
+    return Promise.resolve(10);
+}
+
+--- you can now use try catch 
+function getAge(){
+    return Promise.reject('error has happen!');
+}
+
+async function showData(){
+    try{
+        var name = await  getName();
+        var age = await getAge();
+    }
+    catch (err){
+        console.log(err);
+    }
+}
+showData();
+
+--- when we want to get name and age and not wait for the other
+async function showData(){
+    var [name,age] = await Promise.all([
+        getName(),
+        getAge()
+    ]);
+   console.log(name);
+   console.log(age);
+}
+
+====== Addtional method 
+
+=== 42- Object.assign
+-- copy keys & values from object to another  (in ES5)
+var obj1 = {};
+
+var obj2 = {
+    name: 'Ahmed',
+    age: 28
+};
+
+Object.keys(obj2).forEach((k)=>{
+  obj1[k] = obj2[k];
+})
+
+console.log(obj1);
+
+--- in (ES6)
+Object.assign(obj1, obj2);      // means assign obj1 the value of obj2
+
+-- Note: obj1 is overwritten with obj2 properties
+
+--- assing many objects in obj1
+Object.assign(...[obj1, obj2, obj3]);		// ojb1 now has obj2 & obj3 properties 
+
+==== String.repeat
+--in ES5
+var stars = Array(10).fill('*').join('');
+console.log(stars);		//  **********
+
+-- in ES6
+var stars = '*'.repeat(10);
+console.log(stars);		//  **********
+
+str.repeat(Number(num));
+
+==== String (startwith, endwith , includes )
+-- instead of using indexOf	, you can use includes
+  var stars = 'ahmed salah salem';
+  console.log(stars.includes('ahmed')); // true
+
+-- endswith in ES5
+var stars = 'ahmed salah salem';
+var index = stars.indexOf('salem') === (stars.length - 'salem'.length); 
+console.log(index);
+
+--- you specify the start index to start search from in indexOf
+arr.indexOf('D', i+1)
+
+-- in ES6
+var stars = 'ahmed salah salem';
+console.log(stars.endsWith('salem'));
+
+-- the same for startsWith()
+
+==== Array.find , Array.findIndex
+var numbers = [34, 21, 16, 32, 11, 30];
+var result = numbers.filter((n)=>n % 5 === 0);
+console.log(result); 		// returns [30]		get a new array based on a condition  .where in dart
+
+-- 
+var result = numbers.find((n)=>n % 5 === 0); 		// get the first matching element
+var result = numbers.findIndex((n)=>n % 5 === 0);       // get the first matching index
+
+=== Math.trunc
+- before we use .celling() for negative numbers
+		.floor()  for positive numbers 
+-- in ES6
+	console.log(Math.trunc(30.6));   // 30
+
+=== isNan , isFinite
+console.log(Number.isNaN('1'));    // false 			in ES5   i != i
+
+var i = 1/0;	// i is infinite
+// in  ES5
+(i === infinity || i === -infinity)
+console.log(i);	// infinity
+
+var i = 1/0;
+console.log(Number.isFinite(i));	// false
+
+var i = 1/1;
+console.log(Number.isFinite(i));	// true
+
+=== Number.isSafeInteger(1e2454354)	// check if the numbers is too big (out of integer boudries)
+
+=== EPSILON
+Note 
+  console.log((0.1+0.2) === 0.3);	// this is false
+
+-- so this is how to check if two numbers are equal 
+	console.log(Math.abs((0.1+0.2)-0.3) < Number.EPSILON);
+
+=== Math.sign
+console.log(Math.sign(10));  // 1
+console.log(Math.sign(-10));  // -1
+console.log(Math.sign(0));  // 0
+
+- you can use it or use Math.abs()
+
+=== 51- Set 
+-- not duplicate objects in set 
+
+var set = new Set([1,2,3,5,5,5,5]);
+console.log(set);	// set is [1,2,3,5]	, it removes duplicate
+
+-- some set functions 
+var set = new Set([1,2,3,5, 5,5,5]);
+set.add(10);
+//set.clear();
+set.has(1);		// check if element exist
+set.delete(5);
+
+-- print set entries 
+for(let e of set.entries()){	// how to loop itertable object
+    console.log(e[0]);
+}
+
+var entries = [...set.entries()];
+var keys = [...set.keys()];		// itertable object too 
+
+
+-- loop set 
+set.forEach(e=> console.log(e));
+
+-- items count 
+set.size;
+
+=== 52- Map
+-- used for less lookup time
+-- it also has keys and entries 
+-- has(key), 
+- map1.get(key)
+- map1.set(key, value)
+
+var entries = map.entries();
+var values = map.values();
+var keys = map.keys();
+
+// Remove a key-value pair
+myMap.delete("key2");
+
+// loop map
+1)
+for(let m of map){
+ console.log(m);
+}
+
+2) 
+map.forEach((k,v)=> {
+    console.log(k);
+    console.log(v);
+});
+
+-- check map has key
+map.has(each)
+
+==== 53 - weekmap, weekset 
+-- in weakmaps & weakset we can only use objects.
+
+var weakmap = new WeakMap();
+var weakset = new WeakSet();
+
+
+let map = new Map();
+let weakmap = new WeakMap();
+
+(
+function(){
+    let a = {a: 10};
+    let b = {b: 12};
+
+    map.set(a, 1);
+    weakmap.set(b, 2);
+}())
+
+// here you still have access to map entries 
+// var entries = [...map.entries()];
+// console.log(entries);
+// how to access first key of map , when you no longer have `a` value ??? 
+
+var entries = weakmap.keys();
+console.log(weakmap.entries());
+
+
+--- generate random string 
+	const filename = Math.random().toString(36).slice(-6)
+
+--- read file in javascript 
+
+const fs = require('fs');
+const text = fs.readFileSync('PROJECTS.txt', 'utf-8');
+console.log(text);
+
+
+--- check type of object in js 
+group instanceof mongoose.Document;
+
+
+--- santize the input 
+      username = username.replace(/[!@#$%^&*]/g, '');
+OR
+function removeUnnecessaryCharacters(inputString) {
+  // Define a regular expression to match unwanted characters
+  const regex = /[^a-zA-Z0-9\s]/g;
+  
+  const inputString = 'qe!@#$%^&*()+-<>aaa'
+  // Remove unwanted characters using the regular expression
+  const cleanedString = inputString.replace(regex, '');
+  return cleanedString;
+}
+
+--- check string contains another string with regular expressions 
+  const regex = /[^a-zA-Z0-9\s]/g;
+  regex.test("ahmedsalah1@gmail.com").toString();
+
+
+--- swap 2 variables value 
+let a = 5;
+let b = 10;
+
+[a, b] = [b, a];
+
+--- set default value if variable is null or undefined
+	const username = data !== null && data !== undefined ? data : 'Guest';
+TO
+	const username = data ?? 'Guest';
+
+OR 
+
+	if(!!username){}		// means that username is not null or undefined
+
+--- set value if is null
+let count;
+if (!count) {
+  count = 0;
+}
+
+Shorthand:
+let count;
+count ||= 0;
+
+--- avoid unnesccary function execution
+function fetchData() {
+  if (shouldFetchData) {
+    return fetchDataFromAPI();
+  } else {
+    return null;
+  }
+}
+
+Shorthand:
+function fetchData() {
+  return shouldFetchData && fetchDataFromAPI();
+}
+
+Shorthand:
+fetchDataFromAPI?.()
+
+--- typesafe , avoid typeError
+const person = { name: { first: "John", last: "Smith" } };
+person.name.first // "John"
+person.unknown.foo // TypeError
+person.unknown?.foo // undefined, typesafe
+
+--- combine objects 
+const objCombined = {...obj1, ...obj2, ...obj3};		// creates new object with all the keys in these objects
+
+OR
+const workoutToInsert = {
+    ...newWorkout,
+    id: uuid(),
+    createdAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+    updatedAt: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+  };
+
+--- inserting values in between array
+const arr = [0, 1, 2, 3, 5, 6, 7, 8];
+syntax:		arr.splice(index, itemsToDelete, item1ToAdd, item2ToAdd, ...)
+arr.splice(4, 0, 4);	=> [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+-> Using splice will mutate the original array, not create a new one.
+
+--- check if object is array 
+Array.isArray([1,2,3]);  // true
+
+--- convert arguments to real array
+var args = Array.prototype.slice.call(arguments, 0);
+
+--- you cannot use the break statement in forEach method.
+instead you can use arrobj.every() and it will exit once returned value is false
+arr.every(function(element, index) {
+    if (element == 5) {
+        console.log("Breaking...");
+        return false;
+    } else {
+        console.log("Current Value: " + element);
+        return true;
+    }
+});
+
+--- decalre record in ES2023
+record Student {
+  string name;
+  int age;
+}
+
+const student1 = new Student("Alice", 20);
+
+--- declare tuple
+tuple Point [number, number];
+const coordinates = new Point(10, 20);
+
+
+--- don't declare using var ,  but use let or const 
+
+
+(==) (regular equality) only checks if the operands are similar, which can cause some unpleasant surprises.
+(===) (strict equality) always checks that the operands are not of different types and values and that they are exactly the same.
+
+
+--- optional chaining ?		, type safe
+cosnt pokemon = {
+  name: "ahmed"
+  info: {
+    ability: "blaze"
+  }
+}
+
+console.log(pokemon?.info?.ability);	// blaze
+console.log(pokemon.info.attack);	// error
+console.log(pokemon?.info?.attack);	// undefined (no error )
+
+--- remove element from array
+DB.workouts.splice(indexForDeletion, 1);		// removeAt
+
+--- difference between array.find() , array.filter()
+array.find()	: returns an element first one that satisfies call back function condition.
+array.filter()	: returns an array that satisfies call back function condition.
+
+--- define the type in variable declaration 
+var readStream: ReadStream = createReadStream('./data.txt');
+
+--- recursive function to calculate the biggest square in rectangular
+function getSquareSize(plotWidth, plotHeight) {
+  if (plotHeight % plotWidth === 0) {
+    return plotWidth;
+  } else {
+    return getSquareSize(plotHeight % plotWidth, plotWidth);
+  }
+}
+
+console.log(getSquareSize(640, 1680));		// 80
+
+--- resurcsive function to get sum of an array 
+function sumArr(arr) {
+  if (arr.length === 0) return 0;
+  if (arr.length === 1) return arr[0];
+  return arr[0] + sumArr(arr.slice(1));
+}
+
+console.log(sumArr([10, 3, 6, 11, 4]));
+
+
+--- recusive function to make binary search
+function bn2(a, t) {
+  let mid = Math.floor((a.length - 1) / 2);
+  if (a[mid] === t) {
+    return a[mid];
+  } else if (a[mid] < t) {
+    return bn2(a.splice(1), t);
+  } else {
+    return bn2(a.splice(a.length - 1, 1), t);
+  }
+}
+
+console.log(bn2([1, 2, 3, 4, 5, 6, 7, 8, 9], 9));
+
+--- how to clear array
+
+arr.length = 0;
+arr = [];
+arr = arr.splice(0, arr.length);
+
+--- remove element from array 
+	arr.splice(i, 1);
+
+--- to delete the first element in array use shift()
+
+--- add binary numbers
+var addBinary = function(a, b) {
+    // we used BigInt() to convert binary to Integer. Syntax is BigInt(0b11) here `0b` is prefix and `11` is binary number
+    let sum = BigInt(`0b${a}`) + BigInt(`0b${b}`);
+    // sum is converted back to string using toString(2), here 2 is radix argument, so toString(2) converts to binary
+    return sum.toString(2);
+};
+
+--- convert this array  ->  to this -> 
+const map1 = nums1.reduce((acc, num) => ({
+        ...acc,
+        [num]: (acc[num] ?? 0) + 1,
+    }), {});
+
+--- fill array with value , number of times 
+Array(4).fill(2);
+	[ 2, 2, 2, 2 ] 
+
+--- what flatMap means
+
+    return Object.keys(map1).flatMap((num) => {
+        const count = Math.min(map1[num], map2[num] ?? 0);
+        return Array(count).fill(num);
+    });
+
+--- check if number is power of 3 
+  // Calculate the logarithm of n to the base 3.
+  const logBase3 = Math.log(n) / Math.log(3);
+  
+  // Check if the result is an integer.
+  return Math.floor(logBase3) === logBase3;
+
+--- The slice method is generally the most straightforward way to extract a subarray without altering the original array.
+
+--- list.generate javascript
+	const myList = Array.from({ length: 10 }, (_, index) => index + 1);
+
+	data: Array.from({ length: 10 }, (_, index) => allDocs[0]),
+
+--- check if element is numeric 
+typeof number === "number"
+
+---  double negation (!!) coerce the result into a boolean value. 
+- use this
+return !!service; // Returns true if service exists, false if not
+-instead of this
+  if (service) {
+    return true;
+  } else {
+    return false;
+  }
+
+--- check keys exists in object 
+function checkKeysExist(obj) {
+  const keysToCheck = ["id", "name_ar", "name_en"];
+
+  for (const key of keysToCheck) {
+    if (!obj.hasOwnProperty(key)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+--- Note:
+	await can only be used within an async function, and in your case, you are using it within a non-async callback function.
+
+--- check is array 
+	Array.isArray(printerFilters)
+
+--- convert object properties into array of values 
+const IncomesExpensesTypes = {
+  EXPENSES: "EXPENSES",
+  INCOMES: "INCOMES",
+};
+
+Object.values(IncomesExpensesTypes)
+
+--- check if property exists in object 
+Note: its not recursive means it checks at the top level only.
+
+	stage.hasOwnProperty("$match") &&
+	stage["$match"].hasOwnProperty("tenant_id")
+
+--- assign object by value not by reference (to avoid affect the original object)
+	let queryObj = { ...req.query };    // assign by value not by reference
+
+
+--- you can avoid nesting if statements by `Reassignments and a Single Return Statement`
+// the order matters so you have to go from relatively generic to relatively more specific cases.
+
+so this: 
+function isLeapYear(year) {
+  if (year % 4 == 0) {
+      if (year % 100 == 0) {
+          if (year % 400 == 0) {
+              return true;
+          } else {
+              return false;
+          }
+      } else {
+          return true;
+      }
+  } else {
+   return false
+  }
+}
+
+// can be like this:
+function isLeapYear(year) {
+  let isLeap = false;
+  if (year % 4 == 0) {
+      isLeap = true;
+  }
+  if (year % 100 == 0) {
+      isLeap = false;
+  }
+  if (year % 400 == 0) {
+      isLeap = true;
+  }
+  return isLeap;
+} 
+
+--- Note: when initialize a variable before switch case , we don't need to write default: statement, otherwise you can write it.
+	- you don't have to break if you return from one switch case
+
+--- testing if a number is not float 
+if(year % 1 != 0)
+
+--- Note: 
+ const year = 2024;
+ console.log(year == "2024");		true
+ console.log(year === "2024");		false
+
+--- check if year is number
+if (isNaN(Number(year))
+
+--- in order to update object with another object and not set each property
+ if (employee.id === id) {
+      return { ...employee, ...updatedEmployee };
+    }
+
+--- for boolean variables you should not check if variable ex: if(dismissAll)
+BUT check like this	if(dismissAll === true)
+
+--- create deep copy of array of objects (so when update the copy array don't update the original one)
+// create sallow copy of an object
+// the elements in `itemsList2` are still references to the same objects in memory as the elements in `itemsList1`.
+	const itemsList2 = [...itemsList1];
+
+// create deep copy of an array
+	const itemsList2 = JSON.parse(JSON.stringify(itemsList1));
+
+--- calculate the time that task takes 
+const existingIds = Array.from({ length: 1000000 }, (_, i) => i.toString());
+const e = Math.floor(Math.random() * 1000000).toString();
+
+console.time("includes");
+existingIds.includes(e);
+console.timeEnd("includes");
+
+--- some node differences from js 
+global , process, filename, require , module
+
+--- get the difference between 2 dates in ms
+const dt = date.now()
+... async code
+console.log(date.now()-dt);
+
+
+--- delete property from object
+	delete obj.name_ar;
+	delete obj.name_en;
+
+--- you can use array.reduce to avoid multiple iterations
+example with .filter & .map	(2 iterations loops)
+	peopleList.filter((person) => person.age >= 18).map((adult) => adult.name);
+
+same example with .reduce  (1 iteration)
+peopleList.reduce((acc, person) => {
+  if (person.age >= 18) acc.push(person.name);			// use .push instead of ... spread operator because its faster than `return condition ? [...acc, item] : acc;`
+  return acc;
+}, []);
+
+--- convert map to object 
+ Object.fromEntries(myMap.entries());
+
+--- The negative index starts from the end of the array with an index value of -1 
+
+	anotherArray.at(-2); 		// to get element or char at specified index
+
+	array[-1]	-> undefined 
+
+--- use with() to mutuate an array
+const numbers = [1, 2, 3, 4, 5];
+
+const anotherArray = numbers.with(-2, 8);
+console.log(anotherArray); // [1, 2, 3, 8, 5]
+
+--- javascript array functions 

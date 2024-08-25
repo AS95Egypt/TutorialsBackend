@@ -1,0 +1,6 @@
+https://chatgpt.com/share/62ce2279-310c-421b-8296-543b89332b22
+
+
+--- handle sending socket io events to clients when they are offline
+  (express server with socketio server)
+	https://claude.ai/chat/d4365e75-b553-4d17-ac52-1a31c00e77d1

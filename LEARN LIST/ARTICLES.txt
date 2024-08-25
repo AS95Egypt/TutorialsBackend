@@ -1,0 +1,230 @@
+===================== Podcasts
+- https://www.freecodecamp.org/news/rahul-pandey-quit-his-800k-per-year-faang-developer-job-to-build-a-startup-podcast-137/
+- https://www.freecodecamp.org/news/how-john-washam-crammed-for-8-months-got-a-job-at-amazon-then-taught-1000s-of-other-devs-134/
+- https://www.freecodecamp.org/news/what-scott-hanselman-learned-from-900-podcast-interviews-with-devs-podcast-131/
+- https://www.freecodecamp.org/news/cto-andrew-brown-passed-dozens-of-cloud-certification-exams-freecodecamp-podcast-episode-120/
+- https://www.freecodecamp.org/news/100devs-founder-leon-noel-freecodecamp-podcast-interview/
+- https://www.freecodecamp.org/news/podcast-cassidy-williams-cassidoo/
+===================== READ THIS
+https://www.freecodecamp.org/news/tag/nodejs/
+
+
+- https://www.freecodecamp.org/news/ultimate-aws-certified-developer-associate-dva-c02-course-from-andrew-brown/
+
+- https://www.freecodecamp.org/news/typescript-for-beginners-guide/
+  https://www.freecodecamp.org/news/learn-typescript-for-practical-projects/
+
+- https://www.freecodecamp.org/news/host-your-first-project-on-github/
+
+- https://www.freecodecamp.org/news/create-a-pc-game-using-javascript/
+
+- https://www.freecodecamp.org/news/how-to-build-an-event-app-with-node-js/
+
+- https://www.freecodecamp.org/news/what-is-recursion/
+
+- https://www.freecodecamp.org/news/learn-system-design-principles/
+
+- https://www.freecodecamp.org/news/more-secure-authentication-from-passwords-to-passkeys/
+
+- https://www.freecodecamp.org/news/improve-your-javascript-projects-with-build-tools/
+
+- https://www.freecodecamp.org/news/scope-closures-and-hoisting-in-javascript/
+
+- https://www.freecodecamp.org/news/learn-high-level-system-design-by-building-a-youtube-clone/
+
+- https://www.freecodecamp.org/news/solid-principles-for-microservices/
+
+- https://www.freecodecamp.org/news/how-to-deal-with-traffic-surges-in-distributed-systems/
+
+- https://www.freecodecamp.org/news/microservices-vs-monoliths-explained/
+
+- https://www.freecodecamp.org/news/database-optimization-principles/
+
+- https://www.freecodecamp.org/news/learn-git-in-detail-to-manage-your-code/
+  https://www.freecodecamp.org/news/guide-to-git-github-for-beginners-and-experienced-devs/
+  https://www.freecodecamp.org/news/github-foundations-certified-exam-prep-guide/
+  https://pinjarirehan.medium.com/essential-git-commands-for-beginners-4b16ca87df8a?source=user_profile---------9----------------------------
+  https://pinjarirehan.medium.com/boost-your-code-quality-learn-git-github-like-a-pro-ff17073c5cfd?source=user_profile---------232----------------------------
+
+- https://www.freecodecamp.org/news/pass-the-github-actions-certification-exam/
+
+- https://www.freecodecamp.org/news/what-is-amazon-ec2-auto-scaling/
+
+- https://www.freecodecamp.org/news/higher-order-functions-explained/
+
+- https://www.freecodecamp.org/news/create-personalized-github-profile-page/
+
+- https://www.freecodecamp.org/news/learn-sql-for-analytics/
+
+- https://www.freecodecamp.org/news/learn-websockets-socket-io/
+
+- https://www.freecodecamp.org/news/learn-how-to-deploy-to-digital-ocean/
+
+- https://www.freecodecamp.org/news/web-api-security-guide/
+
+- https://www.freecodecamp.org/news/automate-boring-tasks-no-code-automation-course/
+
+- https://www.freecodecamp.org/news/comprehensive-nestjs-course/
+
+- https://www.freecodecamp.org/news/mongodb-data-migration/
+
+- https://www.freecodecamp.org/news/top-10-javascript-algorithms-for-coding-challenges/
+
+- https://www.freecodecamp.org/news/how-to-run-sql-like-queries-on-files/
+
+- https://www.freecodecamp.org/news/build-a-custom-api-gateway-with-node-js/
+
+- https://www.freecodecamp.org/news/practice-coding-skills-by-building-a-program-different-ways/
+
+- https://www.freecodecamp.org/news/serverless-node-js-tutorial/
+
+- https://pinjarirehan.medium.com/the-ultimate-guide-to-clean-code-32ab975e4d86?source=user_profile---------6----------------------------
+
+- https://pinjarirehan.medium.com/the-developers-guide-to-problem-solving-7db2316a93ee?source=user_profile---------12----------------------------
+
+- https://pinjarirehan.medium.com/your-step-by-step-guide-to-building-a-perfect-website-290eebc940f0?source=user_profile---------27----------------------------
+
+- https://pinjarirehan.medium.com/how-i-almost-destroyed-a-clients-website-but-learned-an-invaluable-lesson-f750600c9bf4?source=user_profile---------33----------------------------
+
+- https://pinjarirehan.medium.com/the-ultimate-guide-to-becoming-a-top-tier-freelance-web-developer-fe09f997d318?source=user_profile---------43----------------------------
+  https://pinjarirehan.medium.com/freelancing-like-a-boss-the-ultimate-guide-to-attracting-top-clients-d64b5049b5ae?source=user_profile---------68----------------------------
+
+- https://pinjarirehan.medium.com/the-best-way-to-create-a-web-developer-resume-that-gets-you-hired-56f35024d8df?source=user_profile---------51----------------------------
+
+- https://pinjarirehan.medium.com/the-absolute-best-free-tools-for-web-developers-in-2024-seriously-these-are-game-changers-bd26f65d8c5e?source=user_profile---------55----------------------------
+
+- https://pinjarirehan.medium.com/the-most-challenging-lessons-i-learned-as-a-web-developer-9dcc31456f46?source=user_profile---------59----------------------------
+
+- https://pinjarirehan.medium.com/the-best-way-to-keep-your-website-safe-fast-the-ultimate-code-audit-guide-6c0b1de05063?source=user_profile---------63----------------------------
+
+- https://pinjarirehan.medium.com/how-data-structures-algorithms-can-make-you-a-better-programmer-even-if-youre-a-beginner-6d68dd568601?source=user_profile---------77----------------------------
+
+- https://pinjarirehan.medium.com/trying-to-bust-myths-understanding-the-strength-flexibility-of-node-js-fca053f9007b?source=user_profile---------266----------------------------
+
+- https://pinjarirehan.medium.com/make-or-break-tips-for-every-javascript-developer-8140ff8c3fcf?source=user_profile---------253----------------------------
+
+- https://pinjarirehan.medium.com/how-i-use-oauth-to-modernize-websites-in-5-easy-steps-e902c4dc8c0a?source=user_profile---------252----------------------------
+
+- [Frontend Roadmap] https://pinjarirehan.medium.com/want-to-be-a-front-end-developer-in-2023-follow-this-roadmap-d82394b32bea?source=user_profile---------251----------------------------
+
+- [js performance] https://pinjarirehan.medium.com/7-javascript-powerful-optimization-tricks-you-need-to-know-f0b5da2933de?source=user_profile---------244----------------------------
+	https://pinjarirehan.medium.com/unlock-the-full-potential-of-javascript-10-tips-tricks-for-ultimate-performance-71b2c2ccec6e?source=user_profile---------215----------------------------
+
+- [js repos] https://pinjarirehan.medium.com/7-fantastic-javascript-projects-to-check-out-right-now-fc28ca38a7a?source=user_profile---------241----------------------------
+
+- [APIs & Microservices] https://pinjarirehan.medium.com/compare-apis-and-microservices-whats-the-difference-e2747bd8258a?source=user_profile---------233----------------------------
+
+- [Web Dev] https://pinjarirehan.medium.com/unlock-your-web-development-growth-know-how-long-it-takes-to-master-it-4b1a89da4455?source=user_profile---------230----------------------------
+
+- [Express alternatives] https://pinjarirehan.medium.com/beyond-express-js-5-innovative-alternatives-that-will-take-your-web-development-to-the-next-level-b2728f29d56e?source=user_profile---------229----------------------------
+
+- [Security] https://pinjarirehan.medium.com/api-security-alert-attacker-activity-surges-by-400-in-half-a-year-72c9ac1f446c?source=user_profile---------224----------------------------
+
+- [Clean code, Performance] https://pinjarirehan.medium.com/when-clean-code-hurts-performance-tips-for-crushing-common-challenges-1d8e8d48bd31?source=user_profile---------212----------------------------
+
+- https://pinjarirehan.medium.com/breaking-down-apis-the-game-changing-technology-driving-digital-transformation-6efa0b0e0b15?source=user_profile---------206----------------------------
+
+- [Become backend senior] https://pinjarirehan.medium.com/secrets-revealed-the-path-to-becoming-a-back-end-wizard-a20293e69e5e?source=user_profile---------195----------------------------
+
+- [Web Performance] https://pinjarirehan.medium.com/boost-your-efficiency-14-proven-web-development-tips-tricks-with-a-side-of-humor-9b2ac0499c1a?source=user_profile---------181----------------------------
+
+- [Nodejs Libs] https://pinjarirehan.medium.com/13-heart-pounding-node-js-libraries-to-ignite-your-next-project-94ee989203b9?source=user_profile---------115----------------------------
+
+- [Coding Hacks] https://pinjarirehan.medium.com/mind-blowing-coding-hacks-you-wont-believe-work-de3a26e220ee?source=user_profile---------82----------------------------
+
+- [ AI , Productivity ] https://pinjarirehan.medium.com/build-your-dream-app-10x-faster-the-ai-advantage-for-busy-startups-fc6969f651fe?source=user_profile---------79----------------------------
+
+
+=====================
+=== *** what is 
+	https://www.elastic.co/elastic-stack/
+
+=== *** How to scale nodejs application
+	https://www.freecodecamp.org/news/nodejs-api-best-practices-for-scaling/
+
+=== *** a circuit breaker (fail fast - fail easy)
+	https://github.com/nodeshift/opossum
+
+=== *** Stages to master backend development 
+	https://levelup.gitconnected.com/ultimate-10-stages-to-master-backend-development-f6f65f22a327
+
+=== 4 Best Practices for Backend Developers
+	https://dev.to/tutortacademy/4-best-practices-for-backend-developers-3b60?ref=dailydev
+
+=== upload file using javascript  (split it into chuncks and stream it)
+	https://hsnice16.medium.com/send-large-files-from-frontend-to-the-backend-2f5f2414cc7c
+
+==== Difference between microservices & monoliths
+	https://www.freecodecamp.org/news/microservices-vs-monoliths-explained/?ref=dailydev
+
+=== backend tools and frameworks
+	https://www.wearedevelopers.com/magazine/best-tools-backend-development
+
+=== lean command in mongodb
+	https://mongoosejs.com/docs/tutorials/lean.html
+
+=== How to design better APIs
+	https://quastor.substack.com/p/how-to-design-better-apis
+	https://r.bluethl.net/how-to-design-better-apis
+	https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/
+
+
+=== Streams and buffers in nodejs
+	https://javascript.plainenglish.io/streams-and-buffers-in-nodejs-30ff53edd50f
+
+=== https://levelup.gitconnected.com/api-design-101-from-basics-to-best-practices-a0261cdf8886
+
+=== https://dev.to/sophyia/rest-vs-graphql-a-detailed-comparison-of-api-architectures-for-developers-1i4k?ref=dailydev
+
+=== https://pinjarirehan.medium.com/the-essential-node-js-guide-for-developers-of-all-levels-af58ed92a9c7		IMPORTANT , READ AGAIN
+
+=== https://dev.to/ezekiel_77/rest-api-design-rules-2c4j?ref=dailydev
+
+=== https://favtutor.com/articles/api-guide-best-practices/?ref=dailydev
+
+=== https://www.geeksforgeeks.org/microservices/		READ THIS
+
+=== https://dev.to/vyan/how-to-structure-your-backend-code-in-nodejs-expressjs-2bdd?ref=dailydev
+
+=== https://www.moczadlo.com/2024/how-i-sent-500-million-http-requests-in-under-24h?ref=dailydev
+
+=== https://favtutor.com/articles/code-refactoring-tips/?ref=dailydev
+
+=== https://www.youtube.com/watch?v=nlZunZM92_A		شرح cloud computing
+
+=== https://medium.com/@rohitverma_87831/my-interview-experience-at-google-afc1080df175
+
+
+=== https://neon.tech/blog/how-to-minimise-the-impact-of-database-latency?ref=dailydev
+- https://neon.tech/	its a cloud provider for hosting postgres databases.
+- Keeping your backend close to the database should provide API response times that are sufficiently snappy for well-optimized queries.
+- N+1 Problem: when select N records and loop through them to perform another query on each record.
+	 fetch a list of records and then performs a subsequent query for each record returned from the original query.
+
+- using connection pooling is good to handle concurrent queries on database, but single database connection will make a delay when multiple queries are executed at the same time.
+
+
+=== Shadring in Mongodb
+	https://www.mongodb.com/resources/products/capabilities/database-sharding-explained
+
+=== API design architecutre
+	https://www.fabianzeindl.com/posts/the-api-database-architecture?ref=dailydev
+
+=== Optimize sql queries
+	https://foojay.io/today/sql-query-optimization-how-to-identify-and-optimize-slow-sql-queries/?ref=dailydev
+- use monitoring tool like Digma to find out slow queries 
+	https://docs.digma.ai/digma-developer-guide
+- use indexes to make queries faster ex: put index in `name` improves query execution time from 24 seconds to 32ms.
+   this helps db to avoid scannning the entire table (with large data) for each name.
+
+- avoid running quries with * (select * from employees) select only the fields you want. in order to remove load from memory.
+- Suggested Improvements: [reduce the number of queries as possible, avoid N+1 problem selects (in lazy loading), ]
+- you should foucs on frequent slow queries rather than rarely executed queries because it has more impact on performance.
+
+- Optimizations: 
+ - understand improvments relative to RDBMS you use.
+ - Use parameterized queries.
+ - you should provide better (disk usage, memory allocation, network)
+ - remove un wanted indexes to make write oparations faster.
+ - index columns that come after the WHERE, JOIN, GROUP BY,and ORDER BY
+ - For frequently used queries, put them in stored procedures, as it will save you time due to the precompiled execution plan that comes with it.

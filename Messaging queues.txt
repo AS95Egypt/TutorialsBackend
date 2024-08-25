@@ -1,0 +1,21 @@
+==> how to make api send data to another api in the background
+	https://chatgpt.com/c/3e62f175-d3c3-4870-9d8d-26df4c90d9d1
+
+===> difference between kafka & rabbitmq
+	https://earthly.dev/blog/kafka-vs-rabbitmq/?ref=dailydev
+
+===> Kafka Tutorials
+	https://www.youtube.com/watch?v=hyJZP-rgooc&list=PL9ooVrP1hQOG7-vTVK-hgiPwKJT6XOfO_&pp=iAQB
+
+===> learn kafka
+	https://developer.confluent.io/courses/apache-kafka/events/
+
+===> Kafka yasser el sayed
+	https://www.youtube.com/watch?v=X79IjgIUDzU&list=PL9ExMy1CBZjnsv2WXFKxXNf41iT1pdT2Q&index=25
+
+===> how to implement message queues in your backend application
+	https://www.freecodecamp.org/news/how-to-implement-message-queues-in-your-backend-applications/?ref=dailydev
+
+===> RabbitMQ documentation
+	https://www.cloudamqp.com/docs/index.html
+

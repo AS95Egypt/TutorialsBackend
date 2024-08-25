@@ -1,0 +1,60 @@
+https://www.linkedin.com/feed/update/urn:li:activity:7182100784614883328/
+
+=== https://learnhowtolearn.org/how-to-build-extremely-quickly/?ref=dailydev
+--> Outline speedrunning algorithm:
+1- Make an outline of the project
+2- For each item in the outline, make an outline. Do this recursively until the items are small.
+3- Fill in each item as fast as possible (start working on each item in the outline)
+	`DO NOT PERFECT AS YOU GO`
+4- Finally, once completely done, go back and perfect
+
+
+-> Outline speedrunning for programming:
+1- Figure out what the main purpose/function of your program is.
+
+2- Break the program into parts grouped by functionality.
+
+3- repeat steps 1-2 for each part, unless it is very small.
+
+4- implement the components starting with the lowest-level
+
+
+=== Dealing with developer's frustration
+	https://www.youtube.com/watch?v=noxptDN1lEk
+
+=== 6 Tips when learning to code 
+	https://www.youtube.com/watch?v=H_pBvUFPceA
+
+=== 10 ways to be a better developer 
+	https://www.youtube.com/watch?v=mK7lDooAGJw
+
+=== 5 High levels skills and traits for programmers 
+	https://www.youtube.com/watch?v=NiNuZ2yxwOc
+
+=== 10 ways to make money as a developer 
+	https://www.youtube.com/watch?v=bnzVL0a5h5w
+
+=== Planning and Building projects 
+	https://www.youtube.com/watch?v=Z_gjlIji8hU
+
+=== Grow as a software developer 
+	https://www.youtube.com/watch?v=VEMyVrPC7Uw
+
+=== Interview 
+	https://www.youtube.com/watch?v=1qw5ITr3k9E
+
+=== Google Search 
+	https://www.youtube.com/watch?v=BRiNw490Eq0
+
+=== Finding freelance jobs
+	https://www.youtube.com/watch?v=Z63TxAJotgQ
+
+=== 10 money lessons 
+	https://hackernoon.com/10-money-lessons-i-wish-i-knew-when-i-was-25?source=rss
+
+=== how to write better code
+	https://r.bluethl.net/how-to-write-better-code
+
+
+
+

@@ -1,0 +1,50 @@
+--- Installation
+https://www.simplilearn.com/tutorials/docker-tutorial/how-to-install-docker-on-ubuntu
+
+
+======= How to install docker in ubuntu
+ 1- download this:		https://desktop.docker.com/linux/main/amd64/docker-desktop-4.23.0-amd64.deb?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-linux-amd64&_gl=1*17mol28*_ga*MTQ4MjgzMjg0My4xNjk0NTkzMDU5*_ga_XJWPQMJYHQ*MTY5NTEyNDk4OC4yMC4xLjE2OTUxMjU5NzIuNjAuMC4w 
+
+ 2- in terminal:		sudo apt-get update
+
+ 3- create new folder and put the download file in it, then change directory to it.
+   ex:   cd Backend
+
+ 4- install downloaded file 
+	sudo apt-get install ./docker-desktop-4.23.0-amd64.deb
+
+sudo dpkg -i docker-desktop-4.23.0-amd64.deb
+sudo apt-get install -f
+
+
+===== Check if port is working ubuntu
+1- nmap 
+	sudo apt-get install nmap
+	syntax:		nmap -p <port> <hostname_or_ip>
+	example:	nmap -p 80 google.com
+
+2- telnet 
+	sudo apt-get install telnet
+	example: 	telnet google.com 80
+
+
+===== add inboud rule for port in ubuntu
+
+sudo apt-get install ufw
+
+sudo ufw enable
+
+example
+	sudo ufw allow 80/tcp
+
+to verify the rule has added
+	sudo ufw status
+
+you might need to refresh the rules
+	sudo ufw reload
+
+----- add outbound rule for the port
+
+	sudo ufw allow out <port>/tcp
+=====
+

@@ -1,0 +1,112 @@
+=== what is the difference between ORM, ODM?
+(Object Relational Mapper)
+MySQL is an example of a relational database 
+- you would use an ORM to translate between your objects in code and the relational representation of the data.
+
+Examples of ORMs are nHibernate, Entity Framework, Dapper and more...
+
+
+(Object Document Mapper)
+MongoDB is an example of a document database 
+- you would use an ODM to translate between your objects in code and the document representation of the data (if needed).
+
+Mandango is an example of an ODM for MongoDB.
+
+
+===== N+1 queries 
+ are a performance problem in which the application makes database queries in a loop,
+ instead of making a single query that returns or modifies all the information at once.
+
+ https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping
+
+===== How to sum binary numbers
+pad left first the shortest operand with leading zeros
+ex: a= 11, b= 100	then a becomes 011
+
+start adding from the right
+
+1+1=0 with carry 1
+1+0=1 with carry 0
+0+1=1 with carry 0
+0+0=0 with carry 0
+Imp:1+1=1 with carry 1 if previous carry was 1.
+The carry gets added in next step(scanning from right to left).
+
+- If you have a carry left at the end of the addition, write it down as the leftmost bit of the result.
+ex: 
+   1011
+ +  110
+-------
+  10001
+
+===== soft delete: 
+marks a record as no longer active or valid without actually deleting it from the database.
+
+===== *** Microservices
+
+===== *** Serverless
+
+===== Replay attack 
+	https://en.wikipedia.org/wiki/Replay_attack 
+
+===== Caching 
+	is the ability to store copies of frequently accessed data in several places along the request-response path.
+
+===== DNS resolution
+	mapping a web address to an IP address
+
+===== Eager loading & Lazy loading
+
+
+===== 
+Reverse proxy server: sitting in front of web servers and forwarding client requests to the appropriate backend servers. This helps in load balancing, caching, and enhancing security.
+
+Load balancer: distribute incoming traffic across multiple backend servers, improving performance, fault tolerance, and scalability of web applications.
+
+===== Event Driven architecture
+
+===== WebSocket
+
+===== TLS/SSL Encryption
+
+===== تأشيرة خروج وعودة 
+
+===== task runner like Gulp or Grunt
+
+=====  CI/CD pipelines , GitHub actions
+
+===== Database seeders
+
+===== OSSU (open source society university)  منهج حاسبات
+
+===== Microservices
+
+===== Distributed systems
+
+===== OLTP (online transaction processing)
+
+=====  Data Warehousing 
+	- cubes
+
+===== Column Store Index , create index on columns not records in order to make it easier and faster for realtime reports that depends on aggregates
+https://www.linkedin.com/feed/update/urn:li:activity:7182120229370478592/
+https://www.mongodb.com/products/capabiltiies/column-store-indexes			
+
+===== ETL pipelines	(extract , transform and load)
+
+===== Push notifications
+
+===== DNS
+
+===== API gateway
+
+===== Circuit Breaker pattern
+
+===== Test-driven development (TDD)
+
+===== multiplexing and server push.
+
+===== Common practice is to also set CORS settings Cross-Origin Resource Sharing (CORS) settings are important for web security. 
+	They control which domains can access your API, preventing unwanted cross-site interactions.
+
+===== 

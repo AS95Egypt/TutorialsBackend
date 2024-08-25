@@ -1,0 +1,15 @@
+========== Tutorials
+- Angular in 8 hours
+	https://www.youtube.com/watch?v=0sAPZ3sDKys
+
+	https://www.youtube.com/watch?v=jLY5Hg9k-PE&list=PL9ooVrP1hQOE2ELC_EdNc8QZOdtbtrZ4E&pp=iAQB
+
+- UI/UX Tutorials for beginners
+	https://www.youtube.com/watch?v=LlEB7qSdPGg&list=PL9ooVrP1hQOEXFaGm5Igdp6VDtSPYPlER&pp=iAQB
+
+
+- Web development course , Complete Roadmap
+	https://www.youtube.com/watch?v=Q33KBiDriJY&list=PL9ooVrP1hQOHPt-qWXdqElNXrNsOw_yWd&pp=iAQB
+
+
+==========

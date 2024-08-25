@@ -1,0 +1,13 @@
+1- All changes require at least one approval before getting committed to the codebase.
+
+2- Make pull requests small and digestible so code reviews can be done quickly. 
+	There shouldn’t be too many conceptual changes in a single PR.
+
+3- PRs should be reviewed within 4 hours (at least one reviewer should respond). 
+	If it’s been more than 4 hours, the engineer can add a comment to their 
+	pull request that will send a notification to all reviewers requesting feedback.
+
+4- Add context to the PR so a reviewer can easily understand what the PR is changing and why. 
+	If there are any changes that affect the UI, there should be screenshots of the UI that show the change.
+
+- Avoid redundancy in your comments; don’t write what you do, write why you do it.

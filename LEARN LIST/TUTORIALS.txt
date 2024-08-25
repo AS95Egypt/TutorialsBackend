@@ -1,0 +1,123 @@
+=== Tutorials to become a senior developer
+	https://zerotomastery.io/blog/dont-be-a-junior-developer-the-roadmap/
+
+=== API Design and Management 
+	https://www.youtube.com/playlist?list=PLgAqrVq84PDcOryFRPZmhXR_FwGauGtyv
+
+=== Database course
+	https://www.youtube.com/playlist?list=PLSE8ODhjZXjaKScG3l0nuOiDTTqpfnWFf
+
+=== Microservices Nest and Express
+	https://www.youtube.com/playlist?list=PLIGDNOJWiL19tboY7wTzz6_RY6h2gpNrH
+
+=== Software and Web Architecture course content outlines
+	https://www.youtube.com/watch?v=1dcC3DWBcxA
+
+=== Refactoring code & follow software guidlines
+	https://www.youtube.com/watch?v=36WBR8_iRJc
+
+=== Typescript
+	https://www.youtube.com/watch?v=JHEB7RhJG1Y&t=11s
+
+=== RegEx
+	https://www.youtube.com/watch?v=rhzKDrUiJVk&list=PLZlA0Gpn_vH85jM1TWO6TdCtSr6ruglWn&index=7&pp=iAQB
+
+=== Git
+	https://www.youtube.com/watch?v=IHaTbJPdB-s&list=PLZlA0Gpn_vH85jM1TWO6TdCtSr6ruglWn&index=45&pp=iAQB
+
+=== ChatGPT --
+	https://www.youtube.com/watch?v=o_joulYVndM
+
+=== CMD
+	https://www.youtube.com/watch?v=uwAqEzhyjtw
+
+=== Bash scripting
+	https://www.youtube.com/watch?v=tK9Oc6AEnR4
+
+=== Networking
+	https://www.youtube.com/playlist?list=PL8s4OGp0649_e_Wbz5MlBgW5rBW-9hD0c
+
+=== Command line hacking 
+	https://www.youtube.com/watch?v=9ReSHQihuZw
+
+=== Automate with Python
+	https://www.youtube.com/watch?v=PXMJ6FS7llk
+
+=== Python Automation with ChatGPT
+	https://www.youtube.com/watch?v=w-X_EQ2Xva4
+
+=== System Design
+	https://www.youtube.com/watch?v=m8Icp_Cid5o
+
+=== SQL Server Performance
+	https://www.youtube.com/watch?v=HvxmF0FUwrM
+
+=== Harvard CS50
+	https://www.youtube.com/watch?v=8mAITcNt710
+
+=== Linux
+	https://www.youtube.com/watch?v=ROjZy1WbCIA
+
+=== DataStructures & Algorisms Coding interview questions 
+	https://www.youtube.com/watch?v=Peq4GCPNC5c
+
+=== Data Structures & Algorisms for beginners
+	https://www.youtube.com/watch?v=8hly31xKli0
+
+=== Guide to competitive programming
+	https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/?ref=shm_outind
+
+=== Full stack MERN project (Node, Mongo, GraphQL, )
+	https://www.youtube.com/watch?v=BcLNfwF04Kw
+
+=== UI, UX
+	https://www.youtube.com/watch?v=_P3CrgFlXhg
+	https://www.youtube.com/watch?v=pN92rnO_n5U
+
+=== GraphQL
+	https://www.youtube.com/watch?v=ZQL7tL2S0oQ&list=PLZlA0Gpn_vH85jM1TWO6TdCtSr6ruglWn&index=14&pp=iAQB
+
+=== Big O notation
+	https://www.youtube.com/watch?v=itn09C2ZB9Y&list=PLZlA0Gpn_vH85jM1TWO6TdCtSr6ruglWn&index=48&pp=iAQB
+
+=== Web development Roadmap in 2022
+	https://www.youtube.com/watch?v=EqzUcMzfV1w
+
+=== Open Source & Github
+	https://www.youtube.com/watch?v=3HqN-YS8eso
+
+=== VsCode Shortcuts
+	https://www.youtube.com/watch?v=4xA5JePvCJc
+
+=== GitHub Copilot
+	https://www.youtube.com/watch?v=DeO7xLXORpY
+
+=== DevOps Crash Course
+	https://www.youtube.com/watch?v=OXE2a8dqIAI
+
+=== what is ServerLess ? 
+	https://www.youtube.com/watch?v=Fx3ZGy-mbV4
+
+=== API test automation with postman
+	https://www.youtube.com/watch?v=zp5Jh2FIpF0
+
+=== Cors
+	https://www.youtube.com/watch?v=PNtFSVU-YTI&list=PLZlA0Gpn_vH85jM1TWO6TdCtSr6ruglWn&index=16&pp=iAQB
+
+=== Redis
+	https://www.youtube.com/watch?v=jgpVdJB2sKQ&list=PLZlA0Gpn_vH85jM1TWO6TdCtSr6ruglWn&index=22&pp=iAQB
+
+=== JS: Modern javascript full course
+	https://www.youtube.com/watch?v=BI1o2H9z9fo
+
+=== JS: Socket.io
+	https://www.youtube.com/watch?v=ZKEqqIO7n-k&list=PLZlA0Gpn_vH85jM1TWO6TdCtSr6ruglWn&index=29&pp=iAQB
+
+=== JS: Closures
+	https://www.youtube.com/watch?v=3a0I8ICR1Vg&list=PLZlA0Gpn_vH85jM1TWO6TdCtSr6ruglWn&index=34&pp=iAQB
+
+=== JS: javascript generators
+	https://www.youtube.com/watch?v=IJ6EgdiI_wU&list=PLZlA0Gpn_vH85jM1TWO6TdCtSr6ruglWn&index=50&pp=iAQB
+
+=== JS: HTTP networking javascript 
+	https://www.youtube.com/watch?v=2JYT5f2isg4

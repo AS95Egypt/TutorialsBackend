@@ -1,0 +1,70 @@
+----- Testing using postman
+	https://blog.logrocket.com/how-automate-api-tests-postman/
+	https://learning.postman.com/docs/collections/running-collections/intro-to-collection-runs/
+
+--- learn how to import and export a collection 
+
+--- learn how to define environment variables which applies to all endpoints 
+
+--- save endpoints and write meanningful names.
+
+--- you can also define variables in each collection ,  first select collection , then in variables tab write your variables.
+
+--- see the execution time of each request and each step in milleseconds.
+
+--- what is the difference between headers and parameters in the request, 
+and what are all the possible data to pass ways to pass data in the request, 
+and what each one is used for ? 
+
+--- click `beautify` to format json in body
+===== Documentation 
+https://www.youtube.com/watch?v=6_bYRsbeyCc
+
+- in postman add description to endpoints to clearify (params, query , body, response) in order to see it in the published link.
+
+--- Create documentation link
+1- click the collection you want to document 
+2- click `view all documentaiton`
+3- then click publish 
+4- will direct you to postman web (set prefered options & settings) -> click publish
+5- it will give a link to share and every time you update documentation in postman 
+	and add more endpoints you will see changes after refresh the link.
+
+
+==> How to see sample response in documentation ?
+- save response as example and name this example 	ex: get user info [OK], get user info [Invalid ID] 
+	and in the published web documenation you can preview these examples.
+
+
+- make sure you make some responses, in order to view it in the documentation.
+
+
+===> to change all collection endpoints from `https://`  to `{{httpType}}://` variable do this:
+- click find and replace in lower app bar
+
+- write in search https://
+   choose where you want to search and open the relevant search tab
+
+- write {{httpType}}:// in replace section, and select all then replace.
+
+
+===> set api key & bearer token for all collection request in pre-request script
+
+// set api key in all collection's requests
+pm.request.headers.add({key: 'api-key', value: "{{apiKey}}" });
+// set bearer token in all collection's requests
+pm.request.headers.add({key: 'Authorization', value: 'Bearer '+'{{generatedAccessToken}}'});
+
+
+===== OR BETTER 
+
+// set api key in all collection's requests
+const API_KEY = pm.variables.get('apiKey');
+pm.request.headers.add({key: 'api-key', value: API_KEY });
+
+// set bearer token in all collection's requests
+const TOKEN = pm.variables.get('generatedAccessToken');
+pm.request.headers.add({key: 'Authorization', value: 'Bearer '+ TOKEN});
+
+===> get variable in postman
+const TOKEN = pm.variables.get('generatedAccessToken');

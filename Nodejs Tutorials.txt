@@ -1,0 +1,282 @@
+AhmedSalem54	microsoft account
+
+
+==== official documentation
+	https://nodejs.org/en/docs/guides
+
+==== Requirements 
+- visual studio code 
+- git
+- windows termianl 
+- chatgpt 
+- nodejs 18.15.0		and add it to vscode
+- postman
+- mongodb atlas
+
+
+==== Articles
+1- https://dev.to/nodedoctors/an-animated-guide-to-nodejs-event-loop-3g62
+
+
+==== Plan 
+- NodeJs
+- Expressjs
+- MongoDB
+- Advanced ExpressJs
+
+==== Topics
+- build in modules  (http, fs , os , process, path, query strings, streams , events , ...)
+- node package manger (npm)
+- asycn javascript
+- CRUD operations
+- data validation 
+- Authtication & authoriaztion
+- handling and logging errors
+- test drived developement	TDD
+- deployment
+- clean coding and refactoring 
+- security best practices
+- useful libs
+- common mistakces every developer should avoid
+
+==== Notes
+- Types of request (put: edit data,   delete: delete,  get: retrieve data, post: add data)
+- JWT create backend with auth key, use middleware
+- Put & Post has body , but (Get, delete) don't have body so the data is passed in the url.
+
+====  Overview
+-- mobile or web apps want to communicate with `backend service` to:
+	- store data
+	- send notifications
+	- send emails
+
+-- nodejs is ideal for highly scalable, data intensive , real time apps 
+
+-- nodejs is good for prototyping and agile developement 
+
+-- nodejs is a c++ program that uses v8 javascript chrome engine (instead of running on browser). 
+     - but is has different objects from browser.
+     - it add more features like http, fs (file system), and other addtional modules which is not avaible in browser.
+     - its a runtime enviroment for executing javascript code.
+
+--  Node is non-blocking (Asyn)
+- in blocking mode (sync) users have to wait until threads are not busy.
+- in node single thread can handle many requests , while waiting for a request's response it services anthor requests. 
+   - when first request finishs getting data it puts a messages in `Event Queue`
+   - node is monitoring `Event queue` in the background, when it finds an event in the queue it proccess it.
+- this makes node ideal for IO intensive apps.
+- in contrast ,  node should not use CPU- intensive apps like (video encoding or image manipulation) 
+
+===== install nodejs and write code
+- check if node is installed 		node --version
+-- create directory using cmd  mkdir foldername
+-- in order to initate the file and run the app 	in cmd(terminal) 	node app.js (filename)
+- in node window and document not exist.
+- it has other objects to deal with (files , operating system, networking) 
+
+=== Node Module system
+ - common modules in nodejs (os, fs, http, events)
+- setTimeOut() called when time is out
+- clearTimeout()
+- setInterval()		// call function periodcally
+- clearInterval()	// stop function from begin called repeatdly (stops timer)
+
+- in node we don't use window to access objects , instead we use global
+var message = 'ahmed';
+console.log(global.message);		// prints UNDEFINED !!!
+
+- We should avoid defining variables and methods in global scope , instead we need modularity.
+- methods and variables are private on the module.
+- module have relevant functions and methods.
+
+--- how to make variable or method public (out of its module)? 
+
+=== create and load a module
+- create a new file with its functions and variables.
+- how to make variable or method public
+
+var name = 'Ahmed Salah';
+function logChanges(){
+    console.log('log message');
+}
+module.exports.name = name;
+module.exports.logger = logChanges;	// you can change the name that is visable outside.
+- in order to use method and variables of this module in a another module 
+in app.js 
+var logger = require('./logger.js');		../logger.js		// to go one level up
+logger.logger('Success');
+
+-- Notes its better to use const in require method return 
+const logger = require('./logger.js');		// in order not to be able to change it with another value.
+
+-- in real project's module we will export only some of its methods and variables.
+
+-- use jshint app.js	in order to log errors in this file		// not working 
+
+-- to export one function only assign it to exports
+  module.exports = logChanges;
+  then call it like this:	logger('Success');	// logger is the variable name.
+
+-- see the wrapper function @m: 34
+
+=== path modules		https://nodejs.org/api/path.html
+
+The node:path module provides utilities for working with file and directory paths.
+
+const path = require('node:path'); 
+console.log(path.parse(__filename));
+
+-- Note: don't forget call the method with ().
+
+=== Os Module
+- used to get os info 
+- now using node.js can get information about os.
+
+== template string 
+console.log(`Total Memory: ${totalMemory}`);
+
+=== file system (fs)
+-- each method in fs has (sync & async) version
+-- avoid using sync method.
+-- all async functions take a method (called callback functions)
+
+const fs = require('fs');
+console.log(fs.readdirSync('./'));		// list files in current directory
+
+// call the async function 
+fs.readdir('./', function(err, files){
+    console.log(files);
+});
+
+==== Event Modules 
+- is a signal that somthing has happen.
+- when a new request made this makes an event.
+- several classes of node raises differnt types of events.
+
+- under module event , thiers `EventEmitter`
+const event = require('events');
+
+const EventEmitter = require('events');		// this returns a class
+var emitter = new EventEmitter();		// we make object of this class
+
+
+- we should register a listener for event 
+  - use on or addListener
+
+// listen to event
+emitter.on('LogMessage', function(){	
+    console.log('listner');
+});
+
+// raise event
+emitter.emit('LogMessage');			// singnaling that event has happen, 
+						// if the message is the same it will execute callback function
+-- you can pass object to emit function 
+emitter.emit('LogMessage', {id: i, url: 'http://..'});
+
+// accept the passed object
+emitter.on('LogMessage', function(arg){	
+    console.log('listner: ', arg);
+});
+
+// you can use arrow function 
+emitter.on('LogMessage', ()=>{
+    console.log('listner');
+});
+
+=== Extending Event Emitter
+- this is how to share emitter instance between modules.
+- when define function inside class, we don't need function keyword
+
+- in logger module 
+put method containing emit in a class `Logger`
+
+Class Logger extends EventEmitter{	// in order to access all functionalites  in EventEmitter when access Logger
+  // excute code 
+  //emitter.emit('LogMessage');
+  this.emit('LogMessage');	// in method	// you don't have to use emitter as we are in the same class , so remove emitter
+}
+
+module.exports.logger = Logger;		// export this class
+// so now all emitter functionalites is in one place.
+
+-- in app.js 
+const Logger = require('./logger.js');
+var logger = new Logger();
+
+logger.methodname();
+
+// use this logger object to register lister.
+
+==== Http module
+-- it extends event emitter 
+
+const http = requrie('http');
+const server = http.createServer((req, res)=> {
+if(req.url === '/'){
+  res.write('hello world');
+  res.end();
+} 
+
+if(req.url === '/api/courses'){		// handle another url 
+ res.write(JSON.stringify([1,2,3])); 		// convert object or array to json string 	, specifty content type in header
+ res.end();
+}
+});	// pass callback function to createServer 
+server.listen(3000);	// open browser with url 'localhost/3000'	to see the result , and try to change the url
+
+--- using expressjs will arrange the routes instead of handling Urls in callback functions
+  - its built on top of http module and nodejs.
+
+--- how to caplitalize first letter
+  return v.charAt(0).toUpperCase() + v.substring(1);
+
+--- send file in the response , how to join path parts
+   res.sendFile(path.join(__dirname, "../frontend", "build", "index.html")); 			// pass file path
+
+--- define module exports based on a condition
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./keys_prod");
+} else {
+  module.exports = require("./keys_dev");
+}
+
+--- comment in .env file 
+#
+
+--- create promise and resolve() , reject()
+
+var hashPassword = (pass) => {
+  return (new Promise( (resolve, reject)=> {
+    bcrypt.hash(pass, saltRounds)
+    .then((hash)=>{
+      resolve(hash);
+    })
+    .catch((err)=>{
+      reject(err)
+    })
+  }))
+}
+
+-- how to use
+ tool.hashPassword(password)
+        .then((hash)=> {}
+ )
+
+--- use foreach to loop an array
+     users.forEach((teacher)=>{
+        teachers.push({
+          "id" : teacher._id,
+          "name" : teacher.username,
+          "status" : teacher.status
+        })
+      })
+
+--- what is libuv 
+	its a library that includes most of nodes functionalities
+
+--- global variables in nodejs
+	https://chatgpt.com/c/8ba806a2-ba22-4f05-b130-3fb46ced99f4
+
+=========== Leveling up to ES6
+

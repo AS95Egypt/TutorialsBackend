@@ -1,0 +1,71 @@
+https://www.freecodecamp.org/news/increase-your-vs-code-productivity/?ref=dailydev
+
+https://www.youtube.com/watch?v=heXQnM99oAI
+
+
+======= https://www.youtube.com/watch?v=4xA5JePvCJc
+--- Ctrl+B   	collapse sidemenu
+
+--- Ctrl+`	toggle terminal
+
+--- Ctrl+,	to show the settings
+
+--- Ctrl+P	to search & open a file
+
+--- Ctrl+tab	to switch between opened files
+
+--- drag a tab or Ctrl+\     to split window into two
+
+--- Ctrl+W	to close a file
+
+--- Ctrl+H	to find and replace
+
+--- Ctrl+Shift+F	global search
+
+--- Ctrl+Shift+H	global replace
+
+--- Ctrl+Shift+P	to open command pallette and search in it.
+
+--- Ctrl+/		to comment and uncomment line or selected lines 
+
+--- Alt+Shift+arrow up/down	to duplicate line 
+
+--- Ctrl+Alt+Shift+arrow up/down	to multiselect cursor in lines you select
+
+--- Ctrl+D		to select each existance of a word one at a time
+    Ctrl+Shift+L	to select all occurance of this word in opened file.
+
+--- F2 			to rename a variable
+
+--- Ctrl+click 		to navigate to definition
+
+--- Ctrl+K , then press Z	to enter zen mode (full screen mode)	
+
+--- Ctrl+ F12 		to find all occurance of a variable.
+
+--- mouse wheel + shift to scroll horizotally
+=======
+
+--- windows + Space		Change the language 		
+
+--- Windows + V			see clipboard history
+
+--- Windows + E 			windows explorer		
+
+--- Windows + I			open settings
+
+--- Windows + M			show desktop
+
+--- Windows + plus +,		peek the desktop
+
+--- Ctrl + Insert   Copy
+--- Shift + Insert  Paste
+
+--- Alt + Space 			restore, move, size, minimize, maximize or close current window.
+
+--- CTRL + F4			Close current tab
+
+--- ALT + ENTER or ALT + double-click	show file or folder properties
+
+--- Windows + Shift + Down,Up Arrow	minimize , maximize the current file, folder.
+

@@ -1,0 +1,652 @@
+============== Links
+- what is new in nodejs 20
+	https://snyk.io/blog/10-modern-node-js-runtime-features/?ref=dailydev
+
+==============
+https://www.youtube.com/watch?v=fgTGADljAeg
+--- 
+--- Note: don't forget to use async and await for functions that require time.
+--- arrange conditions (avoid nesting, use one if and return to exit)
+--- always use return for 	-> next() , send, sendstatus , json ...
+--- don't return non-required fields in the json 
+--- const {email, password} = req.body			// set these variables value from body, body can have any number of properties, but name must match
+--- make the names prular in the exported model
+--- validation should be done in both  (endpoint , mongoose schema)	to add more layers of security.
+--- *** create unit testing for backend endpoints 
+--- execute two commands in cmd &&
+--- example of url which contains query and parameter 
+	http://{{apiBaseUrl}}:{{serverport}}/posts/section/64de2f54f7557cf4c42d300b/?page=1&limit=1
+--- Directly update the desired fields using update queries. Don't fetch the document,
+	 update the field, and save the whole document back to the database.
+--- you should:  
+	Use ISO 8601 UTC dates,  
+	use pagination, 
+	version the api
+--- how to use projection in mongodb aggregation pipeline 
+	https://rrawat.com/blog/mongo-aggregation-project-stage
+
+--- `body-parser` package do the same as 	app.use(express.json());
+--- don't add required for default fields
+--- you can arrange public routes which does'nt need authorization in a separate route.
+--- you should validate object id, because query will crash if this object id is not valid
+	if (!mongoose.Types.ObjectId.isValid(req.params.id)) {}
+
+
+- create a project and change directory to it.
+- write in terminal 	`npm init`	to create package.json 	(in this file you will see all installed 3rd party packages)
+
+-- install project dependancies (packages)
+npm install express		or `npm i express`
+npm install mongoose
+
+npm install --save-dev dotenv nodemon			// install multiple packages
+
+--save-dev	means its for development
+dotenv		to access environment variables stored in .env file
+nodemon		so you don't have to restart the server manually every time you make a change.
+
+--- in package.json
+  "scripts": {
+    "devStart": "nodemon index.js"
+  },
+
+-- create `.env` file
+-- create `.gitignore` file
+
+-- inside .gitignore exculde these files
+.env
+node_modules		files added by npm install
+
+
+-- run 		`npm run devStart`	to run the server
+
+--- configure mongodb
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://0.0.0.0:27017/subscribers');      // last is the name of the database you will create.
+
+
+--- read database url from .env file 
+require("dotenv").config();		// at the beginning 
+const DATABASE_URL = process.env.DATABASE_URL
+mongoose.connect(DATABASE_URL ,{ useNewUrlParser: true });      // last is the name of the database you will create.
+
+
+--- cors allows our server to accessed from outside.
+const cors = require('cors');
+app.use(cors());
+
+--- to accept json in request body 
+app.use(express.json());
+
+--- add new route file under routes/ and use it in index.js 
+const subscribersRouter = require('../routes/subcribers.js');
+app.use('subscribers',subscribersRouter); 
+ 
+
+--- Note: start express server afte connect to the database
+
+//Start express server  after mongodb connect
+database.once("connected", () => {
+   console.info(`Mongodb server has started!`);
+
+   app.listen(3030, ()=> console.log('Express server has started...'));
+});
+
+
+--- what is the difference between PUT & PATCH ? 
+PUT: 	updates the entire resouce so you have to pass all fields of the object.
+PATCH: 	update only the specified fields.
+
+PUT is a full update, while PATCH is a partial update.
+PUT is Idempotence , but PATCH is not.
+
+Idempotence is a property of an HTTP method that means that calling the method multiple times has the same effect as calling it once.
+
+--- create a model for subscribers 
+create new folder `models` , then `subscriber.js`
+
+const mongoose = require('mongoose');
+
+const subcriberSchema = mongoose.Schema({		// define table fields
+    name: {
+        type: String,
+        required: true,
+    },
+    channel:{
+        type: String,
+        required: true,
+    },
+    subscribeDate: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
+});
+
+module.exports = mongoose.model('subscriber', subcriberSchema);
+
+--- in main file `index.js` use this model 
+const subcriber = require('.//models/subscriber');
+
+--- routes > subscribers 
+const subcriber = require('../models/subscriber');
+
+const router = express.Router();
+
+router.get('/', async (req, res)=> {
+  try{
+    // get all subscribers 
+    const allSubscribers = await subcriber.find();  
+    // return them in json 
+    res.json(allSubscribers);
+  }
+  catch(err) {
+    // internal server error
+    res.sendStatus(500).json({message: err.message});
+  } 
+});
+
+
+
+--- see the complete example with code 
+
+const express = require('express');
+const Subcriber = require('../models/subscriber.js');
+
+const router = express.Router();
+
+
+// get all subscribers 
+router.get('/', async (req, res)=> {
+  try{
+    const allSubscribers = await Subcriber.find();  
+    // return them in json 
+    res.json(allSubscribers);
+  }
+  catch(err) {
+    // internal server error
+    res.status(500).json({message: err.message});
+  } 
+});
+
+// add new subscriber
+router.post('/', async (req, res)=>{
+    
+        const subcriberObj = new Subcriber(
+            {
+                name: req.body.name,
+                channel: req.body.channel
+            }
+        ) 
+    try {
+        const newSubscriber = await subcriberObj.save();
+        res.status(201).json(newSubscriber);
+    } catch (err) {
+        res.status(400).json({message: err.message});
+    }
+});
+
+
+
+
+// get one subscriber 
+router.get('/:id', getSubscriber, (req,res)=>{
+    res.send(res.subcriber);
+});
+
+
+// update  subscriber
+router.patch('/:id',getSubscriber,  async (req,res)=>{
+    if(req.body.name != null){
+        res.subcriber.name = req.body.name;
+    }
+    if(req.body.channel != null){
+        res.subcriber.channel = req.body.channel;
+    }
+    try {
+       const updatedSubscriber = await res.subcriber.save();
+       res.json(updatedSubscriber);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }    
+}); 
+
+router.delete('/:id', getSubscriber, async (req,res)=>{
+    try {        
+       console.log(res.subcriber);
+       await res.subcriber.deleteOne();  
+       res.json({message: 'subscriber has deleted'});
+    } catch (error) {
+       res.status(500).json({message: error.message});
+    }
+});
+
+async function getSubscriber(req, res, next){
+    let subcriberObj;
+    try {
+        subcriberObj = await Subcriber.findById(req.params.id);
+        if (subcriberObj == null){
+            return req.status(400).json({message: 'subscriber not found'});        
+        }
+    } catch (error) {
+        res.status(500).json({message: error.message}); 
+    }
+    res.subcriber = subcriberObj;
+    next();
+}
+
+module.exports = router;
+
+--- use transactions in mongodb
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    try {
+      await session.commitTransaction();
+	// operations like create, update , ...
+    } catch (error) {
+       await session.abortTransaction();
+    } finally{
+	session.endSession();
+    }
+
+------ get the sum of (totalamount, total_after_tax)  & count of (sale_count) from invoices group by `payment.type`
+    let salePaymentTypesData = await invoiceModel
+      .aggregate()
+      .match({
+        merchantid: { $eq: new ObjectId(user_id) },
+        type: "REGULAR",
+        zreport_id: { $exists: true, $eq: null },		// multiple conditions on the same field
+        datetime_issued: { $lte: currentDateTime },
+      })
+      .group({
+        _id: "$payment.type",					// _id: ["$payment.type", "$customerid"],	to group by multiple fields
+        sale_count: { $sum: 1 },
+        total_sale: { $sum: { $toDouble: "$totalamount" } },
+        total_sale_after_tax: { $sum: { $toDouble: "$total_after_tax" } },
+      });
+
+--- get sum of array using .reduce(function(accumulator,item){},  {})	and store it in object
+    const sales = salePaymentTypesData.reduce(function (accumulator, item) {
+      if (item._id === "CASH") {
+	// accumulator.value = accumulator.value + item.salesvalue
+        accumulator.cashSalesCount =  (accumulator.cashSalesCount || 0) + item.sale_count || 0;
+        accumulator.cashTotalSales =  (accumulator.cashTotalSales || 0) + item.total_sale || 0;
+        accumulator.cashTotalSalesAfterTax =  (accumulator.cashTotalSalesAfterTax || 0) + item.total_sale_after_tax || 0;
+      } else if (item._id === "CARD") {
+        accumulator.cardSalesCount =  (accumulator.cardSalesCount || 0) + item.sale_count || 0;
+        accumulator.cardTotalSales =  (accumulator.cardTotalSales || 0) + item.total_sale || 0;
+        accumulator.cardTotalSalesAfterTax =  (accumulator.cardTotalSalesAfterTax || 0) + item.total_sale_after_tax || 0;
+      }
+
+      return accumulator;
+    }, {});
+
+
+--- use callback for find() function 
+userModel.find({usertype:"TEACHER"}, (err, users)=>{
+    if(err) {}
+    else{}
+})
+
+--- make checks on the body 		
+  req.check('username', 'Invalid username').notEmpty()
+  req.check('password', 'Invalid password').isLength({min:4, max:20});
+  var errors = req.validationErrors()
+
+  if(errors) {}
+
+
+--- you can add all admin rules in admin route and refer to these functions
+
+
+--- projection in mongodb model
+	answersheetModel.find({student:creator._id, completed:true},{test:1})
+
+--- create a database file in which database connection done, and pass a callback to it to initalize the app
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+const dbConnection = (cb) => {
+  const DATABASE_URL = process.env.DATABASE_URL;
+
+  mongoose.connect(DATABASE_URL, { useNewUrlParser: true });
+
+  const database = mongoose.connection;
+  database.once("connected", cb);
+};
+
+module.exports = dbConnection;
+
+
+--- create a shared module to exchange data between unrelated rotues or controllers
+1- Create a Shared Module:
+  let sharedData = {};
+
+  function setData(key, value) {
+    sharedData[key] = value;
+  }
+
+  function getData(key) {
+    return sharedData[key];
+  }
+
+  module.exports = { setData, getData }; 
+
+2- use in controller or route
+  const { setData, getData } = require('./sharedData'); 
+  // usage set data
+  router.get('/set-data/:key/:value', (req, res) => {
+    const { key, value } = req.params;
+    setData(key, value);
+  });
+  // usage get data
+  router.get('/get-data/:key', (req, res) => {
+    const { key } = req.params;
+    const data = getData(key);
+  });
+
+- you can make this example more advanced by using different data storage like using a database, caching, or other data management techniques.
+
+
+--- arrange all routes in one file then export this file in server.js
+// inside routes folder create index.js
+
+const categoryRoute = require('./categoryRoute');
+const subCategoryRoute = require('./subCategoryRoute');
+const brandRoute = require('./brandRoute');
+const productRoute = require('./productRoute');
+
+const mountRoutes = (app) => {
+  app.use('/api/v1/categories', categoryRoute);
+  app.use('/api/v1/subcategories', subCategoryRoute);
+  app.use('/api/v1/brands', brandRoute);
+  app.use('/api/v1/products', productRoute);
+};
+
+module.exports = mountRoutes;
+
+// in server.js 
+
+// Routes
+const mountRoutes = require('./routes');		// concludes its index.js
+
+// Mount Routes
+mountRoutes(app);
+
+
+--- send file to the client 
+	res.sendFile(path.join(__dirname, "index.html")) 	// "c:/src/index.html"
+
+--- send image to the client 
+	var img = fs.readFileSync("profile-img.jpg")
+	res.writeHead(200, {'Content-Type':'image/jpg'});
+	res.end(img,'binary')
+
+
+--- get entire url 
+	console.log(req.originalUrl);
+
+req.baseUrl + req.url = req.originalUrl
+
+--- try use named functions when export so node can print it when there is an error.
+
+--- how to send  files to client using express
+
+	res.sendFile(path on server);	use path package to join paths		path.join("./settings","..",".." )	// go 2 folders up
+
+--- code to handle send SPA with backend in production environment
+// setting up an Express.js application to serve a React application in a production environment
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../frontend/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+  });
+}
+
+// OR
+app.use(express.static(path.join(__dirname, "../frontend", "build"));
+app.use("/",express.static("index.html"));
+app.listen(3000, (){});
+
+- express.static() is middleware that serves static files from the specified directory.
+
+- app.get("*", ...) is a route handler that matches any GET request that HASN'T BEEN HANDLED by the previous middleware or routes.
+
+- res.sendFile(path.join(__dirname, "../frontend", "build", "index.html")); 
+	sends the index.html file located in the build directory of the React application for any request.
+
+- This is typical in single-page applications (SPAs) to allow the client-side routing to handle the actual route rendering.
+
+- app.get("*", callback) : we should use * to enable all routes to be accessed from client application otherwise it will give 404 error
+	 ensure that all routes are correctly handled by your client-side router.
+ 
+- get nodejs version
+
+const [major, minor, patch] = process.versions.node.split(".").map(Number);
+console.log(major, minor, patch);
+console.log(process.versions.node);
+
+- use this way to document routes 
+
+// @route   GET api/cart/userCartInfo
+// @desc    Get user cart info
+// @access  private
+router.get("/userCartInfo", auth, cart_controller.userCartInfo);
+
+
+- use this to clean input
+ .trim().escape(),
+
+--- require env variables only in production
+
+	if (process.env.NODE_ENV !== "production") require("dotenv").config();
+
+
+--- how to make npm package
+	https://www.youtube.com/watch?v=J4b_T-qH3BY
+
+- create new folder with the name of your package 
+- cd to this folder & npm init		- write all requested info
+- after write package code 	write	npm link
+- cd to application folder then write	npm link package name (ex: rms-core)
+
+- now you can require this package in your project and use functionality
+	const { findString } = require("rms-core");
+	console.log("Find String: ", findString("Hello World", "Hello"));
+
+--- you can use node native watch which is a replacement for nodemon
+in package.json add this run
+	"dev-watch": "node --watch server.js",
+then call 
+	npm run dev-watch
+
+- watch files that matches a specific pattern
+	node --watch 'lib/**/*.js' app.js
+
+- run test once test files has changed
+	node --watch --test '**/*.test.js'
+
+--- using .env loader 
+- load from `.env` file
+	node --env-file=./.env server.js
+
+- load from .env.local file
+	"start": "node  --watch --env-file=./.env.local server.js", 
+
+- load multiple .env files
+	node --env-file=./.env.default --env-file=./.env.development index.js
+
+- you can different run script to run development and online with different databases
+
+============================ Best Practices 
+- Wrap common utilities as private npm packages 
+============================ ZTM 
+
+- 9:7  learn how to setup a server with websocket support
+- 9:9  always use return with res.json() in order to make sure response returned only once
+- 9:10 how to enable cors origin request? 
+- 9:10 app.use(cors()) will allow cross origin requests from any sites
+	using cors() will set `Access-Control-Allow-Origin` in the response with the value of origin
+	but why origin is sent empty from postman ???
+
+- 9:11 controller (handler) has only one router, and olso router.
+ - model can be used by many controllers.
+
+-9:13 put time consuming or IO code in promise and await for it.
+   - use path package to get the location (path) of a file
+	path.join(__dirname, "..","..","data","buttons_data.json");
+===
+-9:15 automating fullstack application with npm
+- you have to cd to both projects and run each one or open new terminal. but this is not professional.
+- full stack project will have 3 package.json files  (frontend, backend, root)
+- run `npm init -y` in the root outside `backend` and `frontend` folders
+- inside root package.json in "scripts" 
+
+"server": "cd backend && npm run dev"		
+"client": "cd frontend && npm start"
+"app": "npm run server & npm run client"	// second command will be executed even if first command not finished yet.	
+
+npm run app 	// this will start server and client
+
+NOTE: don't use && because it means run the second command after first command finish executing.
+	and in this case server will not finish until you exit (close) it
+
+- write command to npm install on client and server using the same concept 
+"install-server": "npm install --prefix backend"
+"install-client": "npm install --prefix frontend"
+"install": "npm run install-server && npm run install-client"
+
+npm run install
+
+- now in root directory you can run 	`npm run server`
+
+- you can improve the commands above to this
+"server": "npm run dev --prefix backend"
+"client": "npm start --prefix frontend"		after --prefix refer to the folder where code is.
+
+===  16 
+- you can configure react or angular app to put build files in `public` folder inside `backend`
+  in order to serve it as static files from server.	, you can also do this manually by pasting build inside server
+
+app.use(express.static(path.join(__dirname, "..", "public")));
+
+- you can access frontend index page from backend url
+	http//:0000:8000/index.html			NOTE: this will not access the home page.
+
+- you have to specifically tell the server to navigate to index.html (home page) like this:
+
+app.get("/" /* root path */ , (req,res)=> {
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));		// why use `path` package  and not write the relative path directly ???
+});
+
+- improve run command 
+in root package.json
+"deploy": "client build command --prefix client-folder && npm run dev --prefix server folder"		
+
+- using this command we will update client build and run client and server on the same port.
+
+NOTE: run server using node server.js not using nodemon because we are in production.
+
+=== 17 logging request using morgan
+- use morgan package to log request, consider ("dev", "short", "combined", "custom - our own")
+- `:user-agent`	 will log the client whether its postman or browser.
+
+=== 20 
+- convert map to array and return it in json
+	res.json(Array.from(mp.values()));
+
+=== 21  *** 
+// using *  handels if path from frontend app not exists in backend routes then direct it to index.html
+
+app.get("/*" , (req,res)=> {
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));		// why use `path` package  and not write the relative path directly ???
+});
+
+=== 22 
+
+=== 23 
+- add property to object using object.assign
+
+Object.assign(launch, { flightNumber: latestFlightNo });	// this will return the new complete object
+
+=== 24 
+- always write return when sending response
+
+=== 25 validate input
+- use isNaN (not a number) to check if data object is valid date
+
+isNaN()	// returns false if is valid means its a number
+=== 26
+
+=== 29 
+- learn how to document code and draw diagrams
+
+
+===
+app.use(cors({
+  origin: "http://localhost:3023"		// to whitelist an origin
+}))
+
+=== 13.2 
+- we use version in the url in order to support previous or old versions
+
+api/v1/...
+api/v2/...
+
+=== 13.3 how to version an API
+- when there is new versions, this means olders versions of API might be deprecated in the future.
+- versioning allows you to gradually move the users using your API to a newer version.
+
+-- support many versions in the same applications 
+
+	app.use("/v1", settingsRouter);	
+
+  - for others versions 
+	app.use("/v2", settingsRouter_V2);	
+
+- so clients refer to previous version until they change code and move to newer API versions, then deprecate old API version.
+
+=== 13.6
+- when doing a detailed search with many paramters, 
+	we make http method POST and send query options in the body.
+
+- add the ability to pass (sort, populate, select, query) properties in json of query POST endpoints.
+
+=== 13.7 
+- in application startup we load launches data from an external API.
+
+- fetch data from API using `axios` package
+
+=== 13.8 
+- combine all customers from each payload (has an array of customers) in one array
+
+const customers = palyloads.flatMap(()=> {
+  return payload.customers;
+});
+
+- use `pagination` option in mongoose pagination to control if show all records or not.
+
+=== 13.11 
+- you should check response code returned from axios package 
+
+=== 13.13 
+- pagination without packages 
+// set defaults
+const page = req.query.page || DEFAULT_PAGE_NUMBER
+const limit = req.query.limit || DEFAULT_PAGE_LIMIT
+const skip = (page - 1) * limit;
+
+Item.find().skip(skip).limit(limit);
+
+=== 13.14 sort paginated data
+
+	Item.find().skip(skip).limit(limit).sort({ code: -1 /* desc */ });   // 1 asc
+
+
+
+
+
+

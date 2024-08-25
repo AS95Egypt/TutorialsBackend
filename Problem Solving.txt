@@ -1,0 +1,86 @@
+
+=========== Links
+- https://www.geeksforgeeks.org/
+
+=========== Tips
+-  some algorisms (DFS, BFS, Sliding window, backtracing, union find, dijkstra's, sorting, hashmap, stack , queue, prim's)
+- you should not solve dynamic programming problems unless you have solid understanding for backtracking
+- also you have to know trees before solve graph problems.
+- the order you solve problems with really matters.
+- you have to figure what algorism should this problem solved with.
+
+>> some mistakes to avoid 
+- solving problems in random order
+- don't waste too time trying to figure out a solution
+- review previous problems, repetition is important
+
+=========== Definitions
+ in directed graph—the relationship is only one way.
+ [topological sort] and it’s a way to make an ordered list out of a graph.
+
+===========
+
+
+--- instead of using conditions to set max value you can use Math.max
+        let currentArea = minHeigth * (j - i);
+	if(currentArea > maxArea){
+	   maxArea = currentArea;
+	}
+
+//replaced with
+	maxArea = Math.max(maxArea, minHeigth * (j - i));
+
+
+
+--- instead of using conditions use ternary operators
+
+	count += vowels.includes(s.charAt(i)) ? 1 : 0;
+
+--- check if map has duplicates in values 
+
+let set = new Set(map.values());
+  return set.size === map.size;  
+
+
+--- how to map rows and columns to strings 
+  const rows = grid.map((arr) => arr.join());
+  const columns = grid[0].map((col, i) => grid.map((row) => row[i]).join());		//???
+
+--- how to solve ` Removing Stars From a String` using stack 
+https://leetcode.com/problems/removing-stars-from-a-string/solutions/3404904/easy-and-explained-solution-in-java-javascript-c-and-python-o-n/?envType=study-plan-v2&envId=leetcode-75
+
+
+--- you can use continue instead of nesting conditions 
+example:
+	if (char !== "]") { stack.push(char); continue; }
+
+
+--- you specify the start index to start search from in indexOf
+arr.indexOf('D', i+1)
+
+
+--- what is linkedlist 
+A linked list is a data structure used to store a collection of elements, where each element (node) points to the next element in the list. 
+It consists of nodes, and each node has two main parts: data 
+(the value or payload of the node) and a reference (or link) to the next node in the sequence. 
+Linked lists come in various forms, with singly linked lists and doubly linked lists being two common types.
+
+
+--- comparision between Breadth-first-search & Depth-first-search with examples? 
+	https://chat.openai.com/c/d1ead759-71cd-4b4e-b11d-22aa84dd5f9a
+
+
+
+--- check if number if reverse of it
+    var reverse = 0;
+    var copy = x;
+
+    while (copy > 0) {
+      const digit = copy % 10;
+      reverse = reverse * 10 + digit;
+      copy = ~~(copy / 10);
+    }
+
+    return reverse == x;
+
+

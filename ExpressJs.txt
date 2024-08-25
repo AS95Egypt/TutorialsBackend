@@ -1,0 +1,253 @@
+
+========= https://www.youtube.com/watch?v=dyMCr2lD5k0
+-- express Js is a framework of Nodejs , but node does'nt support request handling fuctions, http methods or serving files so express comes into picutre.
+-- express is a lightwheight framework which gives functionality and make node easy.
+-[Express] is a node framework designed for buildling APIs, web applications and crossplatform mobile apps.
+
+-- freatures of express js 
+1- fast service side development: save alot of time.
+2- Middleware: 	is a request handler which have access to application's request-response cycle. 
+3- Routing: 	how application's endpoints (URIs) respond to client requests.
+4- Templating: 	creates html template file with less code and render html pages.
+5- Debugging:	makes it easier to identify the exact part where bugs are.
+
+-- HTTP request types
+GET: 	read data
+PATCH:  update data
+POST: 	create data
+DELETE: delete data
+
+
+--- what is RestAPI?
+- a standard way to send and receive data for web services.
+- its flexible and can handle multiple types of calls.
+
+--- Example 
+- create empty folder , open it in vs code 
+- new terminal and write 		`npm-init -y`	this will create `package.json`	 file
+- then install express 		`npm install express` , this will create extra files.
+- create a js file ex: index.js
+
+
+-- create and endpoint with get request,  ex: to fetch categories 
+//  /categories endpoint 
+app.get('/categories', (req,res)=>{
+   res.send('Hello World');
+});
+
+
+-- run the file    node .	or 	node index.js
+
+-- open browser   http://localhost:3030/categories	to see the output, and make get request.
+
+-- Post Reqest 	  http://localhost:3030/addCategory 	open postman , and change method to post
+
+
+============= https://www.youtube.com/watch?v=SccSCuHhOw0
+-- using terminal install this pacakge, which allows us to start and stop server easily 
+npm install --save-dev nodemon
+
+-- then in package.json 
+change this:
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+to this: 
+  "scripts": {
+    "devStart": "nodemon index.js"
+  },
+
+-- then write in terminal 	`npm run devStart`
+once you save the changes the server will restart.
+
+-- use sendStatus to set the status of the response, based on what happen.
+	res.sendStatus(200);
+
+-- or you can chain the response like this:  
+	res.status(200).send('Hello Post Request');
+
+-- return the response as json format 
+    res.status(200).json({			or  	res.json({
+        empname: 'Ahmed Salah',
+        title: 'developer',
+        age: 28
+    });
+
+
+-- how to make the user download file when request an endpoint 
+app.get('/categories', (req,res)=>{
+   res.download('info.txt');
+});
+
+
+--- Rendering Html 	6:44
+
+--- you can use && , || , ! on string to check if it has value.
+NOT
+if(!name){
+  console.log('name is empty');
+}
+
+||
+if(name || 'default'){
+  console.log('name is empty');
+}
+
+
+=== Routers 
+-- handle if the index.js has many requests (routes), so arrange the code and put routes in separte files.
+
+-- make a route file for an entity like users, and put all users requests in this route folder
+
+-- create routes folder , then create `user_route.js`
+- in user_router file put all user's endpoints
+ex:  user_router.js
+// declare express & router
+const express = require('express');
+const router = express.Router();	// we use router instead of app 
+
+// put all endpoints here  ex:  /  (all users) , /adduser , /edituser
+ex: 
+router.put('/edituser', (req,res)=>{
+    res.send('PUT , edit user');
+    res.end();
+});
+
+// export this router 
+module.exports = router;
+
+---- then in main file declare user router 
+const userRouter = require('./routes/user_route.js');
+app.use('/users',userRouter);       // /users is the base url common between all user endpoints 
+
+-- now the service will respond to any endpoint you declare in this router file.
+
+--- Dynamic parameter
+//get one user 
+// get one user 
+router.get('/:id', (req,res)=>{
+    res.send(`GET , user Id: ${req.params.id}`);
+    res.end();
+ });
+
+--- NOTE: YOU SHOULD PUT DYNAMIC ROUTES :PARAM AT THE END OF THE ROUTER FILE.
+
+-- if you have the same url with different request methods, like this 
+router.get('/:id', ()=>{});		// these functions will be called later from outside
+router.put('/:id', ()=>{});
+router.delete('/:id', ()=>{});
+
+-- you can chain it like this
+router.route('/:id').get(()=>{}).put(()=>{}).delete(()=>{});
+
+-- middleware: its somthing that is begin executed between reqeust & response 
+ex: define what to if user request endpoint /:id with any request method 
+
+
+const users = [{username: 'Ahmed'}, {username: 'Salah'}];
+router.param('id', (req,res, next, id)=>{
+   req.user = users[id];	// we will use this later in the endpoint
+   next();     // you have to call next(), otherwise the page will load infinitly
+});
+
+router.route('/:id').get((req,res)=>{		// chain requests as you like
+    res.send(`GET , user name: ${req.user.username}`);		// use `req.user` in the request
+    res.end();
+ });
+
+
+=== Middleware
+-- create a middleware function that logs each request url in the service
+
+function logger(req,res,next){
+  console.log(req.originalUrl);
+  next();
+}
+
+- then in the main file , use it , BUT BEFORE THE ROUTER 
+app.use(logger);
+app.use('/users',userRouter);       // /users is the base url common between all user endpoints 
+
+-- Note: if you have a middleware that you want to call at every route , so you have use it at the top of the page.
+
+-- if you want to execute this middleware at a specific route only 
+app.get('/categories', logger, (req,res)=>{		// pass it to the request method
+   res.send('categories GET');
+   //res.download('info.txt');
+});
+
+- you can pass it many times as you want 
+   app.get('/categories', logger, logger, (req,res)=>{})
+
+-- execute this middleware in all routes in a route.
+
+-- redirect to categories after add new category.
+   res.redirect('/categories');
+
+-- NOTE: you have to put these flags on the top of the main file
+app.use(express.urlencoded({extended: true}));			// to accept form data
+app.use(express.json());					// to accept json in post body
+
+
+--- parse query string 
+app.get('/categories', logger, logger, (req,res)=>{
+   console.log(req.query.username); 			// http://localhost:3030/categories?username=ahmedsalah		, this will print `ahmedsalah`
+   res.send('categories GET');
+   //res.download('info.txt');
+});
+
+
+--- you cannot call res.send() twice
+--- in middleware you can set req.varname, and get this varname in the route.
+
+--- you can use authentication middleware to validate the user before any request except login.
+// you can pass middleware to route
+app.get('/categories', Auth, (req,res)=>{});		// and ex: logger middleware will be executed for all routes.
+-- if the middleware is passed to the route and app uses this middleware then this middleware will be executed twice.
+
+
+--- list all local pacakages in project 
+	npm list
+
+--- list all global pacakages in project 
+	npm list -g
+
+--- install global package
+	npm install -g  pm2				
+// pm2 its a package to run server in production, which restarts the server automatically when it crashes
+
+
+--- hide X-POWERED-BY header in the response 
+app.disable("x-powered-by");
+or
+// Ask Helmet to ignore the X-Powered-By header.
+app.use(
+  helmet({
+    xPoweredBy: false,
+  }),
+);
+
+--- get express app port in code 
+
+app.address().port
+
+
+--- using morgan library
+// EXAMPLE: only log error responses
+morgan('combined', {
+  skip: function (req, res) { return res.statusCode < 400 }
+})
+
+--- search endpoint for a model 
+
+  const fieldsArray = req.query.fields.split(",");	// name_ar,name_en,phone,email,address
+
+  const fields = { $or: [] };
+
+  for (const field of fieldsArray) {
+    fields.$or.push({ [field]: { $regex: new RegExp(req.query.q, "i") } });
+  }
+
+
+  let results = await Model.find(fields).sort({ name: "asc" }).limit(10);

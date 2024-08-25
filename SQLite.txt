@@ -1,0 +1,14 @@
+========= Tutorials
+- SQL tutorials
+	https://www.youtube.com/watch?v=q_JsgpiuY98&list=PL9ooVrP1hQOG6DQnOD6ujdCEchaqADfCU&pp=iAQB
+
+=========
+
+- common data types in sqlite
+	TEXT, INTEGER, REAL, BLOB, BOOLEAN, DATETIME, and NUMERIC 
+
+- use `INTEGER` to store integer data type
+
+- use `REAL` to store float data type
+
+- there is no BIGINT in sqlite because INTEGER can hold what BIGINT holds in other database engines

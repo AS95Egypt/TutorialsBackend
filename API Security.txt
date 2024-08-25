@@ -1,0 +1,220 @@
+============= Security LINKS
+
+==> best security practices for nodejs
+	https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications?slide=63
+	https://restfulapi.net/security-essentials/
+	https://www.strongdm.com/blog/api-security-best-practices?ref=dailydev
+
+==> how to protect nodejs application
+	https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications?slide=4
+
+==> Top 12 Tips for API Security
+	https://www.youtube.com/watch?v=6WZ6S-qmtqY
+
+==> API Security - mohamed elshreif & ahmed elemam
+	https://www.youtube.com/watch?v=a0g8rI4j4qc
+
+==> https://blog.openreplay.com/understanding-website-authentication/?ref=dailydev
+
+امن المعلومات - محمد الشريف 
+	https://www.youtube.com/watch?v=-fXl4AXunwo
+
+
+==> IMPORTANT security notes
+	https://dev.to/appsignal/security-best-practices-for-your-nodejs-application-37ip?ref=dailydev
+
+==> how to secure .env file in production
+
+==> Ethical hacking tutorials
+	https://www.youtube.com/watch?v=2VSNn7UIXn8&list=PL9ooVrP1hQOFNILGSLOiflM9kKnEM16Ox&pp=iAQB
+
+==> CORS
+	https://www.devsecurely.com/blog/2024/06/cors-the-ultimate-guide?ref=dailydev
+
+============= Security ACTIONS
+- validate input with each input type valid values, prevent special characters, using (express-validator)
+- use csrf package to protect against csrf attacks.
+- use ratelmiting suitable for each related endpoints
+- CHECK OWASP
+	- avoid massive assigment or exessive exposure to prevent BOLA (Broken Object Level Authorization)
+- Allow some Origins only using CORS
+- set username and passworkd for database
+- restrict access to database server to service server only (Improvment: related shard only)
+- use Packages like (helmet, compression, cors, hpp, )
+- limit the size of the request to a fixed kbs 
+- perform Testing like : (integration testing (APIs), Unit testing, penetration testing, rate limit testing)
+- don't return detailed or techniqual error stack messages in production
+- log error and success requests -support and faciliate search using keywords-
+- 
+
+============= 
+-- GET requests are cachable be default be the browser
+-- POST: are not cached by default, but it can be cachable 
+-- PUT, DELETE: are not cachable at all.
+
+
+
+
+
+
+--- search about refresh tokens and openid protocol
+=========
+
+==== 
+--- how to protect nodejs application
+https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications?slide=4
+
+app.disable("x-powered-by")	// hide backend technonolgy
+or app.use(helmet.hidePoweredBy());
+
+-- use csrf package to protect against csrf attacks 
+-- app.use(bodyParser.urlencoded()); // Make sure the body is parsed beforehand.
+
+======= Protect project secrets using .env
+- put all important information in .env file and don't include this file when share source code.
+
+- if information in .env has leaked like database credtionals you can prevent access to this user from mongo atlas and create a new user.
+	- allow only service server ip on mongo  atlas
+
+======= CORS
+- set `ACCESS-CONTROL-ALLOW- ORIGIN` to in response header to domains you deal with only
+	don't set it to * , to limit access to verified domains only.
+
+- CORS (whitelisting, blacklisting)
+
+
+======= Top 12 Tips for API Security
+	https://www.youtube.com/watch?v=6WZ6S-qmtqY
+
+1- use HTTPS this encrypts data sent between sever and client, and prevents attacks like (eavesdropping, min-in-the-middle) attacks
+
+2- use OAuth2 (standard authorization protocol)
+	- gives limited access to resources of your account to third party applications
+	- password is not shared with 3rd party application but only a temporary token is shared.
+3- use WebAuthn ***
+	- its uses physical tools like (finger prints & facial recognition)
+	- makes it harder for attackers to comprmise account using techniques like (phishing - credentail stuffing)
+
+4- use leveled API Keys
+	- using single api key for all services can be risky
+	- implement API keys with varying access levels ex: (read-only key, write key, admin key) , (you can block using http method)
+	- you have to revoke comprimized keys immediatly.
+	- some services configure expriation time for API keys.
+
+5- implement authorization
+	- impelment data access so authenticated users can have access to data they allowed to.
+
+6- rate limiting
+
+7- API versioning
+	- allow us to evolve api over time while maintaing backword compatability.
+	- versions can help in better change mangement and documentation
+8- allowlisting
+	- only allow specific entities like (IPs, user IDs, API keys) 
+
+9- check OWASP API security risks 
+
+10- use API gateway
+	- provide the ability for: 
+	(security policy enforcement, rate limiting, authentication, traffic mgmt, caching, logging, monitoring)
+11- proper error handling
+	- never return full stack errors as it contains valauble information.
+
+12- input validation
+	- week validation can lead to attacks like `cross site scripting` or `sql injection` 
+============ ZTM  section 14 Security
+
+=== 14.3 
+- https ecrypts (by ssl/tls) data as it sent it over the internet
+- if you use http protocol then any one in the network can use packet analysis tool like (wire shark) to view sent data.
+ 
+- ssl/tls are encryption algorisms which is used to encrypt data sent by https protocol
+- tls is the newer version of ssl
+- only domain name & port is exposed as plain text. 
+
+=== 14.4 
+- digital certificate: use to verify server ownership prior to sending encrypted data.
+- man in the middle attack: when hacker pretends to be the server we are talking to.
+- digital certificate prevents man in the middle attack by verifying server ownership.
+
+=== 14.6 how to use https in nodejs
+- what is amazon cloudfront ? CDN ... ???
+
+-- how to setup https in your app on local computer ?
+- create https server 
+- use openssl (from git) to generate self signed certificate & secret key
+ openssl req -x509 -newKey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
+	
+	-x509  		means self signed certificate
+	-newKey 	create new key
+	rsa:4096 	specify encryption algorism and output file length.
+	-nodes		allow us to access private key without pass to access it, you have to set pass in prod
+	-keyout key.pem  specify the output file for key
+	-out cert.pem	 specify the output file for certificate
+	
+- for a self signed certificate we don't neccessirly have a domain name, so we can run on localhost.
+
+
+=== 14.7 helmet
+- helmet contains a list of middlewares each one handels a security issue, each middleware protects against one type of security issue.  see documentation
+
+- you should add helmet middleware at the top middileware chain.
+
+=== 14.8 authentication & authorization
+- authorization: checks if user has permission to access a specific resource.
+- understand 2 Factor Authentication like security code (otp) sent to email or phone, make otp code expire after some time.
+
+- 401 UnAuthorized status code accutally means UnAuthenticated means not logged in
+
+- 403 Forbidden means user is not authorized (don't have permission to access resource).
+
+=== 14.9 social sign in
+- provide sign in using social media accounts, so you don't have to remember third part site credentials.
+- third part website like medium can have access to some information from your account.
+	you can revoke this access 
+
+=== 14.10 API keys
+- you can restrict access to your api with API-Key, it can be (OAuth Tokens , JWT Tokens)
+
+- API-Keys serves 2 purposes
+ 1- project identification: identify app or service that made request to your API.
+ 2- check that app calling your API has granded access to call it.
+
+- you have to hide API-Keys in client app.
+
+- 429 - too many requests http status code.
+
+- for example API-Keys created from google maps you can restrict this api key to some entities like ip or website, ...
+  - enter allowed website url www.myshop.com/* , so when make request accept this api key from this url only.
+
+=== 14.11 JWT
+- JWT consists of (Header, Payload, signature/secret key)
+
+- how we can view jwt token payload and edit it an still be verified ???
+	using jwt.verify will return false if token was changed without the right secret key.
+
+- you can view data in jwt token in jwt.io but you cannot edit a valid jwt token (verified) without the secret key.
+
+- application will refuse (not verify) generated jwt token, 
+	but when provide the correct secret key and edit the token application will accept this  changed token.
+
+- you should use https in order to protect jwt token from using it to gain access to your account 
+	or view data in it from jwt.io
+
+- also store it securely in client application
+
+=== 14.12 OAuth
+- OAuth is used for social sign in.
+
+
+
+
+
+
+
+
+
+
+ 
+
+

@@ -1,0 +1,79 @@
+---execute two commands at once 
+mkdir crossfit-wod-api && cd crossfit-wod-api
+
+Note:  use TAB to complete filenames instead of typing a long complex names,
+	if theres a multiple files with the same starting characters you can press TAB twice, and it will list the files
+
+--- create many folders at once
+mkdir controllers && mkdir services && mkdir database && mkdir routes
+
+OR - shorter
+
+mkdir controllers services database routes
+
+
+--- create new file 
+touch index.js
+
+touch src/database/db.json 
+or
+type filename.ext
+or
+echo > filename.ext
+echo content> filename.ext
+
+--- copy folder from location to anther
+
+ xcopy E:\Ahmed\NodeJs\projects\CMRestaurant\src\ . /E /H
+
+--- # Get the path to your current directory (copy it) 
+pwd 
+
+========== Elzero Course 
+https://www.youtube.com/watch?v=JVs2Ywy7wGQ&list=PLDoPjvoNmBAxzNO8ixW83Sf8FnLy_MkUT
+
+ss64 website for all commands
+
+- learn how to use loops to repeat commands		???
+- learn how to use to autocomplete commands		???
+- learn how to create batch file to automate things	???
+- learn how to open apps using terminal
+- learn alias and how to shorthand long commands
+
+- you can put any path with the command you execute, it execute by default in the current directory.
+
+
+- explorer .			open current folder
+- explorer Downloads		open downloads
+- explorer 			open explorer
+- explorer testjs.js		open file with default program
+
+- cd \				to change directory directly to root 
+- use tabs to autocomplete folder/file names
+
+- mkdir "app settings" 		create folder with spaces
+
+- grep "ahmed" profile.txt	search for word ahmed in profile.txt 
+  grep "require" *.js		search for require in all js files
+
+grep -r "require" --include=*.js .	search for `require` in all levels ,in js files
+
+grep "require" -r -H --include=*.js --exclude-dir=node_modules .	 exclude a folder not to search in.
+
+rename file
+  rename ahmed.jpg ahmed.png
+
+- tree 		to list folder structure tree
+
+- osk		to open on screen keyboard
+
+- mspaint 	to open paint
+
+- whoami	to see user name
+
+- systeminfo	to get system information
+
+- ping ip..  > networkdata.txt			output to file
+
+- pwd | clip					output to clipboard
+

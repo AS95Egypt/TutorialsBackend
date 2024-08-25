@@ -1,0 +1,6 @@
+- Cloud computing tutorials for beginners
+	https://www.youtube.com/watch?v=2LaAJq1lB1Q&list=PL9ooVrP1hQOFtZ5oAAeOgi_nH-txMcDMu&pp=iAQB
+
+- get your device global ip 
+	https://whatismyipaddress.com/
+

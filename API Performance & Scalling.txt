@@ -1,0 +1,156 @@
+==> 8 Strategies for Reducing Latency
+	https://newsletter.systemdesigncodex.com/p/8-strategies-for-reducing-latency?ref=dailydev
+
+==> Database shadring
+
+============= Scalaling & Performance LINKS
+- https://medium.com/codex/how-pinterest-scaled-to-11-million-users-with-only-6-engineers-a0f62cea62b8
+
+==> How to Scale a Database ?
+	https://blog.algomaster.io/p/system-design-how-to-scale-a-database?ref=dailydev
+
+
+============ ZTM Improving node performance - section 11
+- javascript & event loop is single thread, means it can process one request at a time.
+- event loop passes long time tasks to thread pool and operating system so it does'nt block event loop.	ex: reading and writing files.
+
+== 3 - building a simple blocking server
+- to show the effect of blocking event loop.
+
+- create a delay function to call in handler to simulate blocking event loop
+- this delay function will be executed by event loop and will not be sent to thread pool.
+
+function delay(duration){
+ const startTime = Date.now();
+ while(Date.now()-startTime < duration){
+   // event loop is blocked
+   // in this case it will not process any request or send database queries
+ }
+}
+
+- call this method in request handler
+
+- you can see request in browser from network tab 
+
+- in order to SIMULATE it: 
+1- call normal endpoint and identify the average response time.
+2- call endpoint with timer delay (about 10 seconds) 
+3- then before 10 seconds end , call normal endpoint again, then you will notice a delay and request will be processed after delayed request.
+
+
+== 4 Real life blocking functions
+JSON.stringify({}) => "{}"
+JSON.parse("{}") => {}
+array1.sort()
+crypto functions in nodejs
+
+- these functions will not take seconds, it will take miliseconds , but this is considered a delay espcially when you have alot of requests.
+
+- you should make your server response time is 100 or 200 ms at most
+
+- speed really matters for user experience.
+
+== 5 Running multiple node process
+- run an instance of service on multiple servers to distribute the load.
+
+- some servers have multiple CPUs 
+
+== 6 Node cluster module
+- Note: consider using pm2 cluster option.
+- using cluster module allows copies of node server that each run side by side in paralelle
+- when call fork() method on the master service , it creates worker instances 
+- load is distributed between workers using round robin algorism.
+
+== 7 clustering in action
+- first require native nodejs cluster 
+
+const cluter = require("cluster");
+
+==
+
+== 11 - using PM2 to create clusters
+- install pm2 globally
+	npm install pm2 -g
+
+- pm2 	command will help
+
+- to start server using pm2
+	pm2 start jsFileName
+
+- pm2 is running in the background, so you can continue typing in cmd
+
+- to list all tasks running by pm2
+	pm2 status
+	pm2 ls
+	pm2 list
+
+- stop server by id or name
+	pm2 stop 0
+	pm2 stop server
+
+- delete server
+	pm2 delete server
+
+-- using pm2 you don't have to use cluster module to fork() processes, pm2 basically is built on cluster with more and rich features.
+
+- start many instances of your server using pm2 
+	pm2 start server.js -i max / number
+
+- see server instances logs
+	pm2 logs
+
+- to restart running instances 
+	pm2 restart server
+
+- to list the last 200 lines of logs
+	pm2 logs --lines 200
+
+== 12 Managing live clusters with PM2
+- run multiple instances of your server and log to file
+	pm2 start server.js -l logs.txt -i max
+
+- to show more details about each process
+	pm2 show 0
+
+- show more details about running instances in a live dashboard
+	pm2 monit
+
+== 13 Zero downtime restart
+
+- to restart running processes one by one and make at least one process running to avoid downtime and run updated code.
+	pm2 reload server
+
+== 14 improving performance on Nasa project
+
+- add entry for pm2 cluster run in package.json scripts
+	"cluster": "pm2 start src/server.js -i max"
+
+- running servers don't share the same data stored in memory (each one has its own memory)
+- servers in a cluster must be stateless
+
+== 15 Worker threads
+- its a module in nodejs that is used to execute javascript in paraellel
+- worker threads are applied using isoates in v8 engine.
+- javascript creates this isolates to execute your code side by side.
+- it helps us to take advantage to multiple cpu processors in our machine.
+- Cluster module uses processes but worker threads uses isolates.
+- worker thread does'nt include running servers on the same port with many instances.
+- worker threads can share memory between each other. 
+- worker threads are all part of the same process
+
+== 16 Worker threads in action
+const { isMainThread, Worker } = require("worker-threads");
+
+if(isMainThread){	// run threads here otherwise it will be run infinitly
+console.log("current process: "+ process.pid);
+new Worker(__filename);
+new Worker(__filename);
+}else{
+console.log("current process: "+ process.pid);
+}
+
+- complete the video and see example for workers threads in node ???
+
+
+
+

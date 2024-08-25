@@ -1,0 +1,30 @@
+give me linkes of node repositories for node and express projects to learn from.
+	https://app.daily.dev/search?id=98554720-7d51-11ee-b0f8-42010a007e0c
+
+=== Full stack MERN project (Node, Mongo, GraphQL, )
+	https://www.youtube.com/watch?v=BcLNfwF04Kw
+
+=== Build nodejs password generator
+	https://www.youtube.com/watch?v=3Xx83JAktXk
+
+=== Amazon clone flutter & Nodejs
+	https://www.youtube.com/watch?v=ylJz7N-dv1E
+
+=== Learn JS by building 7 Games 
+	https://www.youtube.com/watch?v=ec8vSKJuZTk
+
+=== NodeJs, Express build 4 projects 
+	https://www.youtube.com/watch?v=qwfE7fSVaZM
+
+=== Flutter Production App
+	https://www.youtube.com/watch?v=aiTTClKJbnw
+
+=== Guess the word game
+	https://www.youtube.com/playlist?list=PLDoPjvoNmBAzI6F4b0MwiQgCjw8lsceMd
+
+=== Memory Blocks game
+	https://www.youtube.com/playlist?list=PLDoPjvoNmBAzSymugTQZDuEOG5I64uhyU
+
+=== Hang man game
+	https://www.youtube.com/playlist?list=PLDoPjvoNmBAwPhjRUnmlUlc377dmYtpWg
+

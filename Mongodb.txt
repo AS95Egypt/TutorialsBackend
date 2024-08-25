@@ -1,0 +1,1070 @@
+====== Mongodb Documentation
+	https://mongoosejs.com/docs
+
+	https://rrawat.com/blog/group-in-mongodb	
+	https://rrawat.com/blog/mongo-aggregation-project-stage
+
+--- Mongodb Dev & Admin tutorials
+	https://www.youtube.com/watch?v=CaKoJ9rFo8c&list=PL9ooVrP1hQOFGaB3V9mvxR-y5UHjsH3bK&pp=iAQB
+
+--- handel realtime reports with heavy aggregates 
+	https://www.linkedin.com/feed/update/urn:li:activity:7182120229370478592/
+
+--- Mongodb complete guide
+	https://faun.pub/mongodb-com-50d2f3016c2b
+
+--- 
+	https://www.analyticsvidhya.com/blog/2022/11/creating-a-music-streaming-backend-like-spotify-using-mongodb/
+
+--- Database course
+	https://www.youtube.com/playlist?list=PLSE8ODhjZXjaKScG3l0nuOiDTTqpfnWFf
+
+--- Mongodb cheat sheet
+	https://dev.to/burakboduroglu/mongodb-cheat-sheet-1a6a
+
+--- aggregation pipline stages
+	https://www.mongodb.com/docs/v7.0/reference/operator/aggregation-pipeline/
+
+--- USE Studio 3T tool for Mongo databases management.
+
+
+====== NoSQL databases 
+-- every item (document) in the database stands in its own, no relations between them
+-- relational databases in hard to scale unlike no sql databases.
+-- no sql databases can be split on multiple servers.	and its called database partitions
+
+
+====== how to execute scripts using mongosh
+- connect to mongo in mongosh using   mon
+- add script in js file 
+- in mongosh load this file with relative path 
+	 load("C:/Users/ahmed.salem/Downloads/add sections.js")
+- then the scripts in this file will be executed.
+
+--- ex: 
+db.sections.insertMany([
+  {
+    name: "economy",
+    description: "economy section news",
+    active: true,
+  },
+]);
+
+db.sections.updateMany(
+  {},
+  {
+    $set: { active: false },
+  }
+);
+...
+
+--- for upgrade scripts you can put script code in files under scripts folder and name each file with date and release number 
+	and in this file execute commands like you do in services files, for example call a method called execute in this file.
+
+--- when upgrade scripts executed in the backend ???
+  - manually by system administrator
+  - or when deploy the application
+
+  - make sure that script can be run multiple times 
+	if you go back in the version, without causing any problems. 
+	execute if not exist only
+
+====== JSON
+- used for APIs and configs
+- lightweight and easy to read/write
+-- key must be in ""
+
+- Json supports (strings, numbers , booleans, js objects, null, arrays)
+
+====== Learn Mongodb Queries 		https://www.youtube.com/watch?v=ofme2o29ngU
+
+--- install mongosh	https://www.mongodb.com/try/download/shell
+
+-- Note: in mongodb , objects like database, collections, or fields
+		 - does'nt have to be exist in order to add to them because it will be created automatically
+
+-- Note: put all uses inside mongoose.once()	callback
+	- put requires above 
+	- don't change req value, but change the response.
+	- you should't set req.body to mongodb model directly like this:   new User(req.body);
+		but instead set each field in the model , to avoid add all req.body properties to the schema and it should not (mongodb is schemaless)
+
+-- write connection string to connect to mongodb 
+	mongodb://0.0.0.0:27017
+
+-- `show dbs`		shows all databases in the server
+
+-- select database to use 
+	use databasename
+
+-- create new collection
+	db.createCollection("posts") 
+
+-- `show collections`	shows collections (Tables)
+
+-- `db.dropDatabase()`	to drop the current database
+
+-- `cls`
+
+-- to insert one record
+	db.subscribers.insertOne({name: "ahmed123", channel:"channel8"})	// database.collectionname
+
+-- to insert multiple records
+	db.subscribers.insertMany([{name:"subscriber111", channel:"channel 111"}, {name:"subscriber222", channel: "channel 222"}])
+
+-- db.subscribers.find()	// select all
+
+--  db.subscribers.find({name: "ahmed123"})		// query the database
+
+-- you can insert document this document has  properties as arrays or objects
+
+-- db.subscribers.find().limit(3)			// limit the result to certian number of records
+
+-- db.subscribers.find().sort({name: 1}).limit(3) 	// sort the result , name: 1  means ascending,  -1 means descending, 
+							   you can sort as many fields as you want 
+
+-- db.subscribers.find().skip(3).sort({name: 1})	// skip means don't put these 3 records in the result
+
+-- insert complex object with objects and arrays
+db.users.insertOne({username:"ahmed salah", age: 28, address: "mansoura", gender:"Male", credentails: {screens: ["home", "dashboard"], title:"admin"}})
+
+
+-- query with object value
+db.users.find({credentails:{screens:['home', 'dashboard'], title: "admin"}})
+
+-- select some columns 
+db.users.find({username: 'ahmed salah'}, {username: 1, age: 1, credentails: 0})		// 1 show the field,   0 don't show
+
+-- select all fields except one or more 
+ db.users.find({username: 'ahmed salah'}, {age: 0}) 
+
+-- db.users.find({username: {$eq:'ahmed salah'}})				// $eq equality
+   db.users.find({username: {$eq:'ahmed salah'}, gender: {$eq:'Female'}})
+
+-- db.users.find({username: {$ne:'ahmed salah'}})				// $ne not equal
+
+-- $gt		greater than
+-- $gte		greater than or equal		{age: {$gt: 20}}
+
+-- $lt		less than
+-- $lte		less than or equal
+
+-- $in		in [,,,]
+ db.users.find({username: {$in:['ahmed salah','sara']}})
+
+-- $nin		not in [,,,]
+
+-- get all documents that has this property
+  db.users.find({username: {$exists: true}})		{$exists: false}
+
+-- combine conditions
+ db.users.find({age: {$gte:20, $lte: 30}, name: 'ahmed salah'})	// age bigger 20 and less than 30
+
+-- use and , or
+	db.users.find({$and: [{age: 25}, {gender: 'Female'}]})
+
+-- query with and , more combined conditions
+ db.users.find({$and: [{age: {$gte: 20, $lte: 30}}, {gender: {$in:['Female','Male']}}]})
+
+-- use $not 	
+db.users.find({age: {$not:{$lte: 25}}})
+
+-- use expressions
+db.users.find({$expr: {$gte:["$age","$salary"]}})		// means get all where age >= salary
+
+
+-- query object in the document 
+ db.users.find({"credentails.title": 'admin'})
+
+-- apply other filters to this object 
+db.users.find({"credentails.screens": {$in: ['home', 'dashboard', 'clients']} })
+
+-- get one record 
+ db.users.findOne({age: {$lte:25}})		// you can put the same conditions as find
+
+-- get the count
+ db.users.countDocuments({age: {$lte:25}})
+ db.<collection_name>.find({<key>: <value>}).count()
+
+-- update one document		conditions is just like find()
+ db.users.findOneAndUpdate({age: 25}, {$set: {age: 26}})		// (condition , set new value)
+
+
+-- find using object id 
+ db.users.findOne({_id: ObjectId("64d1f9bc3d07f28950eccaf9")})
+
+-- update using object id
+ db.users.findOneAndUpdate({_id: ObjectId("64d1f9bc3d07f28950eccaf9")}, {$set: {name: "Sara Mohamed"}})
+
+-- inc specified columns value
+ db.users.findOneAndUpdate({age:{$gte: 20}}, {$inc:{age: 1}}) 
+
+-- update many rows 
+// db.users.update({age:{$gte: 20}}, {$inc:{age: 1}})
+ db.users.updateMany({},{$inc:{workYears: 2}})			// update all , without conditions 
+
+-- rename collection 
+	db.adminCommand({renameCollection: "cpoint.settings_cost_centers", to: "cpoint.settings_sales_types"});
+
+	db.adminCommand({renameCollection: "cpoint.settings_preparation_locations", to: "cpoint.settings_prep_areas"});
+
+-- rename property in a collection 
+  db.users.update({username:"ahmed salah"},{$rename:{address:"location"}})
+
+-- remove property 
+ db.users.update({username:"sara"},{$unset:{name:""}})
+
+-- push element to array property
+ db.users.update({username:"sara"},{$push:{"credentails.screens":"accounts"}})
+
+-- remove element from array property
+ db.users.update({username:"sara"},{$pull:{"credentails.screens":"clients"}})
+
+-- replace document with another 
+  db.users.repalceOne({old},{new})
+
+-- delete record 
+  db.users.deleteOne({age: 34})
+
+-- delete many records
+ db.users.deleteMany({age: {$exists: false}}) 
+
+
+
+====== Mongodb with ExpressJs
+-  https://www.youtube.com/watch?v=DZBGEVgL2eE
+
+--- Packages 
+npm install mongoose
+npm install --save-dev nodemon
+npm install express
+
+-- in package.json
+"scripts":{
+  "devStart": "nodemon script.js"
+}
+
+-- run the server , type in terminal
+
+npm run devStart
+
+-- Note: you can add aggregate column in the collection to have the sum for transactions.
+	or you can calculate it by yourself.
+
+-- create simple user model in models folder 
+        const mongoose = require('mongoose');
+
+        const userSchema = new mongoose.Schema({
+        name: {
+            type: String,
+            required: true
+        },
+        age: {
+            type: Number,
+            required: true
+        }
+        });
+
+        module.exports = mongoose.model('user', userSchema);
+-- then use this model in main file to add new user to the database 
+const User = require('./models/user');
+await run();
+
+async function run(){
+    let user = new User({name: 'Ahmed Salah', age: 28});
+    await user.save();
+    console.log(user);
+}
+
+
+--- or you can create user like this: 
+  const user1 = await User.create({name: 'Sayed', age: 24});
+  user1.name = 'Sayed Ahmed';					// how to udpate user
+  user1.save()
+
+-- schema can have different types like 
+  updatedAt: Date,
+  bestFriend: mongoose.SchemaTypes.ObjectId,        // reference another object
+  hobbies: [String],
+  address: {
+    street: String,			// you can separte this in another schema
+    city: String,
+  }
+
+-- separte address in another schema
+
+// declare adderss schema 
+const addressSchema = mongoose.Schema(
+    {
+        street: String,
+        city: String,
+    }
+)
+
+// set the type to address schema in userSchema
+address: addressSchema,
+
+-- use try..catch when make operation on the database
+
+--- you can put all validation rules in schema.
+-- required field 
+  age: {
+    type: Number,
+    required: true
+  },
+
+-- lowercase field
+  email: {
+    type: String,
+    required: true,
+    lowercase: true,
+  },
+
+-- default value for field
+  createdAt: {
+    type: Date,
+    default: new Date()
+  },
+-- or you can use a call back to generate the date every time
+default: () => new Date(),
+
+-- can't set field value 	(readonly)
+  createdAt: {
+    type: Date,
+    immutable: true,
+    default: () => new Date(),
+  },
+
+-- min , max field value
+  age: {
+    type: Number,
+    required: true,
+    min: 15,
+    max: 100,
+  },
+
+-- minLength , maxLength
+  email: {
+    type: String,
+    required: true,
+    lowercase: true,
+    minLength: 10,
+  },
+
+-- validator for field 
+  email: {
+    type: String,
+    required: true,
+    lowercase: true,
+    minLength: 10,
+    validate: {
+        validator: (value)=>{
+           var pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+           return pattern.test(value);
+        }
+    }
+  },
+-- or 
+  age: {
+    type: Number,
+    required: true,
+    min: 15,
+    max: 100,
+    validate: {
+        validator: v => v % 2 === 0
+    }
+  },
+
+---  NOTE: 	you should use .create() , or .save()	only because it uses schema validation , but other functions like updateOne() don't
+
+-- find all 
+    const users = await User.find();
+    for(u of users){
+        console.log(u);
+    }
+
+-- find by id 
+const user = await User.findById('64d33f20401944d1f334031f');
+
+-- find by field value 
+const users = await User.find({name: 'Ahmed Salah'});
+
+-- find one 
+const users = await User.findOne({name: 'Ahmed Salah'});
+
+-- you can apply the same conditions on all functions 
+
+-- delete the first match
+const users = await User.deleteOne({name: 'Ahmed Salah'});
+
+-- another query way 
+const users = await User.where('age').gte(20).limit(1);			// you can than as many where as you want 
+
+-- select certian fields 
+const users = await User.where("age").gte(26).select(['age', 'email']);		or 	.select('age')
+
+-- make object id field reference to the same table 
+  bestFriend: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'user',    // reference to the same table
+  },
+
+-- set objectid field value 
+    const users = await User.where("age").lte(26);
+    users[0].email = 'ahmedsalah@gmail.com';
+    users[0].bestFriend = '64d33f20401944d1f334031f';
+    users[0].save();
+    res.json(users);
+
+-- populate is used to join these objects
+    const users = await User.where("age").lte(26).populate('bestFriend');		// show all bestFriend user's properties
+
+-- add method to the schema 
+userSchema.methods.sayHi = function(){
+  return `hi from ${this.name}`;
+}
+users[0].sayHi()	// this is how to call it.
+
+
+-- add static method to userschema
+userSchema.statics.findByName = function(value){
+  return this.where({name: new RegExp(value,'i')});   // i: case insenstive , match using RegEx
+}
+-- .where can take the same syntax as find
+-- .where can be chained with the query
+
+- use it 
+const users = await User.findByName('Sayed');
+
+-- add custom query to the schema
+userSchema.query.ByName = function(value){
+  return this.where({name: new RegExp(value,'i')});   // i: case insenstive 
+}
+
+- when call byName you can call it on a query only not the model directly 
+ex:   .find().byName('Ahmed')
+
+
+-- create virtual property
+userSchema.virtual('userData').get(function(){
+  return `name: ${this.name}, email: ${this.email} , age: ${this.age} `
+});
+
+res.send(users[0].userData);	// prints 		name: Sayed, email: ahmedsalah@gmail.com , age: 24
+
+
+-- schema pre , post 		execute a middleware before or after an event 		like save, validate, remove, ...
+userSchema.pre('save', function(next){
+  this.updatedAt = new Date()			// so set updatedAt value before save
+  next();				// you have to call it because its a middleware
+});
+
+- execute a middleware after an event 
+userSchema.post('save', function(doc,next){   // doc means user object
+  doc.sayHi();     // you don't have to use this
+  next();
+});
+
+--- Note: you can throw new Error("") 	in pre in order to cancel save or the event you execute this middleware before.
+
+
+--- how to create virtual field with aggregate function 
+ex: get posts counts of a category, so add postscount virtual field in category collection
+
+
+  categorySchema.virtual('postscount', {
+    ref: 'post',
+    localField: '_id',
+    foreignField: 'userId',
+    count: true,
+  });
+- then when get category data call .populate('postscount') , in order to set field value
+
+	const allCategories = await Category.find().populate('postscount');  
+
+
+--- create many records at once 
+await Person.create([
+  { name: 'Benjamin Sisko', groupId: g._id },
+  { name: 'Kira Nerys', groupId: g._id }
+]);
+
+
+--- Note: 
+Beginning our pipeline with this filter stage significantly improves processing times. With the right index, 
+this entire operation can be extremely fast and reduce the number of documents to be processed in subsequent stages.
+
+--- use $match stage to filter documents 
+{
+ $match: {
+  saleDate: {
+   $gte: ISODate('2017-12-25T05:00:00.000Z'),
+   $lt: ISODate('2017-12-30T05:00:00.000Z')
+  }
+ }
+}
+
+--- use $unwind to convert items array into rows 
+{
+ $unwind: {
+  path: '$items'
+ }
+}
+
+
+--- moves the quantity field to id object 
+{
+ $addFields: {
+  '_id.quantity': '$quantity'
+ }
+}
+
+--- this makes _id object as the direct root , we don't have _id any more.
+{
+ $replaceRoot: {
+  newRoot: '$_id'
+ }
+}
+
+
+
+--- $topN generates an array under the main object , in this example contain top 5 regions for this item by quantity.
+$group: {
+  _id: '$item',
+  totalQuantity: {
+   $sum: '$quantity'
+  },
+  topFiveRegionsByQuantity: {
+   $topN: {
+    output: {
+     k: '$region',			key
+     v: '$quantity'			value
+    },
+    sortBy: {
+     quantity: -1			decending
+    },
+    n: 5				top 5 
+   }
+  }
+ }
+}
+
+--- convert array in a document into object
+{
+ $set: {
+  topFiveRegionsByQuantity: {
+   $arrayToObject: '$topFiveRegionsByQuantity'
+  }
+ }
+}
+
+
+--- Aggregation pipelines run with the db.collection.aggregate() method do not modify documents in a collection, 
+unless the pipeline contains a $merge or $out stage.
+
+-- db.orders.aggregate([{stage1}, {stage2}])		// aggeregate accepts array of stages
+- the output of a stage is passed to the next stage.
+{
+      $match: { size: "medium" }					// match stage to filter the dataset 
+},
+{
+      $group: { _id: "$name", totalQuantity: { $sum: "$quantity" } }	// to group the result of the first stage by pizza name, and get total quantity  of each pizza
+}
+
+--- cast to iso date when compare dates
+$gte: new ISODate( "2020-01-30" )
+
+--- format grouping  |	get the sum of multiplicaition of two fields
+      $group:
+      {
+         _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },			// convert date to string with a specified format
+         totalOrderValue: { $sum: { $multiply: [ "$price", "$quantity" ] } },
+         averageOrderQuantity: { $avg: "$quantity" }
+      }
+
+---  sort stage after group stage, its sorts by `totalOrderValue` field descending
+{
+   $sort: { totalOrderValue: -1 }
+}
+
+
+--- the same stage can appear multiple times in the same query except ( $out, $merge, and $geoNear)
+
+--- if aggregation pipline requires more than 100 mb to execute it will raise error.
+	- so you have to enable disk writes `allowDiskUseByDefault` foreach query in options: { allowDiskUse: false }
+
+--- search or query object id field
+[
+  {
+    $match: {
+      _id: {
+        $in: [
+          ObjectId("64de338a17efdee96817cb3f"),
+          ObjectId("64e1c00a443171e613ca52f4"),
+        ],
+      },
+    },
+  },
+]
+
+--- limit rows in aggregate 
+db.movies.aggregate([ { $limit: 1 } ])
+
+--- select some fields using project
+Note: 
+	- You cannot use both 0 and 1 in the same object. 
+	- The only exception is the _id field. 
+	- You should either specify the fields you would like to include or the fields you would like to exclude.
+
+db.restaurants.aggregate([
+  {
+    $project: {
+      "name": 1,
+      "cuisine": 1,
+      "address": 1
+    }
+  },
+  {
+    $limit: 5
+  }
+])
+
+--- sort in aggregate
+Order ( -1: decending, 	1: acending  )
+
+db.listingsAndReviews.aggregate([ 
+  { 
+    $sort: { "accommodates": -1 } 
+  } 
+])
+
+--- $addFields
+- This aggregation stage adds new fields to documents.
+- you can use $sum, $avg, $count with $addFields
+  {
+    $addFields: {
+      avgGrade: { $avg: "$grades.score" }
+    }
+  },
+
+--- $count
+- This aggregation stage counts the total amount of documents passed from the previous stage.
+
+db.restaurants.aggregate([
+  {
+    $match: { "cuisine": "Chinese" }
+  },
+  {
+    $count: "totalChinese"
+  }
+])
+
+--- remove field in aggregate pipline
+{
+    $unset: "user_data",
+},
+
+-- unset many fields at once
+{
+    $unset: ["user_data", "postDate", "sectionId"],
+},
+
+--- duplicate lines depending on the number of elements in unwinded array. 
+{ $unwind: "$user_data" },
+
+--- replace with a new root which is a merged object 
+{
+    $replaceRoot: {
+      newRoot: {
+        $mergeObjects: [
+          {
+            _id: "",
+            title: "",
+            body: "",
+            userId: "",
+            sectionId: "",
+            username: "$user_data.name",		// you can add the fields you want from user_data object.
+          },
+          "$$ROOT",						// in 0 level
+        ],
+      },
+    },
+  },
+
+
+---  creates a new collection in the database with pipeline result and with the specified name
+{ $out: "properties_by_type" },
+
+
+--- Note that  $search operator in our aggregation pipeline is only available in mongodb atlas could database.
+
+--- Note: you can connect to mongodb using username and password
+    then the connection URL will be 
+	mongodb://admin:123@localhost:27017/		// using username & password
+
+
+- create using new,save  or create
+- field as objectId & ref 
+- field as schema 
+- validations like (min,immutable, lowercase, default, validate)
+- set property as a callback 
+- .where()    .find()
+- populate()
+- mehtods , statics, query, virtual
+- pre, post
+
+
+- get model name
+	Model.modelName
+
+- when call static method inside model use this.constructor.staticMethod
+	this.constructor.someStaticMethod();
+
+- check if object id is valid
+	mongoose.Types.ObjectId.isValid(e)
+
+--- what is the benefit of `useUnifiedTopology: true,` in this code 
+
+// MongoDB connection
+mongoose.connect(process.env.DATABASE_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+https://chat.openai.com/c/6c13e1fc-5ce5-462f-803b-cdbf6439667a
+
+---- project fields in find or findById()
+const result = await TablesSection.findById(tableSectionId).select({tables:1});
+
+OR
+
+const tables = await TablesSection.findById(tableSectionId, 'tables');
+
+
+--- you can sort or query object id column , because it has timestamp protion
+
+--- Solve issue subdocuments changes its id when edit it
+	https://stackoverflow.com/questions/48490762/mongodb-update-subdocument-changes-its-id
+User.update(
+  { _id: req.user._id, 'addresses._id': addressId },
+  { $set: {
+    'addresses.$.alias': newAddress.alias,
+    'addresses.$.address': newAddress.address,
+    'addresses.$.areaId': newAddress.areaId,
+    'addresses.$.cityId': newAddress.cityId,
+    'addresses.$.postal_code': newAddress.postal_code
+  } }
+);
+
+--- cast string to object id 
+	new mongoose.Types.ObjectId(serviceId)
+
+--- use `upsert` option to insert document if not exist
+Settings.findOneAndUpdate(
+  { setting_id },
+  { $set: updateData },
+  { upsert: true, new: true }, // upsert will insert if not found, new returns the modified document
+)
+
+--- validate length of array field on mongoose schema
+
+// validate branches_ids length
+employeeSchema.path("branches_ids").validate(function (value) {
+  return (
+    value &&
+    value.length > 0 &&
+    value.every((id) => mongoose.Types.ObjectId.isValid(id))
+  );
+}, "At least one branch is required, branch id must be valid");
+
+
+--- if you want to set sub document field which has default values 
+const newBranchData = {
+  // Other fields in the branch schema
+  // ...
+  pos_view_cheque: {}, // Set an empty object to rely on default values
+};
+
+
+--- trigger validation 
+MenuModel.findOneAndUpdate(
+  { _id: menuId, 'groups.group_id': groupIdToUpdate },
+  { $set: { 'groups.$.group_order': newGroupOrder } },
+  { new: true, runValidators: true }
+)
+
+The runValidators: true option ensures that validation defined in the schema is run when performing the update. 
+
+--- to pop all elements in array field 
+updatedMenu = await Menu.findByIdAndUpdate(
+  menuId,
+  { $pop: { groups: -1 } },
+  { new: true, runValidators: true }
+);
+
+--- Note
+ .sort() method is not applicable in the context of findOneAndUpdate
+  is typically used with queries that retrieve data from a collection, such as .find()
+
+--- add new object to database 
+const zreport = new zreportModel();
+      zreport.merchant_id = user._id;
+      zreport.datetime = currentDateTime;
+
+await zreport.save();
+
+--- Create unique indexes for each field along with tenant_id
+	vatSchema.index({ name_ar: 1, tenant_id: 1 }, { unique: true });
+	vatSchema.index({ name_en: 1, tenant_id: 1 }, { unique: true });
+	vatSchema.index({ code: 1, tenant_id: 1 }, { unique: true });
+
+--- you can call mongoose.model(name) only if model is registered 
+
+	const model = mongoose.model("settings_tables_sections");
+
+--- projection in pagination
+const pageObj = {
+  lean: true,
+  populate: "",
+  page: 1,
+  limit: 10,
+  customLabels: CustomPagesLabels,
+  select: 'field1 field2', // Specify the fields you want to include
+  // or use exclude: 'field3 field4' to exclude specific fields
+};
+
+--- get database version (monogosh)
+db.version()
+
+--- in mongodb shell command, when see error `update document requires atomic operators` 
+	db.management_employees.updateMany({}, {$set:{present: false}});
+
+--- in mongodb connection , write this property in order to enable automatic index creation
+
+  mongoose.connect(/*"mongodb://192.168.17.51:27017/cpoint"*/ DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // useFindAndModify: false,     // in order to use `findOneAndUpdate()` instead of deprecated `findAndModify()`
+    autoIndex: true,        // use `createIndex()` function rather than `ensureIndex()` for automatic index creation.
+  });
+
+--- 
+mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
+
+
+--- how to create pagination using model.find()
+
+const page = req.query.page || 1;
+  const limit = parseInt(req.query.items) || 10;
+  const skip = page * limit - limit;
+
+    //  Query the database for a list of all results
+    const resultsPromise = Admin.find()
+      .skip(skip)
+      .limit(limit)
+      .sort({ created: "desc" })
+      .populate();
+
+const [result, count] = await Promise.all([resultsPromise, countPromise]);
+
+const pages = Math.ceil(count / limit);
+const pagination = { page, pages, count };
+
+return res.status(200).json({
+        success: true,
+        result,
+        pagination,						return the pagination object in the response like `mongoose-pagination-v2`
+        message: "Successfully found all documents",
+      });
+
+--- execute many quries at once using Promise.all
+
+const [result, count] = await Promise.all([resultsPromise, countPromise]);
+
+--- how to backup mongodb database ?
+
+  - download mongodb database tools from:
+	https://fastdl.mongodb.org/tools/db/mongodb-database-tools-windows-x86_64-100.9.4.zip
+
+  - navigate to mongodump.exe and execute this command 
+	mongodump --uri=mongodb://0.0.0.0:27017/cpoint_tenant --out=E:\
+
+--- how to restore mongodb database ?
+
+	mongorestore /uri=mongodb://0.0.0.0:27017/cpoint_tenant --d database name  backup path
+ex: 
+restore on aws db server 
+	mongorestore /uri:mongodb+srv://ahmeds1400841:x0skqyop6xutCbLC@cluster0.9diwucy.mongodb.net/cpoint_tenant \Ayman\cpoint_tenant
+
+--- how to make hosted mongodb databased accessiable for any device
+ - in network access section -> edit ip and change it to "0.0.0.0/0"
+
+--- The $unwind stage in MongoDB's aggregation pipeline is used to deconstruct an array field in a document, 
+	outputting a separate document for each element of the array. 
+[
+  {
+    "_id": 1,
+    "name": "Alice",
+    "hobbies": ["Reading", "Traveling", "Swimming"]
+  },
+  {
+    "_id": 2,
+    "name": "Bob",
+    "hobbies": ["Cooking", "Cycling"]
+  }
+]
+
+will be
+
+[
+  {
+    "_id": 1,
+    "name": "Alice",
+    "hobbies": "Reading"
+  },
+  {
+    "_id": 1,
+    "name": "Alice",
+    "hobbies": "Traveling"
+  },
+  {
+    "_id": 1,
+    "name": "Alice",
+    "hobbies": "Swimming"
+  },
+  {
+    "_id": 2,
+    "name": "Bob",
+    "hobbies": "Cooking"
+  },
+  {
+    "_id": 2,
+    "name": "Bob",
+    "hobbies": "Cycling"
+  }
+]
+
+--- use partial index to make sure field value is unique on part of collection only
+
+posOrderSchema.index(
+  {
+    order_type: 1,
+    delivery_code_per_period: 1,
+    branch_id: 1,
+    tenant_id: 1,
+    period_id: 1,
+  },
+  {
+    unique: true,
+    // ensures that the unique constraint is applied only to documents where order_type is "DELIVERY".
+    partialFilterExpression: { order_type: POSOrderTypes.DELIVERY },
+  }
+);
+
+--- in pre save you can check if document is new or updated 
+
+serviceSchema.pre('save', function(next) {
+  console.log('This is executed before saving the document.');
+  if (this.isNew) {
+    console.log('Document is new and is being saved for the first time.');
+  }
+});
+
+
+--- 
+
+CategorySchema.virtual("url").get(function () {
+  return "/category/" + this._id;
+});
+
+--- send response in save() callback
+
+ newAddress
+    .save()
+    .then(address => {
+      res.status(200).json({ message: "Address added", address });
+    })
+
+--- you can use $elemMatch to match elements in array field with the criteria you want , 
+	more flexible than $in
+
+Cart.findOne(
+    {
+      user: userId,
+      items: {
+        $elemMatch: { _id: productId }
+      }
+    }
+  )
+
+--- this is how to populate query result 
+
+Order.populate(
+        result,
+        [
+          {
+            path: "products.product",
+            model: "Product"
+          },
+          { path: "address", model: "Address" }
+        ],
+
+--- $ means update the  matched element only
+
+ Order.findOneAndUpdate(
+    {
+      products: { $elemMatch: { _id: mongoose.Types.ObjectId(orderId) } }
+    },
+    { $set: { "products.$.orderState.shipped": true } },
+
+
+--- use .paginate directly with model that supports pagination
+ Product.paginate(
+      {},
+      { sort: { creationDate: -1 }, populate: "seller", page: page, limit: perPage },
+      (err, result) => {
+        if (err) {
+          res.status(400).json({ message: "Couldn't find products" });
+        } else {
+          res.status(200).json({ products: result.docs, pagesCount: result.pages });
+        }
+      }
+    );
+
+--- write bulk operations on database at once
+	https://claude.ai/chat/590955b8-b825-4f31-9c67-760f545b5a76
+
+
+--- how to allow null duplicated on unique index
+employeeSchema.index(
+  { email: 1 },
+  { unique: true, partialFilterExpression: { email: { $type: "string" } } }
+);
+========== Validations
+  drink: {
+    type: String,
+    enum: {
+      values: ['Coffee', 'Tea'],
+      message: '{VALUE} is not supported'
+    }
+  }
+
+
+===== ZTM Databases section 12
+- no sql databases like mongodb can be scalled horizontally and splitted on multiple servers , but sql databases can be scalled vertically.
+
+- you can select or unselect fields in mongoose query by 
+{ name: 1, age:1, country: 0 }
+
+or 
+"name age -country"
+
+
+"__v" is a numeric field which refers the change no that happen to your schema and which change this document follow. (do this MANUALLY)
+
+- when using `upsert` option with updateOne function and insertion happen in this case, then a new field called $SetOnInsert is added.
+   the solution is to use findOneAndUpdate
+
+- nosql injection
+
+- updateOne returns meta data object which has ( nModified, ok )	, by checking these values you can know if update is successful

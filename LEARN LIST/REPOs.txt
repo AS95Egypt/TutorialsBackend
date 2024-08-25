@@ -1,0 +1,41 @@
+https://www.interviewbit.com/blog/node-js-projects/
+
+https://github.com/goldbergyoni/nodebestpractices
+
+
+=== typescript codes 
+	https://github.com/tapascript/ts-gyan
+
+=== javascript projects
+	https://github.com/tapascript/js-projects
+
+=== Nodejs repos
+	https://github.com/search?q=nodejs&type=repositories&s=stars&o=desc&p=1
+
+=== employee salary management
+	https://github.com/berthutapea/mern-employee-salary-management/tree/main
+
+=== nodejs-backend-architecture-typescript
+	https://github.com/janishar/nodejs-backend-architecture-typescript
+
+=== SocialEcho
+	https://github.com/nz-m/SocialEcho
+
+=== mern social
+	https://github.com/shamahoque/mern-social
+
+=== Social analyzier
+	https://github.com/qeeqbox/social-analyzer/tree/main
+
+=== Ecommerce store
+	https://github.com/hacetheworld/ecommerce-store/tree/master
+
+=== nodejs-ecommerce-store
+	https://github.com/mrmodise/nodejs-ecommerce-store
+
+=== nodejs-ecommerce
+	https://github.com/RafaelGoulartB/nodejs-ecommerce
+
+=== Store POS
+	https://github.com/tngoman/Store-POS
+

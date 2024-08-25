@@ -1,0 +1,163 @@
+==== Tutorials
+
+- perform unit testing for backend enpoints
+	https://chat.openai.com/c/46a5de19-c56c-48af-b654-9c421fbe6d07
+
+- https://dev.to/dstrekelj/how-to-write-unit-tests-in-javascript-with-jest-2e83
+
+
+- jest documentation
+	https://jestjs.io/docs/getting-started
+
+- see how to implement native test runner in nodejs
+	https://snyk.io/blog/10-modern-node-js-runtime-features/?ref=dailydev
+
+=== 
+--- match all files in test folder 
+	"test2": "jest --testMatch='**/utils/**/*.test.js'"
+
+
+=== You should expect 
+- status code (200 get&put, 201 post, 204 delete)
+- res.body.success = true
+- same body 
+
+--- make sure input validation & authentication & authorization is done explicitly in middlewares when call endpoint using superset pacakge
+
+
+=== learn how to test APIs using postman
+
+
+===
+"test": "mocha"
+
+"test": "npx mocha \"test/**/*.js\""
+
+
+--- see project forum for installed packages and configuration
+
+--- How to run test 
+1- add this line in scripts section in package.json
+	"test": "mocha"
+
+2- run the test 
+  
+  npm test ./services		// where test files are located
+
+Note: sperate test files in tests folder
+
+===== Simple unit testing example using jest 
+
+1- install jest package 
+
+	npm install jest 
+
+2- define funtion you want to test in a file ex: "tools.js"
+
+function isLeapYear(year) {
+  if (isNaN(Number(year)) || year % 1 != 0 || year <= 0) return undefined;
+  return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) ? true : false;
+}
+
+3- define "test" run in package.json
+	"test": "jest ./utils/tools.test.js"
+
+4- write unit testing file
+
+const { isLeapYear } = require("./tools.js");
+
+describe("Test isLeapYear", () => {
+  it("should return true for leap year", () => {
+    expect(isLeapYear(2020)).toBe(true);
+  });
+  it("should return false for non-leap year", () => {
+    expect(isLeapYear(2023)).toBe(false);
+  });
+  it("should return undefined for invalid input", () => {
+    expect(isLeapYear("TwentyTwentyFour")).toBe(undefined);
+    expect(isLeapYear("2023.99")).toBe(undefined);
+    expect(isLeapYear("0")).toBe(undefined);
+    expect(isLeapYear("-1")).toBe(undefined);
+  });
+  it("should return true for a leap year in string format", () => {
+    expect(isLeapYear("2024")).toBe(true);
+  });
+});
+
+5- run the test file 
+	npm run test
+
+===== ZTM nodejs course - section 10 - Testing APIs
+
+-- add this key in package.json in order to be able to run test in app with mongoose
+
+  "jest": {
+    "testEnvironment": "node"
+  },
+
+=== 1
+- Unit Testing: is testing each function or class output to be correct
+- end to end test:  is testing frontend interfaces by interacting with it.
+
+- API Testing (Integration testing)
+
+=== 2 Testing with Jest
+- Test runner 
+- Test fixtures 
+- Assertions
+- Mocking
+
+
+- install jest as dev dependancy
+	install jest --save-dev	
+
+- replace "test" run value in scripts section in package.json with "jest"
+
+- you can create a folder containing all test files for your project
+OR 
+  make test file alongside with code togther.	(Recommended)
+
+payment_methods.test.js
+
+then run
+	npm test
+
+
+--- run test instantly when changes happen in code
+enter this run 
+
+"test-watch" :"jest --watch" 
+
+=== using supertest for testing APIs
+- allow us to make http requests, also provide more asserstions on top of jest
+
+- install supertest
+
+npm install supertest --save-dev
+
+- see project "D:\Ayman\Ahmed\NodeJs\projects\store" for implementation
+
+- send request using with (API Key and Bearer token)
+
+const response = await request(app)
+        .get("/api/v1/settings/income-expense")
+        .set(
+          "Authorization",
+          "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1OTcxOTNkNWM5MTg2MTI2MWViYTRmMCIsInRlbmFudF9pZCI6IjFmMDgyNzU5LTkyM2ItNDdjNS04MjYzLTgzYTZjNGViMjAwNCIsInRva2VuX3V1aWQiOiIwOGU2YjBjMy0xN2Y0LTQ0NzktYjEzNi1kYWZiOTVlNzVmNGUiLCJpYXQiOjE3MjI5MjcxMTUsImV4cCI6MTcyMzUzMTkxNX0.g_0SL9EfY-XcCPPJNpv4Ec_U56tpyI5tpeoSUg4cZW0"
+        )
+        .set("api-key", "840dd4d8db92d05a3ae4876e4b5cd20b");
+
+=== How to write and run tests
+- see project `testapp` and run project `Crystal-RMS-APIs`
+
+- create a project responsible for testing `testapp` in which we describe all our tests in one file , 
+	and make a file for each entity containing function responsbile for sending request using supertest package , 
+	then call these functions in main test file , 
+	be careful to sequence of testing because some entities refer to other entities.
+
+- separate dashboard app testing from pos testing 
+- call login endpoint first, and use token returned from it auth next endpoints.
+
+- INCLUDE: npm-check-update in the test to update the packages, after update run the test
+
+- RUN:  (another tests)  (load testing/ratelimiting, security tests..., )

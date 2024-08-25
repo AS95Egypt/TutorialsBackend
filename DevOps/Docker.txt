@@ -1,0 +1,465 @@
+============= Task 
+Learn Docker very well
+
+ALL THIS MUST BE DONE BY TERMINAL
+
+- install liunx on vmware 
+- install docker on liunx 
+- deploy our nodejs backend application on it using docker
+- try to access this application from outside the VM.
+
+- Next Step : is to use CI tool for build & deployment.
+
+
+
+============== Tutorials
+- https://snyk.io/blog/choosing-the-best-node-js-docker-image/
+- https://snyk.io/blog/10-best-practices-to-containerize-nodejs-web-applications-with-docker/
+
+
+- https://docker-curriculum.com/#introduction
+- https://www.youtube.com/watch?v=3c-iBn73dDE
+- https://www.youtube.com/watch?v=pg19Z8LL06w
+- https://www.youtube.com/watch?v=8vXoMqWgbQQ		Top 8 Docker Best Practices for using Docker in Production
+
+- https://www.youtube.com/playlist?list=PLzNfs-3kBUJnY7Cy1XovLaAkgfjim05RR		Docker بالعربى
+============== Fix problem `Docker Desktop is unable to detect a Hypervisor`
+open cmd as Administrator
+enable  (for Docker)
+	1- dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All
+	2- Run bcdedit /set hypervisorlaunchtype auto as Administrator in cmd.		then restart
+disable
+	dism.exe /Online /Disable-Feature:Microsoft-Hyper-V /All
+        bcdedit /set hypervisorlaunchtype off
+    follow this steps: 
+	https://appuals.com/vmware-workstation-device-credential-guard-are-not-compatible/
+
+or try to enable/disable using   GUI (from uninstall programs , turn windows features on/off , turn hypervisor on -or- off)
+
+============== Fix connection issues when try to connect to API in Container
+1- to access Mongodb
+    - go to C:\Program Files\MongoDB\Server\6.0\bin  and edit `mongod.cfg` file then change `127.0.0.1` to `0.0.0.0`
+
+2- to access nodejs app in container , you should listen to port and 0.0.0.0 URL
+
+  app.listen(/*PORT*/ 3000, "0.0.0.0", () =>
+    console.log("Express server has started...".green)
+  );
+
+============== include hidden files when build docker image 
+WORKDIR /home/app
+COPY . .
+
+============== Solve problem bycrpt not working 
+-- you can use bcryptjs instead
+==============
+ubuntu user name:	ahmedsalem_1995
+ubuntu password:	CM123456
+
+>> ubuntu user name must adhere to `NAME_REGEX` regular expression , and follow these rules.
+   - Username must start with a lowercase letter.
+   - Username can only contain lowercase letters, digits, underscores (_), and hyphens (-).
+   - Username must be at least 1 character long.
+   - Username cannot end with a hyphen (-).
+
+--- docker hub account:    username:  ahmedsalah1995,	password: 
+
+--- [Docker] is a tool that allows developers and sys-admins to easily deploy their applications 
+	in a sandbox (called containers) to run on the host operating system.
+
+     - its also a way to package application with all necessary dependancies and configurations.
+     - makes development & deployment more efficient.
+
+--- [Images] - The blueprints of our application which form the basis of containers. In the demo above
+
+--- [Containers] - Created from Docker images and run the actual application. 
+	We create a container using docker run which we did using the busybox image
+
+--- [Docker Daemon] - The background service running on the host that manages building, running and distributing Docker containers. 
+	The daemon is the process that runs in the operating system which clients talk to.
+
+--- [Docker Client] - The command line tool that allows the user to interact with the daemon.
+	https://kitematic.com/	is a GUI client for users
+
+--- [Docker Hub - A registry of Docker images. 
+	You can think of the registry as a directory of all available Docker images. 
+	If required, one can host their own Docker registries and can use them for pulling images.
+	- images on docker hub can be public or private.
+
+  https://hub.docker.com/explore/
+
+--- The key benefit of Docker is that it allows users to package an application with all of its dependencies 
+	into a standardized unit for software development.
+
+--- VMs comes at great cost — the computational overhead spent virtualizing hardware for a guest OS to use is substantial.
+
+--- containers provide most of the isolation of virtual machines at a fraction of the computing power, 
+	by leveraging the low-level mechanics of the host operating system
+
+--- Containers has its own isolated operating system layer.
+
+--- you can different versions of the same application running without any conflict.
+
+--- container have (dependancies , exe, configurations)
+
+--- no configurations needed on the server except (docker runtime)
+
+--- Containers offer a logical packaging mechanism in which applications can be abstracted from the environment in which they actually run.
+	This decoupling allows container-based applications to be deployed easily and consistently.
+
+--- Container is a running environment of Image
+
+--- Port binded: talk to application running inside a container.
+
+--- Tag is the version of the image. 
+
+--- Container is a layers of images.
+
+--- Note: when download different versions of the same application images it will not download all dependancies (layers) again, 
+	it will only download different.
+
+--- when run image it becomes a container.
+
+--- This gives developers the ability to create predictable environments 
+	that are isolated from the rest of the applications and can be run anywhere.
+
+--- Operating system:  has  (hardware, kernal, applications)
+--- Docker and virtual machines are both virtuallizaiton tools
+- Docker virtualize applications Layer			- VMs virtualizes kernal and applications 
+- Docker images size is much smaller 
+- Docker containers start and run much faster.
+- VM of any OS can run on any OS host.
+
+--- make sure you don't bind two containers on the same port, but 2 containers can have the same port internally.
+
+--- download and install docker from:		https://docs.docker.com/desktop/install/windows-install/
+
+--- sign up in dockerhub
+
+--- docker run hello-world
+	run this command in terminal to check if docker is installed successfully
+output is: 
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+
+--- $ docker pull busybox
+	The pull command fetches the busybox image from the Docker registry and saves it to our system. 
+
+--- $ docker images
+	to see a list of all images on your system. 
+
+--- first you have to enable and install WSL on your windows 
+	https://learn.microsoft.com/en-us/windows/wsl/install
+1- run this command on terminal 
+	wsl --install 
+2- then restart and complete ubuntu installation and configuration, enter username & password
+
+3- install docker
+
+--- $ docker run busybox
+	- run docker container using busybox pulled image.
+	- makes the container (image) run in the background
+
+---  when execute this command
+docker run busybox echo "hello ahmed salah"
+hello ahmed salah
+
+--- docker ps 
+	command shows you all containers that are currently running.
+
+--- docker ps -a
+	list all containers that previously ran.
+
+--- docker run -it busybox sh
+	when execute this command the prompt allows you to enter more commands ex:	ls,  uptime
+
+`exit` to finish 
+
+--- rm -rf bin
+	this command removes the file/folder bin , with flags  -r (recursively), 	f force delete without confirmation
+
+--- To find out more about run, use docker run --help
+
+--- docker rm 8f27b0228131 1a3d16fb59ef			// containers IDs
+	- you'll run docker run multiple times and leaving stray containers will eat up disk space.
+	- I clean up containers once I'm done with them.
+
+OR 
+docker rmi --force busybox		// so other flags using docker rmi --help, and test it	
+
+- docker rm $(docker ps -a -q -f status=exited)
+	- to delete all containers without copying & pasting
+   -q flag, only returns the numeric IDs
+   -f filters output based on conditions provided
+
+ALSO
+- docker container prune	will delete all the exited containers 
+
+--- docker run --rm busybox
+	remove the container directly after running it
+
+====== deploy a static website
+
+--- what detach means when run docker image:  `docker run -d busybox` ?
+	it means that you want to run a Docker container in the background, 
+	detached from the terminal where you executed the command.
+	This allows you to continue using your terminal for other tasks without being tied to the container's console.
+	   means:  (The container's standard output (STDOUT) and standard error (STDERR) streams are not displayed in your terminal).
+	but you can still interact with the container by using other Docker commands (docker exec, docker logs).
+	Detached mode is commonly used for long-running services or background tasks 
+	   that don't require direct user interaction or a terminal connection.
+
+--- 
+1- lets pull the app image from docker-hub
+	 docker run --rm -it prakhar1989/static-site
+   --rm   remove the image after creating it.
+   -it    specifies an interactive terminal 
+   after execute the command the server will run locally on out machine,  press ctrl+C  to stop the server
+   `prakhar1989/static-site` is the name of a user image.
+
+- Note: when execute `docker run IMAGE_NAME` if the image is not pulled it will pull it first.
+
+2- stop the container/server (ctrl+C) , then run it again with some flags to expose ports and run it in the background detached from terminal
+
+	docker run -d -P --name static-site prakhar1989/static-site
+
+   -d detach the container from the terminal , and run it in the background
+   -P will publish all exposed ports to random ports
+   --name static-site		to set a key or name for the container
+
+3- docker port static-site	to see ports
+	80/tcp -> 0.0.0.0:32769			correct
+	443/tcp -> 0.0.0.0:32768
+   - then open `http://localhost:32769/` it will show the page
+
+4- if you want to change the port app runs on 
+	docker run -p 8888:80 prakhar1989/static-site
+
+5- stop the running server 
+	docker stop static-site		or ID
+
+
+--- in order to start a stopped container 
+  docker start containerID / Name
+
+
+--- docker run -d -p 6000:6379 //new:old
+
+--- docker logs ID/name			to see the logs of this container
+
+--- docker start containerID/name	works with containers not images.
+
+=========== Debug a container 
+- docker exec -it container-ID /bin/bash
+	this allows us to execute commands in this container
+
+1:00  hour		??? 
+
+=========== Docker Images
+--- Docker images are the basis of containers.
+
+--- search image in terminal 
+docker search mongo
+
+--- docker images 	to list all images available locally
+TAG		image version	default latest
+IMAGE ID	unique identifier for that image
+
+- images can be committed with changes and have multiple versions. 
+- to pull a specfic version
+   docker pull ubuntu:18.04		// if not provided it will be default
+
+--- types of images 
+- Base images are images that have no parent image, usually images with an OS like ubuntu, busybox or debian.
+
+- Child images are images that build on base images and add additional functionality.
+
+- Base or Child Images can be both (official or user images)
+
+-- Official Images:  supported by docker-hub  name is one word ,  ex: (python, ubnutu, busybox)
+-- User Images:      created by users	      name is like 	user/image-name
+
+
+====== Docker Network
+- when deploy 2 containers in the same network they can talk to each other using just container name
+
+--- docker network ls		// to list all available networks 
+
+--- docker network create mongo-network
+	- to create a new network for our dependant images.
+
+--- docker run -p27017:27017 -d -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=123 --name mongodb --net mongo-network mongo:6.0
+
+    -p 27017:27017	specify port the same on the host as the container 
+    -e MONGO-INITDB_ROOT_USERNAME=... - MONGO_INITDB_ROOT_PASSWORD=...		set mongodb database connection parameters, -e refer to environment var
+    --name mongodb 		set container name
+    --net mongo-network		run container in the network we created
+    mongo			the package we will run
+
+-- see mongo image docs on docker hub to see how to install the container on docker network with different settings
+-e MONGO-INITDB_ROOT_ADMINUSERNAME=... -e MONGO_INITDB_ROOT_ADMINPASSWORD
+
+
+--- docker run -p 8081:8081 -d -e MONGO-INITDB_ROOT_ADMINUSERNAME=... -e MONGO_INITDB_ROOT_ADMINPASSWORD=... --name mongo-express --net mongo-network -e ME_CONFIG_MONGODB_SERVER=mongodb mongo
+	- install mongo express		(which is a UI to manage mongodb)
+     -e ME_CONFIG_MONGODB_SERVER=mongodb		the container defined above that mongo express will connect to
+     make sure the passwords set in mongo are the same on mongo express in order to be able to connect
+
+--- docker logs ID | tail 		to see the last log record for this container 
+
+--- docker run --log-driver=none my-container-image	
+	run container image without logging 
+
+--- docker run --log-driver=json-file my-container-image
+	log docker image to json file
+
+=========== Docker compose 
+ - for running multiple docker containers 
+
+- in the last example composer makes it easy to run (mongo , mongo express) togther without docker run command
+- its a yaml file which contains definitions for our containers 
+- it makes it easy to modify these options later
+
+- Note: docker compose will take care of creating a common network, so you don't have to specify network.  
+
+- in root folder create file called composer.yaml which has the following: 
+ex: 
+
+version: '3'
+services: 
+   mongodb: 
+      image: mongo			// use the same data in run command
+      ...
+   mongo-express:
+      image: mongo-express
+      ports: 8080:8080
+      environment: 
+
+--- how to use this composer file
+
+docker-compose -f composer.yaml up
+
+  -f specfiy file name.
+  up command is used to start and create containers defined in a Docker Compose configuration file (recommended:  docker-compose.yaml)
+
+  --build: This option forces a rebuild of the containers, even if they already exist. 
+	It's useful when you've made changes to your Docker images or the Compose file and need to rebuild before starting the containers.
+  --force-recreate:  It's often used in conjunction with --build to ensure that containers are rebuilt and recreated.
+   --no-deps: This option prevents Compose from starting dependent services. 
+	It can be useful when you want to start a specific service without starting its dependencies.
+
+--- Note: when restart container data in mongodb express will be lost !!!, 	HOW TO FIX THIS.	TEST IT
+	- you can use Docker volumes. Docker volumes are a way to store and manage data separately from the container itself. 
+	1- Create a Docker Volume:
+		docker volume create mongodb_data			// Create volume to store mongodb data
+	2- Run the MongoDB Container with the Volume:
+		docker run -d -p 27017:27017 --name mongodb \
+		  -v mongodb_data:/data/db \
+		  mongo:latest
+       - Data will persist even if the container is restarted or removed.
+----
+docker-compose -f composer.yaml down 
+	- this will stop and remove all the containers in compose file, and network
+
+========= Dockerfile
+- CI (continous integration) ex: jenkins do: when build the application, creates a docker images and pushs it to docker repository 
+
+- know how to create Dockerfile
+
+- see dockerfile content in  1:43
+
+- when modify Dockerfile you should build the image again. 
+
+- docker rm container 			// remove container 
+
+- docker rmi image			// remove image
+
+- build image from docker file 
+
+ docker build -t app-name:version		-t to specify name:tag
+ex: 
+docker build -t forum:1.0 .		. 	is the location where we copy from 
+
+-- filter command output 
+docker ps -a | grep my-app		// it will my-app container only
+
+-- use tab to autocomplete previous command instead of  arrows
+
+
+--- execute a command inside a container 
+     docker exec -it mongodb /bin/bash		or     /bin/sh			one of them should work
+- then you can enter commands interactively  ex:  ls , env ,...
+
+--- Dockerfile example to deploy nodejs application 
+FROM node:version
+ENV DB_USERNAME=admin\
+    DB_PASSWORD=password		
+RUN mkdir -p /home/app			-p create directories and their parent directories if they don't exist.
+COPY ./app /home/app			source  destination
+CMD ["node","/home/app/server.js"]	refere to /home/app/ where server.js located
+
+Note: copy all project files except (docker-compose.yaml, Dockerfile) into app folder in order not to make them part of the container
+
+- in order to delete an image , you should stop its container first , then delete the container , then delete the image itself
+
+=========== Create a private docker repository on AWS
+
+
+=========== 
+
+E:\Ahmed\NodeJs\projects\Forum
+
+docker run -d --name forum-app -P 3000:3000 E:/Ahmed/NodeJs/projects/Forum/forum:10.0
+
+*** Our First Image
+
+
+build image
+
+docker build -t forum:1.0 .
+
+
+2 commands
+
+	docker rm funny_khayyam | docker rmi 0089099b3836
+
+
+
+docker run -d -p 27017:27017 mongo		-p small
+
+=======
+192.168.17.11	linux ip
+192.168.17.51	widnows ip
+
+docker build -t forum:1.0 .
+docker build -t forumpm2:1.0 .
+
+docker rmi a67da3eb3b15
+
+docker rm serene_davinci
+
+docker logs serene_davinci
+
+docker ps
+
+docker run -d -p 3000:3000 4536ff284299
+sudo docker run -d -p 3000:3000 --name forum-app c7e3e0069436
+
+docker stop adoring_jang | docker rm adoring_jang | docker rmi d083aee31bd2			// stop the container , delete it , delete the image
+
+docker stop confident_ptolemy | docker rm confident_ptolemy | docker rmi 4536ff284299
+
+docker exec -it jovial_germain /bin/bash
+
+
+==== 
+VMware Workstation and Device/Credential Guard are not compatible. VMware Workstation can be run after disabling Device/Credential Guard. 
+
+Edit group policy (gpedit)
+Go to Local Computer Policy (edit group policy) > Computer Configuration > Administrative Templates > System
+Double Click on Device Guard on the right hand side to open.
+Double Click on "Turn On Virtualization Security" to open a new window
+It would be "Not Configured", Select "Disable" and click "Ok"
+Close the Group Policy Editor.
+Restart the system
+

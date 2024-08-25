@@ -1,0 +1,72 @@
+- implement your own device sync , nodejs, flutter and graphql
+
+	https://chatgpt.com/c/0cbbead0-19bd-43bc-95c4-d74096cfe567
+============= Info
+Service name
+	CM-RMS-Sync
+
+app id
+	cm-rms-sync-mgiacvu
+
+============== Issues
+- sync from and to mongodb atlas? 
+
+- some collections will be synced from server only
+	- in rules section make this collections read only.
+
+- how to add partition key in mongodb atlas to enable multitency	
+	- in the client put condition in query with tenant_id when subscription
+
+- for pos_orders we want to sync data from client to server and ensure order serial is right
+- what to do with order no in multiple devices
+
+- for pos_orders don't fetch all orders to client when syncing , 	what criteria to fetch orders with ? period_id ???
+	- query with open periods and cash trays 
+
+- tenant id is specified when login , so how to update sync subscription when login to branch?
+
+- handel write in collection with schema which contains objects 
+
+-- for dashboard collections in order to sync it from server to client only, 
+	you can specify read/write permissions in Rules section 	in this case choose `READ ALL`
+	repeat this for each read only collection (from client prespective)
+
+--- set read/write rules for each collection
+
+
+============== Tutorials
+- Intro to atlas device sync
+	https://learn.mongodb.com/learn/course/intro-to-atlas-device-sync/learning-byte/learn?_ga=2.46053796.1434995578.1720336487-203489109.1715588209
+
+- see this conversation 
+	https://chatgpt.com/c/e48e31cc-bbd4-4afe-9d60-d0822d009c69
+
+https://pub.dev/packages/realm
+https://www.mongodb.com/docs/atlas/device-sdks/sdk/flutter/
+https://www.mongodb.com/docs/atlas/device-sdks/sdk/flutter/quick-start/#query-for-objects
+https://pub.dev/documentation/realm/latest/realm/Realm-class.html
+https://www.mongodb.com/docs/atlas/device-sdks/sdk/flutter/sync/add-sync-to-app/
+https://www.mongodb.com/docs/atlas/device-sdks/sdk/flutter/app-services/
+https://www.mongodb.com/docs/atlas/device-sdks/sdk/flutter/
+https://www.mongodb.com/docs/atlas/app-services/tutorial/flutter/
+https://pub.dev/documentation/realm/latest/
+==============
+- you can set in the service client's max offline time
+
+- go to logs section to see the operations synced 
+
+- go to schema section to define the schema for each table , wether you let the client define the schema or its predefined
+
+- go to BUILD and choose `Atlas Device SDK` 
+	then `Realm Object Models` 
+	then choose the model (collection) and programming language then it will generate the code
+
+- in Rules section you can set permissions on documents
+
+- query with multiple condtions
+	realm.subscriptions.update((mutableSubscriptions) {
+	    mutableSubscriptions.add(realm.query<Task>(r'status == $0 AND progressMinutes == $1', ["completed", 100]));
+	});
+
+- use this in order to show loading for user
+	await realm.subscriptions.waitForSynchronization();

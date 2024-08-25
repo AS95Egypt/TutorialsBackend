@@ -1,0 +1,13 @@
+spec 		مواصفات
+curation	تنظيم
+quirks 		مراوغات
+intriguing 	مثيرة للأهتمام
+vigilant 	يقظ
+tampering	العبث
+throttling	خانق
+notwithstanding	بالرغم من ذلك 
+swiftly 	بسرعة
+obfuscation 	تشويش
+Mitigation	تخفيف
+compromising 	تنازل
+consent		موافقة - قبول

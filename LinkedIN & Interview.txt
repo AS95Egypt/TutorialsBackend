@@ -1,0 +1,66 @@
+================
+- ازاى اتميز فى الزحمة
+	https://www.youtube.com/watch?v=3A9AiakPEus
+
+- understand the core 
+	understand basics & concepts (programming languages, algorisms, data structures)
+ 	in order to help you write clean and performant code
+
+- Master your tools like (AI tools)
+	- which saves alot of time, and can be translated into promotion or salary increase.
+	- allow for more free time and work life balance.
+	- use IDE shortcuts
+	- use plugins 
+	- use AI tools like (github copilot, chatgpt)
+- Protofilo building
+	- enchance linked profiles (history, posts , recommendation)
+	- how to create a good CV , that passes ETS			https://www.youtube.com/watch?v=LV8R25PY3dc
+	- 
+- Performance optimization
+
+- Soft skills
+	- like (time management, planning, communication skills, research skills (how find solutions), presentation skills)		REAL EACH
+
+- Keep up with trend
+	- learn new technologies, and know market updates, read articles
+ 
+================ Skills required for interview
+ https://www.designgurus.io/blog/is-grinding-leetcode-enough-for-your-interview-prep?ref=dailydev
+
+- use `DesignGurus.io` to prepare for tech interviews specially (system design and coding questions)
+
+1. Context-Switching
+  - in real interview you are interacting with the interviwer, explaining your thoughts and adjusting your approach like playing tennis.
+
+2. Time Management
+  - managing your time during an interview so that you can brainstorm, code, and test your solution is vital.
+
+3. Handling Pressure
+   - Practicing in simulated interview conditions can help you learn to maintain your composure and think clearly under pressure.
+
+4. Explaining Your Approach
+   - interviews involve walking the interviewer through your solution.
+   - You need to be clear and concise, making sure they understand each rule as you go.
+
+5. Dealing with Vague Problems
+   - real interviews can involve vague questions that require clarification.
+
+================
+
+--->>> See more profiles and gain ideas
+
+--- add all your experience in readable and breif way
+
+--- honesty in experience, but be good at what you do.
+
+---- edit your profile (contact info, courses, featured, about, experience, ) to latest info
+
+--- add job preferences
+
+--- you can edit your education and degree or add more.
+
+--- Endorse skills from connections.
+
+--- add courses and certificates
+
+ 

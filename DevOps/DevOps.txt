@@ -1,0 +1,20 @@
+========== Tutorials
+- DevOps Training Videos
+	https://www.youtube.com/watch?v=upuAqOkQjIU&list=PL9ooVrP1hQOHkvrlMQ3UapEgsC-hOYTPQ&pp=iAQB
+
+- AWS Certified DevOps
+	https://www.youtube.com/watch?v=LC-KPdkVZ4I&list=PL9ooVrP1hQOE5SXbik4_EVVjpx9qG3CBb&pp=iAQB
+
+- Jenkins Tutorials
+	https://www.youtube.com/watch?v=3a8KsB5wJDE&list=PL9ooVrP1hQOGM6eCsjnfAousUSvpqD8dW&pp=iAQB
+
+- Ansible tutorials
+	https://www.youtube.com/watch?v=wpIgvy34BzU&list=PL9ooVrP1hQOE7DNnBow4p5SvIBdBIggC2&pp=iAQB
+
+- Docker Tutorials
+	https://www.youtube.com/watch?v=YE5T8o29NFc&list=PL9ooVrP1hQOHUKuqGuiWLQoJ-LD25KxI5&pp=iAQB
+
+- Kubernetes tutorials
+	https://www.youtube.com/watch?v=YXfLAWGTI38&list=PL9ooVrP1hQOF907pPru97cKY9nKwOrDTP&pp=iAQB
+
+========== 

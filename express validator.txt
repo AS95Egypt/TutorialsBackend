@@ -1,0 +1,10 @@
+--- isInt Options
+
+isInt({ lt: 50 }) // The integer must be less than 50.
+isInt({ gt: 5 }) // The integer must be greater than 5.
+isInt({ allow_leading_zeroes: true }) // The integer can have leading zeros.
+
+example: 
+	check('age').isInt({ min: 18, max: 65, allow_leading_zeroes: false }),
+	check('score').isInt({ gt: 0, lt: 100 })
+

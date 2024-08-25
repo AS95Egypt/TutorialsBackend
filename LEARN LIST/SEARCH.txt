@@ -1,0 +1,244 @@
+=============== TODOOOO
+- study mongodb quries, and schema rules	DOWNLOAD sample mongodb database, learn how to backup and restore 
+- apply business in the endpoint and in the schema model, (collect list of fields validation) 
+- study express-validator built in validation, 		and collect situations when to apply them (make solid validation & sa).
+- saved articles
+- 
+
+
+- improve linkedin account
+- improve github account
+- learn SW engineering topics below
+
+
+=============== Backend developer roadmap
+https://www.youtube.com/watch?v=b6zpvz1o1Ag
+
+https://roadmap.sh/backend?ref=dailydev
+
+1) cmd (files & folders) | git & gitflow | Unit tests | Linux basics | Computer basics (memory, cpu, os, ...) 
+2) OOP | Data structures | SOLID , KISS, DRY, YAGIN 
+3) Problem Solving | Design patterns (creational - structural) | Critical thinking -> logical thinking
+4) Network basics | HTTP/s advanced | TCP basics | Concurrency | API (HTTP RESTful, HTTP interceptor, Web Sockets, gRPC, Nginx) | OSI | Network Socket
+5) Database (Normalization , MySql , MongoDB , Redis , RabbitMQ ) | Ansible cmd | Design patterns (Behavioural, Architecture) | Miscroservies | Graph database | Time series database | Reactive Programming
+6) Container Docker | AWS basics () | CI/CD | Security | virtualization | chroot | CGroup
+
+--- MORE
+Kafka
+Serverless
+Typescript
+OAuth
+Sessions
+jira
+DynamoDB 
+Refresh token, openId
+Elastic search
+Circut breaker
+Refresh token
+---- Roadmap freecodecamp
+https://www.youtube.com/watch?v=nu_pCVPKzTk&list=PLWKjhJtqVAbn21gs5UnLhCQ82f923WCgM
+server management, cloud techs, containerizaiton
+understand internet basics (transmit data over internet, how DNS work, http & https, ...)
+	https://www.youtube.com/watch?v=zN8YNNHcaZc&list=PLWKjhJtqVAbn21gs5UnLhCQ82f923WCgM&index=18&pp=iAQB
+you can build desktop apps using js by electron -> https://www.electronjs.org/
+	get UI/UX design inspirations
+		https://chatgpt.com/c/47a5f820-9ef0-4cbb-9e7a-72bb9d778833
+- caching: you need to know where and when to implement cash store effectively
+- OWASP API Security top 10 	https://www.youtube.com/watch?v=YYe0FdfdgDU&list=PLWKjhJtqVAbn21gs5UnLhCQ82f923WCgM&index=9&pp=iAQB
+- Testing (unit testing , integration testing ,end-to-end testing)
+- software design & architecture  for building (scalable, maintainable, efficient)
+- message brokers (rabbitmq, kafka) also redis
+- containerization (docker, kubernetes ???, openshift)
+- nginx vs pm2 
+- nginx for (proxy request, static files , load balancing)
+	https://www.youtube.com/watch?v=9t9Mp0BGnyI&list=PLWKjhJtqVAbn21gs5UnLhCQ82f923WCgM&index=16&pp=iAQB
+- redis		https://www.youtube.com/watch?v=XCsS_NVAa1g&list=PLWKjhJtqVAbn21gs5UnLhCQ82f923WCgM&index=17&pp=iAQB
+- GraphQL	https://www.youtube.com/watch?v=5199E50O7SI&list=PLWKjhJtqVAbn21gs5UnLhCQ82f923WCgM&index=14&pp=iAQB
+- infrastructure and serverless
+--- READ 
+- what is stream ? 
+- Event Driven Programming & its relation with Event loop
+- Clustering
+- how to upload book using express to API ?
+
+
+
+=> Roadmap link
+	https://metwallylabs.com/backendroadmap.html
+
+--- Phase 1
+  - working with files and directories CMD.
+  - Tools:
+	 - Git & Gitflow work method
+	 - Unit test
+ 	 - Linux basics
+
+  - Reading list
+    - Computer Hardware Architecture
+    - How Memory works
+    - How CPU works
+    - Operating system Architecture
+    - How Operating system manage processes 
+
+--- Phase 2
+ - OOP
+ - Data Structures , choose the right one for context.
+
+ - Reading list
+   - SOLID
+   - KISS
+   - DRY
+   - YAGIN
+  - there will be situations when you should not apply this principles, you should not apply it all the time in general but when useful.
+
+--- Phase 3
+  - Problem solving 
+  - Design patterns (creational - structural)
+
+  - Reading list   - Critical thinking -> logical thinking
+
+--- Phase 4
+- Network
+  - Network basics
+  - HTTP/s advanced, (how protocol works)
+  - TCP basics 
+- Concurrency 
+  - threads
+  - non-blocking IO
+- API
+  - HTTP RESTful
+  - HTTP interceptor
+  - Web Sockets
+  - gRPC
+  - Nginx web server & API gateway
+-- Reading list
+  - OSI
+  - Network socket
+
+--- Phase 5 
+- Database
+  - Normalization
+  - MySQL
+  - MongoDB
+  - Redis
+  - RabbitMQ  ???
+
+- ansible
+
+- Design pattern	- Behavioral
+- Architecture 		- Microservices
+- Reading List 
+  - Graph Database	Social media   - read
+  - Time Series Database	       - read
+  - Reactive Programming
+
+--- Phase 6 
+- Containers Docker 
+- AWS basics 	focus on few topics only (compute, serverless, storage , database)
+- Security 
+- CI/CD   	like Github Actions
+
+- Reading list 
+  - virtualization
+  - chroot
+  - CGroup
+
+======= Techniqual skills
+Hosting & Domain name
+IP address & URI
+Microservices
+Cloud Computing AWS
+handel different security vulnerabilities
+
+Build Projects: (Ecommerce App, Management system)
+learn how to handel business
+Angular
+cloud such as aws	 managing deployments on Amazon EKS and Azure AKS. 
+Unit testing  TDD , (chai , jest, mocha)	write Unit Tests for your services
+code performance optimization and scalability.		 building Saas, and distributed systems, with High availability and scalability
+RESTful APIs, GraphQL, and WebSockets
+*** Node js frameworks:	
+	- Koa
+	- Hapi
+Kafka (for event driven architecture)
+DevOps and CD-CI	(ArgoCD and Tekton)
+Firebase
+======= Soft skills
+
+
+===============
+
+==> https://www.freecodecamp.org/news/nodejs-api-best-practices-for-scaling/
+==> How to make nodejs api scale
+	https://www.freecodecamp.org/news/nodejs-api-best-practices-for-scaling/
+==> best security practices for nodejs
+	https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications?slide=63
+	https://restfulapi.net/security-essentials/
+
+==> https://r.bluethl.net/how-to-design-better-apis
+==> how to test endpoints (backend)
+==> how to document (backend)
+	https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/#:~:text=this%20article.-,Document%20your%20API%20properly,-I%20know%20that
+==> apply SOLID principles,  & clean architecture
+==> How forget password & reset password & verification code work?
+==> how to arrange quries and piplines stages in code.
+==> what is Mongodb atlas?, learn it. 
+   configure mongodb atlas
+	https://www.analyticsvidhya.com/blog/2022/11/creating-a-music-streaming-backend-like-spotify-using-mongodb/
+	Mongodb charts
+
+==> Improve performance
+https://hackernoon.com/is-your-code-slow-avoid-these-19-common-javascript-and-nodejs-mistakes?source=rss&ref=dailydev
+==> version API
+
+
+
+--- How to send file post request body?
+
+--- What is Swagger? 		Swagger can help you design and document your APIs at scale.
+	https://www.youtube.com/watch?v=mViFmjcDOoA
+
+--- *** eager and lazy loading
+
+--- *** replication
+
+--- *** Shadring
+	https://www.geeksforgeeks.org/what-is-sharding/
+
+--- *** postman collection runner
+
+--- *** Express Error Handling (common-global)?		https://expressjs.com/en/guide/error-handling.html
+
+--- *** reverse proxy ex: nginx
+
+--- *** Load Balancer
+
+--- *** Circut breaker
+
+--- *** Elastic search
+
+--- *** learn profiling
+
+--- *** what will happen if id is two fields in aggregate function		item._id === "CASH"
+
+--- *** req.check()	...
+
+--- *** understand this file 
+	https://github.com/chintan-golakiya/online-exam-portal/blob/dev/backend/services/passportconf.js
+
+--- *** integration testing
+--- *** end-to-end testing
+
+--- message queues
+
+--- RPC
+
+--- message broker
+
+--- versioning APIs
+
+--- graph database like Neo4j to help make recommendations to users about what to buy based on their past searches and purchases.
+
+--- Distributed system principles
+
+--- CQRS (command query representation separation): 

@@ -1,0 +1,62 @@
+--- Documentation
+	https://docs.docker.com/engine/install/centos/#install-from-a-package
+--- Docker rpm files download
+	https://download.docker.com/linux/centos/7/x86_64/stable/Packages/
+
+--- Centos Host IP
+	172.16.56.128
+
+--- How to uninstall package on Centos
+	syntax:
+	  sudo rpm -e example-package
+	example
+	  docker-buildx-plugin-0.10.5-1.el7.x86_64		// with .rpm
+
+--- refresh the cache
+	sudo yum makecache
+
+===== Steps to run nodejs backend application as container on Centos or Redhat
+
+== 1) install docker on Centos (without Internet)
+    1.1) download these files from (https://download.docker.com/linux/centos/7/x86_64/stable/Packages/)  (choose latest of each one)
+	https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.6.24-3.1.el7.x86_64.rpm
+	https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-buildx-plugin-0.11.2-1.el7.x86_64.rpm
+	https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-24.0.6-1.el7.x86_64.rpm
+	https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-cli-24.0.6-1.el7.x86_64.rpm
+	https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-rootless-extras-24.0.6-1.el7.x86_64.rpm
+	https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-compose-plugin-2.21.0-1.el7.x86_64.rpm
+
+    1.2) move these files to Centos OS using this command
+        - open terminal as Admin on windows,
+	- then execute this command for each file and enter Centos Admin user password
+	- syntax:    scp file-to-transfer-path  CentosUser@CentosHostIP:destination-path
+
+    	    scp .\docker-ce-cli-18.09.0-3.el7.x86_64.rpm development@172.16.56.128:/home/development/
+
+    1.3) install these files On Centos with the following order
+	- first change directory to destination folder and check files exist.   ex: cd /home/development
+	- follow this order and execute these commands 
+
+	   sudo yum install docker-buildx-plugin-0.10.5-1.el7.x86_64.rpm
+	   sudo yum install docker-compose-plugin-2.21.0-1.el7.x86_64.rpm
+	   sudo yum install docker-ce-cli-24.0.6-1.el7.x86_64.rpm
+	   sudo yum install containerd.io-1.6.24-3.1.el7.x86_64.rpm
+	   sudo yum install docker-ce-24.0.6-1.el7.x86_64.rpm docker-ce-rootless-extras-24.0.6-1.el7.x86_64.rpm		// you have install both at the same time.
+
+    1.4) if installed successfully then start docker 
+	   sudo systemctl start docker
+
+== 2) Run NodeJs Application as Container on Centos
+    2.1) Move NodeJs application folder to centos 
+	   scp -r .\Forum development@172.16.56.128:/home/development/
+
+    2.2) build docker image from the source
+	 make sure files are transfered , then change directory to project root folder on Centos
+	   sudo docker build -t forum:1.0 .
+
+    2.3) check docker image then create container using image id
+	   sudo docker run -d -p 3000:3000 --name forum-app c7e3e0069436
+
+    2.4) test API using postman, but first change IP to Centos-host-IP, and check the response
+
+

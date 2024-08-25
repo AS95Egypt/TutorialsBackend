@@ -1,0 +1,144 @@
+--- you should login to postman in order to be able to add collection, and record requests.
+
+--- JWT (Json web token) is for authorization not authentication
+
+authorization: is make sure that the user who logged in is actually the user to made the request. 
+
+-- JWT is different from sessions 
+
+--- How Sessions work ?
+LOGIN
+1- Client: send email/password using POST
+2- Server: store user in session in server memory
+3- Server: Send session ID as cookie
+REQUEST
+1- Client: send request with session ID cookie
+2- Server: get user from session memory based on ID & verify them
+3- Server: Send Response.
+
+
+--- sign (create) new token syntax using jwt
+jwt.sign(payload, secretOrPrivateKey, [options, callback])
+
+-> example
+
+jwt.sign({ foo: 'bar' }, privateKey, { algorithm: 'RS256' }, function(err, token) {			// here you can change encryption algorism also , (default: HS256)
+  console.log(token);
+});
+
+--- understand errorHandler middleware from the previous video
+
+--- how to make jwt token unlimited in time 
+
+
+
+-- we use jwt value , so when we have a route we pass this token in the header to authrize this user.
+
+-- make the field required and set validation message
+    name: {
+      type: String,
+      required: [true, 'please enter name']		
+    }
+
+-- create user collection schema
+
+const categorySchema = new mongoose.Schema({
+    ID: {
+      type: Number,
+      required: true,  
+    },
+    name: {
+      type: String,
+      required: [true, 'please enter name']
+    }        
+  },{
+    timestamps: true					// to automatically add  createdAt, updatedAt fields
+  });
+
+
+--- to encrypt the password , use lib bcryptjs
+	npm install bcryptjs
+
+--- to deal with jwt (json web token)
+	npm install jsonwebtoken
+
+--- then require these packages in userservices 
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
+
+--- if the request is not valid , you throw erorr after send the status
+throw new Error('please add all fields');
+
+--- check if user exists before add him: 
+
+    const userCount = User.countDocuments({email: req.body.email});
+    if(userCount > 0){
+        res.status(400).json({success: false, data: null,message: 'User already exists'});
+        return;
+    }
+
+--- encrypt password
+    const salt = await bcrypt.genSalt(10);
+    const encryptedPass = await bcrypt.hash(req.body.password, salt);
+
+    console.log(encryptedPass);
+-- compare password in body with password in user's data
+//bcrypt.compare(req.body.password, encryptedPass)          HOW WE CAN COMPARE HASHED WITH NON-HASHED
+
+
+--- return the token (jwt) back in the response when register or login successfull
+function generateJWT(id){
+  return jwt.sign({id},process.env.JWT_SECRET, {expiresIn: '1d'});  			// expires in 1 day
+}
+-- then return it in login/register response 
+ res.status(201).json({success: true, data: {
+            ID: newUser.ID,
+            name: newUser.name,
+            email: newUser.email,
+            password: newUser.password,
+            country: newUser.country,
+            token: generateJWT(newUser._id)		// token
+        }, message: null});
+
+
+--- get token identifier issued at  (iat)
+  // 2) verify token
+  const decoded = decodePINToken(token);
+  console.log("iat", decoded.iat);
+
+
+========= https://www.youtube.com/watch?v=mbsmsi7l3r4
+
+-- in order to generate a secret key 
+  - in new terminal write: 
+	node	
+	require('crypto').randomBytes(64).toString('hex')	36217cefecd205014bb3695d3a38104c2089f85d99356f0a801ae83fc5b528c997772f95e9b090c47eaf86967bcca3d460ae74c71a426333f60c2f06a6d68489
+
+--- in .env file create two variables 	ACCESS_TOKEN , REFRESH_TOKEN
+
+
+--- you specify when the token will expire in data payload it through `exp` property (NOTE: payload has to be an object)
+
+    const token = jwt.sign(
+      {
+        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24,		// add 24 hours to current date
+        id: "60b4e282eb314b0015faf2a9",
+      },
+      process.env.JWT_SECRET
+    );
+
+--- examples of times in expriesIn:
+
+ms('2 days')  // 172800000
+ms('1d')      // 86400000
+ms('10h')     // 36000000
+ms('2.5 hrs') // 9000000
+ms('2h')      // 7200000
+ms('1m')      // 60000
+ms('5s')      // 5000
+ms('1y')      // 31557600000
+ms('100')     // 100
+ms('-3 days') // -259200000
+ms('-1h')     // -3600000
+ms('-200')    // -200

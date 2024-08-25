@@ -1,0 +1,721 @@
+offcial documentation
+	https://www.typescriptlang.org/
+
+
+execute 2 or more cmd commands 
+	tsc && node ./dist/index.js
+
+===
+- typescript is a strongly typed language that builds on javascript
+- typescript is javascript with types
+- its adds features to javascript without changing it.
+
+==> why learn typescript ? 
+- detect errors without running the code.
+- analyze the code as you type.
+- every js file is valid ts file
+- will help you write react ,vue , angular app
+- gives some missing features in javascript like (interfaces, generics, decorators)
+
+
+--- type script is complited into javascript  
+
+=== 
+- get node version 
+	node -v
+
+- install typescript globally
+	npm install -g typescript
+
+- get typescript version 
+	tsc -v
+
+- compile typescript file to javascript (create js file)
+	tsc .\index.ts
+
+===
+- tsc -h 	help - to list all `tsc` commands
+
+- watch is to compile to js as you type or save, without running tsc file.js
+	tsc -w index.ts
+
+- create typescript config file 
+  tsc --init
+
+- you can specify `dist` folder for complied javascript files in config file
+
+--- edit some config in tsconfig.json
+- specify ts files location
+	"rootDir": "./src",
+
+- specify compiled js files location
+	"outDir": "./dist",
+
+- don't generate comments in compiled files
+	"removeComments": true,
+
+- generate js files as you save
+	tsc -w 
+
+=== Statically Typed Languages VS Dynamically Typed Languages
+Statically Typed Languages (C, C++)
+ - once you declare a variable type cannot change
+ - type of variable is known at complie time, (type check in compile time)
+
+Dynamically Typed Languages (Php, Python, Javascript)
+ - you can change types as variables are dynamic
+ - type check in execution time
+ - error can be deteced after exection
+
+example: 
+
+let age = 30;
+if(age>30){
+  console.log("good");
+}else{
+  console.log(age.subString(0,2));	// in typescript gives error in complie time as age is not string
+}					// in javascript gives error in exection time (no type check)
+
+=== Type Annotation (signature)
+- indicates the datatype of a variable
+- indicate the datatype of function input/output
+- declare types in typescript
+
+let empName: string = "ahmed";		// if type not set complier will conclude type from value
+let age: number = 30;
+let hire: boolean = true;
+
+let v;	// any if not set annotation or value
+
+let obj: any = "ahmed";
+obj = 100;		// this is allowed because `any` accepts any datatype
+
+-- typescript helps avoid datatypes scenarios like 
+
+console.log(add(10, "20"));		// output is `1020` and you will not notice 
+					// so forcing datatypes can solve this issue
+
+=== 
+let all;
+
+all = "a";
+all = 100;
+all = ture;		// this is allowed variable first declared any.
+
+-- variable can allow multiple datatypes 
+
+let all: string|number|boolean = "ahmed";		// can hold these types 
+
+-- specify the type of an array
+let friends = ["ahmed", "mohamed", "ibrahim"];		// its accepts any
+
+let friends: string[] = ["ahmed", "mohamed", "ibrahim"];	// here we specify type is string array
+
+=== 
+declare multidimensional array
+	let nestedArray: (number | number[])[] = [1,2,3, [4,5,6]];
+
+- typescript will alert for missing parameters in function
+
+- discuss these ts configs
+
+
+why noImplicitAny is not applicable to variables (only parameters) ? ***
+
+noImplicitAny 
+// this function has errors because we did't specfiy x and y values types
+// if we set `noImplicitAny` to false this will not return error.	[ NOT RECOMMENDED in order to preserve type check]
+function add (x, y) {		
+    return x + y;
+}
+noImplicitReturns: function must return value explicitly
+noUnusedLocals: reports erros on unused local variables , (help in identify unused variables in order to remove)
+noUnusedParameters: the same but for function's paramters 
+
+=== optional & default parameters 
+- if set an optional parameter in js , and pass it as undefined then it will take optional value 
+
+function showData(name = "user name"){
+  console.log(name);
+}
+
+showData(undefined);	// will print "user name"
+
+-- declare optional parameter
+function showData(name:string, age?: number){		// age?  is optional
+}
+
+-- optional paramters must be after required paramters.
+	function showData(age?: number, name:string){}		// not allowed
+
+=== Rest paramters
+- in order to accepts args
+// declare 
+function addAll(...nums: number[]): number{}
+
+// call
+console.log(addAll(10,20,30,100,1.5, +true));	// +true means 1
+
+=== Anonymous And Arrow Function
+const add = (x: number, y: number): number => x+y;
+
+=== Datatypes & Type Alias
+type st = string;
+let name: st = "ahmed";
+
+--
+type st_num = string | number;		
+let all: st_num = 10;
+let all: st_num = "ahmed";	// you can assing string and number to this variable of type st_num
+
+=== Type alias advanced
+// here we define like object structure similar to class
+type buttons = {
+  up: string,
+  down: string,
+  right: string,
+  left: string,
+}
+
+// add more properties to this object type definition
+type last = buttons & {
+ visible: boolean
+}
+
+
+function getActions(btns: buttons){
+  console.log(btns.up);
+  console.log(btns.down); ...
+}
+
+getActions({ up: "", down: "", ... })
+
+=== Literal Types
+- you can define your type object as values of certian type
+
+type nums = 1 | 1 | -1;
+
+function compare(num1: number, num2: number) : nums {
+  if(num1=== num2){
+	return 0;
+  } else if(num1>num2){
+  	return 1;
+  }
+  } else(num1<num2){
+  	return -11;
+  }
+}
+
+=== Tuple
+- its another sort of array type 
+- we knows exactly how many elements it contains
+- we know which types it contains at specific index
+
+- declare array with specific types 
+	let article: [number, string, boolean] = [11, "Title one", true];	// contains these 3 types only
+
+- tuple is considered an array , you can access elements by index.
+- each element has its own properties and methods (ex: number, string)
+
+- you can push elements to tuple
+	article.push(100);	// element will be added in index 3
+
+- make tuple readonly
+	let article: readonly [number, string, boolean] = [11, "Title one", true];
+
+- destrcut tuple 
+	const [id, name, published] = article;
+
+=== Void & Never
+- Void
+  - function that will return noting
+  - undefined is not void
+
+- Never
+  - function never returns
+  - function does'nt have a normal compeletion
+  - it throws error or never finishes at all ex: infinite loop
+
+// void
+function log(msg: string): void {
+  console.log(msg);
+  return;			// this is valid because this is `undefined`
+}
+
+// never
+function showError(msg: string): never{
+   throw new Error(msg);
+   return 10;	// error because its unreachable
+}
+
+- in tsconfig when set `allowUnReachableCode` to true it will not alert for errors when write unreachable code
+
+=== Enum 1
+- allow us to declare a set of named constants 
+- collection of related values 
+- enums is basically number based, starts from 0
+- enums can be numeric, string, heterogenenous (string+number) 
+
+enum Levels{
+  KIDS,			// starts from 0, autoincrement
+  EASY,
+  MEDIUM,
+  HARD
+}
+
+=== Enum 2
+- can refer to other enum
+- can refer to same enum
+- can have calculations 
+- can have functions 
+
+enum Kids {
+  Five = 25,
+  Seven = 20, 
+  Ten = 15
+}
+
+enum Level {
+  Extreme,		// you can leave it without initialization, starts from 0	
+  Kid = Kids.Ten	// refer to another enum
+  Easy = 9,
+  Medium = Easy, 	// refer to the same enum
+  Hard = 3 
+  Extreme,		// should be initialized, 
+}
+
+
+function getHardLevel(): number {
+    return 10;
+}
+
+enum Levels {  
+  Kid = 25,
+  Easy = 20,
+  Medium = 15,
+  Hard = (() => 10)()       // Enums can contain functions 
+}
+- set `preserveConstEnum` option to true in order to generate const enum in generated files
+
+=== 19 - DataTypes - Type Assertions
+- sometimes complier does'nt know the information we do.
+- Typescript does'nt perform any check to make sure type assertion is valid.
+- this is not casting , you are just telling the complier to deal with this variable as type so you can access properties and methods 
+
+	let myImg = document.getElementById("my-img") as HTMLImageElement;	// cast to image (على ضمانتك )
+	console.log(myImg.src);		// valid , image has source
+	console.log(myImg.value);	// not valid, image don't have value
+OR 
+	let img = <HTMLImageElement> document.getElementById("img");
+
+-- 
+	let v:any = 1000;
+	console.log((v as string).repeat(3));		// this will not work because v is not a string, (runtime error)
+
+=== 20 Datatypes - Union and Intersection types
+- Union Type 
+ - the | symbol is used to create the union => 'Or'
+
+
+type myObject = number | string |  boolean;		// this is union type
+
+- Intersection Type
+ - is a type that combines several types into one.
+ - the & symbol is used to create an intersection => 'And'
+
+
+type A = {
+   one: string,
+   two: number,
+   three: boolean 
+}
+
+type C = {
+    five: string,
+}
+
+type all = A & C;       // intersection type
+
+function getActions(p: all){
+    console.log("one: ", p.one);
+    console.log("one: ", p.two);
+    console.log("one: ", p.three);
+    console.log("one: ", p.five);
+}
+
+
+=== 21 Type annotation with object
+// define structure (type) for object
+let branch: {
+  branch_id: number,
+  branch_name: string,
+  branch_address: string
+} = {
+  branch_id: 1,
+  branch_name: "Ahmed",
+  branch_address: "Cairo"
+}
+
+
+-- 
+let branch: {
+  readonly branch_id: number,
+  branch_name: string,
+  is_main?: boolean,    // optional
+  branch_address: {	// nested object
+    city: string,
+    country: string
+  }
+} = {
+  branch_id: 1,
+  branch_name: "Ahmed",
+  is_main: true,
+  branch_address: {
+    city: "Cairo",
+    country: "Egypt"
+  }
+}
+
+=== 22 - Interface 
+interface User {
+  id?: number,
+  readonly username: string,
+  country: string
+}
+
+let user: User = {
+  id: 100,
+  username: "ahmed",
+  country: "egypt"
+}
+
+console.log(user.username);
+
+=== 23 - Interface methods and params
+interface User {
+  id?: number;
+  readonly username: string;
+  country: string;
+  sayHello(): string;
+  sayWelcome: () => string;
+  getDouble(num: number) : number
+}
+
+
+let user: User = {
+  id: 100,
+  username: "ahmed",
+  country: "egypt",
+  sayHello(){
+    return "hello";
+  },
+//   sayHello: function(){
+//     return "hello";
+//   },
+  sayWelcome: () => {
+    return "welcome";
+  },  
+  getDouble(num){
+    return num * 2;
+  }
+}
+
+console.log(user.sayHello());
+
+=== 24 - interface reopen and usecases
+// home page
+interface Settings {
+  readonly theme: boolean;
+  font: string;
+}
+
+// articles page		Reopen interface
+interface Settings {
+  sidebar?: boolean;
+}
+
+// contact page
+interface Settings {
+  external: boolean;
+}
+
+let userSettings: Settings = {
+ theme: true,
+ font: "Arial",
+ sidebar: false,
+ external: true 
+}
+=== 25 interface extend
+interface User {
+ id: number;
+ username:string;
+ country: string;
+}
+
+//interface Moderator extends User {
+//  role: string | number;
+//}
+
+interface Moderator{
+  role: string | number;
+}
+
+interface Admin extends User, Moderator {		// extend from multiple interfaces
+  protect: boolean
+}
+
+let user: Moderator = {
+  id: 100,
+  username: "elzero",
+  country: "egypt",
+  role: "mod"		// from Moderator interface
+  protect: true		// from Admin interface
+}
+
+=== 27 class type annotations
+class User {
+ u: string;
+ s: number;
+ msg: ()=> string;	// method  OR msg(): string
+ constructor(username: string, salary: number){
+   this.u = username;
+   this.s = salary;
+   this.msg = ()=>{
+     return `username: ${this.u}, salary: ${this.s}`;
+   }
+ }
+ sayMsg(){
+   return "hello from user class";
+ }
+}
+
+=== 28 class access modifiers and paramters properties
+- public 
+  - all members of class in are public
+
+- private 
+  - members are visible only to that class and are not accessiable outside this class
+
+- protected
+  - can be accessed from derived classes
+
+
+class User {
+ private u: string;
+ protected s: number;
+}
+
+let e: User = new User("ahmed", 1000);
+console.log(e.u);			// not valid because u is private
+console.log(e.s);			// not valid because u is protected
+
+- you can set class properties directly in the constructor, with access modifiers
+class User {
+ private u: string;
+ protected s: number;
+ constructor(private username: string, protected readonly salary: number){}
+}
+
+===  29 - class getters and setters
+- all members by default are public 
+- its a convention to put _ in the start of private memebers.
+
+class Employee {
+ constructor(private _username: string, protected readonly salary: number){}
+ 
+ get username(){    
+    return this._username;
+ }
+ set username(value: string){
+    this._username = value;
+ }
+}
+
+=== 30 - class static memebers
+- right click memeber -> refactor -> generate getter and setters
+
+- don't name static members with `name`, `length`, `call`
+
+
+class Employee {
+  static createdCount: number = 0; 
+  constructor(private _username: string, protected readonly salary: number){
+    User.createdCount++;
+  }
+}
+
+console.log(user.createCount);
+
+- you can make createdCount private and declare method to get its value
+ static getNumberOfInstances(){
+    return Employee.createCount;
+ }
+
+=== 31 - class implements interface
+- interface is a guideline or contract 
+
+interface Settings {
+  theme: boolean;
+  font?: string;
+  save(): void;
+}
+
+// you have to implement memebers and methods from interface
+
+class User implements Settings {
+  constructor(public username:string, public theme: boolean, public font: string);
+
+  // implement the function the class which implements the interface
+  save():void {
+    console.log("saved");
+  }
+}
+
+
+=== 32 Abstract classes and memebers 
+
+- you cannot create instance from abstract class
+- abstract methods cannot have implementation inside its abstract class
+
+abstract class Food {
+  constructor(public title: string){}
+  abstract getCookingTime(): void;		// you have to implement it inside derived classes
+}
+
+class Pizza extends Food {
+  constrcutor(title: string /* from base class (not declare) */,public price:number /* new memeber */){
+    super(title);
+  }
+  
+  getCookingTime(): void {
+    console.log(" 1 hour");
+  }
+}
+
+class Burger extends Food {
+  constrcutor(title: string, public price:number, puplic size: string){
+    super(title);
+  }
+  
+  getCookingTime(): void {
+    console.log(" half hour");
+  }
+}
+
+=== 33 Polymorphism & Method Override
+
+- Method Override
+  - allow child class to provide implementation of a method in parent class.
+  - method in child class must have same name as parent class method.
+
+noImplicitOverride set it to true in `tsconfig`	, it forces add `override` to methods overridens from parent class.
+
+
+class Player{
+  constructor(public name: string){}
+  
+  attack():void{
+    console.log("attacking now");
+  }  
+}
+
+class Amazon extends Player{
+  constructor(name: string, public spears: number){	// define extra property `spears`
+    super(name);					// call parent constructor
+  }
+
+  override attack():void{		// you should write `override` keyword if `noImplicitOverride` is true
+    super.attack();					// call method in parent class
+    console.log("attack with spears");
+    this.spears-=1;
+  }
+}
+
+=== 34 Generics introduction
+- help write resuable code.
+- allow to pass type as parameter to another type.
+- you will be able to deal with multiple types without using `any` data type.
+- we can create:
+  - generic (classes, functions, methods, interfaces)
+
+- example
+
+function getValue<T>(v:T):T{
+  return v;
+}
+
+getValue<number>(100);
+getValue<string>("ahmed");
+getValue<boolean>(true);
+getValue<number[]>([1,5,3,2]);
+
+
+=== 35 Generics
+-- arrow function
+
+const getValueWithArrow = <T>(v:T): T=> v;
+console.log(getValueWithArrow(100));
+
+-- you can return the type you want from generic method 
+
+function getValue<T>(v:T): string{
+  return "value is ${v} and type is: ${typeof v}";
+}
+
+console.log(getValue<string>("ahmed"));
+console.log(getValue<number>(100));
+
+
+-- multiple types 
+function getMultiValue<T,S>(v1:T, v2:S):string{
+  return "value is: " + v1 + " and " + v2;
+}
+
+console.log(getMultiValue(100,"Ahmed"));
+
+=== 36 - Generic Classes
+
+class Car<T>{
+  constructor(public id: T){};
+  getId(c: T){
+    return c;
+  };
+}
+
+
+let c1 = new Car<number>(100);
+console.log(c1.getId(100));
+
+-- make the generic type has default type if not set 
+
+class Car<T = number>{}
+
+
+let c1 = new Car<number | string>(100);		// to allow variety of types
+
+=== 37 Generics & Interfaces
+
+class Collection<T>{
+  public items: T[]  = [];
+  
+  add(item: T)
+  {
+    this.items.push(item);
+  }
+}
+
+interface Game{
+  name: string;
+  year: number;
+  description: string;
+  score: number;
+}
+
+
+const col1 = new Collection<Game>();
+col1.add({ name: "game 1", year: 2020, description: "game 1 description", score: 100 });
+
+=== 38 How to master typescript 
+
+
+

@@ -1,0 +1,7 @@
+https://github.com/goldbergyoni/nodebestpractices
+
+
+
+use lucid for drawing diagrams 
+
+lucid.app

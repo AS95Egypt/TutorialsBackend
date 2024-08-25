@@ -1,0 +1,239 @@
+5252675056675
+>>>>>>>>>>>>>>>>>> Articles
+- JavaScript Array Methods Tutorial – The Most Useful Methods Explained with Examples
+			https://www.freecodecamp.org/news/complete-introduction-to-the-most-useful-javascript-array-methods/
+
+-  Android Courses		https://diamondcoder.com/how-to-master-android-app-development-in-a-month/
+ - Linkedin 		https://www.freecodecamp.org/news/linkedin-handbook-get-your-first-dev-job/
+- Free for ever tools for developers
+			https://hrishikesh1990.hashnode.dev/40-free-forever-tools-for-developers
+
+- Must watch movies
+	https://devbookmark.com/must-watch-movies
+
+- Java Blog 
+	https://www.baeldung.com/
+
+- How to choose backend
+	https://dev.to/levivm/how-to-select-a-backend-framework-after-years-of-experience-4fej
+
+- Better Programming blog
+	https://app.daily.dev/sources/btrprog
+
+- كورسات Soft Skills
+	https://www.stjegypt.com/course/372
+>>>>>>>>>>>>>>>>>> Websites
+-  website like hackerank, codechef, SPOJ codeforces and codechef.
+
+>>>>>>>>>>>>>>>>>>  New Terms
+[Higher Order Function] : عبارة عن Function تقبل منك Function أو أكتر ك Argument ويمكن أن ترجع لك Function ك Result أيضا ومن أمثلتها Map, Reduce, Filter, ForEach أما ال Functions العادية تسمى First Order Function
+
+>>>>>>>>>>>>>>>>>> Free Time
+- Delphi Embarcadero Demos
+- Flutter 
+- Design Pattern
+- DataStructure and Algorisms
+- DailyDev
+- CodeForces
+
+>>>>>>>>>>>>>>>>>> Courses
+
+>>>>>>>>>>>>>>>>>> Libs 
+ - Delphi Styles Library:		https://github.com/RRUZ/vcl-styles-utils
+- Delphi Barcode Library:  		https://github.com/Spelt/ZXing.Delphi
+- VCL Components:			https://github.com/cnpack/cnvcl
+- Themes Library:			https://github.com/VuioVuio/UniversalCL
+- DevExpress AutoInstaller		https://github.com/Delphier/DxAutoInstaller
+- Grid Delphi			https://github.com/Steema/TeeGrid
+- Buttons Delphi			https://github.com/pauloalvis/Delphi-PraButtonStyle
+- Firebase and Delphi		https://github.com/SchneiderInfosystems/FB4D
+- Invoice 				https://github.com/quartexNOR/RaptorInvoice
+
+>>>>>>>>>>>>>>>>>> Tasks
+Watch 1/2 hour of video
+Fix a bug
+Work on one algorithm challenge
+Do some styling on a project
+Comment my code
+Read an article on Medium
+
+===================== Data Structures Course
+stack  push , pop  last in first out 
+  ex:  undo text editors , complier check brackets ,used to support recursion , to do dfs depth first search on a graph
+-- implement brackets check using Stack =>   1:05
+-- implement `Tower of Hanoi` using stack 1:09	???
+=> How to avoid Memory leaks ? 	java garabage collector
+-- understand generics in java.
+-- [1:14]  #source code : to implement stack using java.util.LinkedList
+=> implement Iterotor interface
+-- What is the queue    enque and deque	implement queue using preivous stack source code example.
+=> [1:22] BFS (breadth first search)
+======================  Career Goals 
+1- figure out your end goal 
+ - (Startup , freelance , company )
+ - web , mobile , desktop , gaming, ... 
+
+2- choose a programming language
+
+3- Find resources and build curriculm
+1662329
+
+============== Simple Projects Ideas
+- String reversal application
+- Binary to decimal converter
+- Palindrome application	check if a word like lybia in arabic
+- Weather application	connect with free API
+-  Vowels counter
+-  List The Capital City	return Captial name when enter Country
+- Pomodoro clock  	focus session and break session	like workout
+- Alarm clock
+==============  كيفية اكتساب مهارات شخصية 
+-- المهارات العملية غير مفيدة اطلاقا فى حال عدم وجود مهارات شخصية 
+
+
+============== Improve yourself as a programmer
+1- Data structures and algorisms
+2- Design patterns
+3- Competitive Programming
+4- Read others code
+5- Explore other languages
+6- Build Projects
+
+=================  how to get clients
+- post on social media
+- Freelance websites ,	when you get good feedback you can raise your price.
+- talk to other freelancers
+- word of mouse , testimony
+- create protifolio.
+
+================= 7 Habit That Kills a Developer Career.
+1) No Coding Organization:	- you should care about clean code and Architecture.
+2) Not Helping Others: 	- Don't keep it to your self	- Share what you know to others.	- this refresh your information or add more experience to you.
+3) No Planning, Just Coding:	- spend some time to plan on what you want to build.
+4) No Thanks I Got It: 	- There is no shame in asking people for help. It doesn't show weakness, it shows the ability to become better.
+5) Reinventing The Wheel	- If there is a fully documented library that is doing the work perfectly, then use it.
+6) I'm The Best Attitude	- The moment you think you are the best is the moment you stop learning. 	- Be humble at all times and listen to what others are saying.
+7) Work And Life Balance	- Don't want to be burn out! Take breaks(don't think about work when you are out with friends!)	- Your personal life is as important as your career.
+
+================= 7 Health Tips for developers
+- have something nutritious to snack on.
+- Always have a bottle/glass of water next to you to make sure you get plenty of fluids.	- Stay away from sugary drinks and soda.
+- Take breaks, help you relax your brain , even for five minutes.
+- do exercise like stretching in your breaks to prevent neck or back pains.
+- Get a proper chair.
+- Move your eyes.
+
+================= 7 Short Tips to Growth as a Developer
+- Do Not Copy and Paste.
+- Start Sending Your Resume Before You Are Ready
+- doing competitive coding for two months
+
+1- put a goal to yourself , finish this part at this time.
+2- stop trying to prove yourself , you can be wrong always try to improve your code.
+3- code executes well , doesn't mean its written well , ... and reduce code lines , this comes by experience.
+4- read others code.
+5- build projects
+
+
+================= a simple checklist for good code Review. 
+	https://medium.com/swlh/a-simple-checklist-for-a-good-code-review-aa02bc8018f9
+ - I could understand little bits of code (features) instead of trying to understand the whole project at once. This was a lot easier and, feature by feature.
+- know business from reviewing the code. 
+
+================== Clean Code 
+- Clean code can be read and enhanced by a developer other than its original author.
+- With understandability comes readability, changeability, extensibility, and maintainability.
+- because Programmers work on a project as Team ,Bad code eventually brings a product down.
+- Clean code is elegant, simple, efficient, straightforward, crisp, clear, literate, readable by others, unsurprising, has minimal and explicit dependencies.
+- Cleaning up a little wherever you go is required to keep code clean.
+- any school of clean code should emphasize readability. 
+>>> General Rules:
+  1- Efficient Comment: 
+	- Comments are usually needed to explain a “not-so-good” code.
+	- Make sure the comments are only written for parts that require extra explanation, and not for code part that is not good or unclear.
+  2- Good naming: 
+	- Make sure variables, functions follow the general and standard reference. 	ex: PEP-8 guidelines in python.
+  3- Writing a function (method) that is simple and effective:
+	-  Each function/method can only do one thing. 
+  4- Need to anticipate every possible exception with appropriate handling.
+  5- Don’t Repeat yourself:
+	- Do not have duplicate code and make a program that is modular and neatly structured.
+	-  As much as possible apply the appropriate concepts/paradigms (eg Object Oriented, higher-order-function or design pattern.
+  6- Layout Formatting:	
+	- Format the code , and use linter for your programming language.
+>>> References
+    1- Martin, R. C. (2009). Clean code: a handbook of agile software craftsmanship. Pearson Education.
+    2- Nöcker, E. G. J. M. H., Smetsers, J. E. W., van Eekelen, M. C., & Plasmeijer, M. J. (1991, June). Concurrent clean. In International Conference on Parallel Architectures and Languages Europe (pp. 202–219). Springer, Berlin, Heidelberg.
+    3- Lutz Prechelt, 2013–2014, The Essence of “Clean Code”
+    4- Software Development Project Handbook 2019
+================== Solid Principles
+1- Single Responsability: 	
+	- each unit/method of the code should do one thing,	so you can use each part again in different places.
+	- CLASS: should contain related functions and attributes.
+	- MODULE: a group of related classes,  Project is a group of modules.
+2- Open Closed Principle:
+ 	- Any Class , Module , Function should be open for extension and closed for modification.
+   Ex:  a method that accepts a shape as a paramter , then calculates the area depending of the shape
+   Solution:  make a parent class shape has abstract `getArea()` , make a child classes like (Rectangle, Square, Circle) they implement getArea	, inside CalcArea()	  Ashape.getArea();
+
+3- liskov substitution principle
+      - if S is a subtype of T , Then objects of type T can be replaced with objects of type S.		is-a relationship must be achived.
+    Ex:  eat(), fly() in Birds class , pengine doesn't fly.	so you should separate these method from the class.
+    Solution:  
+	1- make a class that inherit from Brid and call it FlyableBird , eagle will inherit from FlyableBird, and pengine will inherit from bird.
+	2- make an interface has method fly , and inside pengine class implment this interface.
+
+4- Interface segregation principle
+	- no Client should be forced to depend on methods it does'nt use.
+	- so separate each function in a separate interface
+    Ex:  Printer Interface: 	has 3 method ,   Fax(), Print(), Scan()  , make a class that implement that interface,  there will be some printers that don't have all these functions
+    Solution:  separate each function in a separate interface		IPrintable, IFax , IScanable  , and implement when needed.
+
+5-  Dependency Inversion Principle
+     - High levels moudels should not depend on low-level modules, both should depend on abstractions.	ex: depend on CAR class , not BMW class.
+     - Abstractions should'nt depend on details  , details should depend on abstractions.
+  Ex: مثال سلك الكهرباء الذى يمد المروحة والتلفزيون واللمبة
+
+=================== OOP Object Oriented Programming
+  - Encapsulation
+  - Polymorphism:  تعدد الأشكال 	Ex: when pass parameter as instance of a child class, but the parmeter itself is parent class   	getArea(Shape S)		getArea(RecObj)   or     Shape RecObj = New Rectangle();   RecObj.getArea()
+  - Inheritance
+  - Abstraction :   Hide details from user.
+
+=================== Clean Functions 
+1 - function must be small, so don't scroll
+2- function must do one thing.
+3- use descriptive names.
+4- Block and indentation.
+
+==================== Freelancing 
+https://www.freecodecamp.org/news/the-skills-you-need-to-start-freelancing/
+
+==================  Self Learning
+
+-- base Class has common method (Create, ReadSettings, SaveSettings, Clear, GetData, GetCriteria, GetVars, GetInfo, GetSortingFields, GetOrderBy), 
+	then override it in the child classes.
+-- isText in Lookup
+-- isText in LookupFilter
+-- ترتيب السجلات	OrderBys
+
+-- Reports Form , 		Filters Form
+-- Filters Form Vars:	SettingPrefix, Orderbys, 
+
+-- Input Class  Criteria 
+-- getData,	getCriteria
+-- Lookup Click event	
+
+============  10-8-2021
+ - Indexes in sql server:	https://www.c-sharpcorner.com/blogs/quick-view-of-indexes-in-sql-server3
+	(INDEXES , Types of Indexes , How to Rename Indexes ,How to Drop Indexes)
+
+- https://www.c-sharpcorner.com/blogs/system-design-chat-messenger-like-whatsapp
+- https://www.c-sharpcorner.com/blogs/c-sharp-program-to-find-the-count-of-substring-shl-in-a-given-string
+- https://www.c-sharpcorner.com/blogs/count-total-letters-digits-and-special-characters-from-string
+- https://www.c-sharpcorner.com/blogs/recursion-in-csharp
+- https://www.c-sharpcorner.com/blogs/replace-special-characters-from-string-using-regex1
+- https://www.c-sharpcorner.com/blogs/can-we-create-method-inside-method-in-c-sharp2
+- https://www.c-sharpcorner.com/blogs/finding-distinct-elements-in-a-data-structure-using-c-sharp
+
+============
