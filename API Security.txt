@@ -207,8 +207,12 @@ or app.use(helmet.hidePoweredBy());
 - OAuth is used for social sign in.
 
 
+=== 27 
+- when set cookie option "httpOnly" to true , this means we cannot access token from browser's javascript code
+- you can limit session size by encoding just one field ex: ID.
 
 
+=== Refresh Tokens ???
 
 
 

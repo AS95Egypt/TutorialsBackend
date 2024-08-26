@@ -34,6 +34,141 @@ https://pinjarirehan.medium.com/essential-git-commands-for-beginners-4b16ca87df8
 ===========  EL Zero
 	https://www.youtube.com/watch?v=ACOiGZoqC8w&list=PLDoPjvoNmBAw4eOj58MZPakHjaO3frVMF
 
+===========  Learn Git in one hour
+https://www.youtube.com/watch?v=8JJ101D3knE
+
+- git is a version control system.
+- version control system  records the changes made to our code in a special database called repository.
+- we can look at project history and see who has made what changes when and why.
+- we can easily revert our project back to an eariler state if some thing wrong happen.
+- git is a distributed version control system.
+- git is (free, fast, open source, scalable, cheap & easy branching and merging)
+
+-- ways to use git
+	- cmd	(can sometimes be easiets and fastest)
+	- code editors & IDEs	ex: source control tab in vscode (provides essential commands)
+	- GUIs	ex: sourcetree, gitkraken
+
+-- why use cmd ? 
+	- gui tools have limitions (because they provide widely used commands)
+	- gui tools might not be available all the time, example: on servers that don't allow gui tool to be installed
+
+- download and install git
+
+-- configuring git
+- there is 3 levels of configuration
+  1- System
+  2- Global
+  3- Local
+- you have to configure  user (name, email, IDE, end of line)
+- how to create git.config file ?
+- configuration can be adjusted to a specific operating system.
+
+- staging area is the index
+- commits are snapshots that are saved to the repo. 
+- we add modified files to the staging area, in order to review code and if every thing is good we commit to the repo.
+- the benefit of the staging area is that we select the files that will be in the commit (snapshot)
+- commit messages are very important in order to have a useful history.
+- each commit cleary explains (through meaningful messages) the state of project at this time
+- commited files are still in the staging area, 
+	but when make a change to any of these files new version replaces the old version in the staging area
+- you should use git command to remove a file from a project in order to remove from staging area too
+- each commit contains information like (ID, message, date, auther, complete snap shot of the project)
+
+
+-- git help
+- example when you want to get help for git config 
+	git config --help
+
+- initialize a new git repo
+	git init
+
+- cancel initialization (remove .git folder)
+	rm -rf .git
+
+- untracked files means newely added files (not in remote).
+
+-- add file or all files to staging
+	git add file1.js
+	git add file1.js file2.js		// add multiple files
+	git add *.js				// add files with pattern
+	git add . 
+
+-- view repo info like branch, un tracked files , changed files, staged files
+	git status
+
+- to view short info about repo (only modified and added files)
+	git status -s
+
+-- un stage file
+	git restore --staged package.json
+	git rm --cached app.js
+
+	git restore --staged app.js package.json .env		// unstage multiple files
+
+- commit the changes and open editor to enter commit message
+	git commit
+
+- commit with message
+	git commit -m "message"
+
+- remove file from working directory
+	git rm app.js				// file should not be staged
+   - you should commit and push to delete also on github 
+
+- rename or move a file
+ git mv file1.js file2.js 
+ git mv src/global/prepared_data/versions/version_1/script_1.js src/global/prepared_data/versions/version_1/script_2.js
+
+
+- view code changes in unstaged files
+	git diff			// its better to view the changes in editor like vscode
+
+- view code changes in staged files
+	git diff --staged
+	git diff --cached
+
+- view the history of commits with messages , user and date
+	git log
+	git log --oneline	// get summary log
+	git log --reverse	// get log from oldest to newest
+
+- in order to exit prompt 
+	:qa	or 	:q
+
+- to show a given commit with code changes
+	git show 6fcc92b
+	git show HEAD		// to show the latest commit 
+	git show HEAD~1		// to show commit before head
+	git show HEAD~4		// to show the 4th commit before head
+	git show HEAD:file1.js	// to show file1.js version stored in head commit
+ 	git show 6fcc92b:file1.js	// to show file1.js version stored in this commit
+
+!!! how to show changes in code editor
+
+- revert the changes in a file  (copies messages.js from index to working directory)
+	git restore src/global/app_constants/messages.js
+	git restore file1 file2 	revert multiple files 
+	git restore .			revert all local changes (except un tracked files)
+	git clean -fd			remove all untracked files
+
+- restore an ealier version a file 
+	git restore --source=HEAD src/app_modules/common/entities/app_settings/model.js
+	git restore --source=HEAD~2 src/app_modules/common/entities/app_settings/model.js
+	git restore --source=57fabf8 src/app_modules/common/entities/app_settings/model.js
+
+========= Browsing History
+
+- get commits that touched trx_context
+	git log src/global/database/trx_context.js
+
+- get commits by auther
+	 git log --author="Ahmed Salah Salem"
+
+- get commits in range 
+	git log 31ffd51..ab6a204	// older..newer
+
+---
 
 ===========
 
