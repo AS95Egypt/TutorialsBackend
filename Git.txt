@@ -64,6 +64,8 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 - how to create git.config file ?
 - configuration can be adjusted to a specific operating system.
 
+- HOW TO CONFIGURE VSCODE TO BE DEFAULT EDITOR ? 
+
 - staging area is the index
 - commits are snapshots that are saved to the repo. 
 - we add modified files to the staging area, in order to review code and if every thing is good we commit to the repo.
@@ -74,7 +76,10 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 	but when make a change to any of these files new version replaces the old version in the staging area
 - you should use git command to remove a file from a project in order to remove from staging area too
 - each commit contains information like (ID, message, date, auther, complete snap shot of the project)
-
+- Note: when file1 is in the staging area and you make changes again to it, then you should add it again to the
+	staging area , because the version in the staging area is the older one.
+- commits should not be too small or too big.
+	don't commit for each file you edit, and dont' commit after 3 days for example
 
 -- git help
 - example when you want to get help for git config 
@@ -100,11 +105,19 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 - to view short info about repo (only modified and added files)
 	git status -s
 
--- un stage file
+-- un stage file (remove from index)
 	git restore --staged package.json
 	git rm --cached app.js
+	git rm --cached -r bin/				// remove folder recusively from staging area
 
 	git restore --staged app.js package.json .env		// unstage multiple files
+
+- remove file from working directory
+	git rm app.js				// file should not be staged
+   - you should commit and push to delete also on github 
+
+- list files in staging area
+	git ls-files
 
 - commit the changes and open editor to enter commit message
 	git commit
@@ -112,21 +125,14 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 - commit with message
 	git commit -m "message"
 
-- remove file from working directory
-	git rm app.js				// file should not be staged
-   - you should commit and push to delete also on github 
+- commit directly and skip the staging area
+	git commit -a -m "message"	or  	git commit -am "message"
+  Note: you should stage to review the changes.
 
-- rename or move a file
+- rename or move a file, changes applied to both working directory (local) & staging area
+- you should git command for delete, rename or move instead of os commands
  git mv file1.js file2.js 
  git mv src/global/prepared_data/versions/version_1/script_1.js src/global/prepared_data/versions/version_1/script_2.js
-
-
-- view code changes in unstaged files
-	git diff			// its better to view the changes in editor like vscode
-
-- view code changes in staged files
-	git diff --staged
-	git diff --cached
 
 - view the history of commits with messages , user and date
 	git log
@@ -135,6 +141,56 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 
 - in order to exit prompt 
 	:qa	or 	:q
+
+======== discarding local changes
+- revert the changes in a file  (copies messages.js from index to working directory)
+	git restore src/global/app_constants/messages.js
+	git restore file1 file2 	revert multiple files 
+	git restore .			revert all local changes (except un tracked files)
+	git clean -fd	or -f -d	remove all untracked files
+
+======== restore an ealier version a file 
+	git restore --source=HEAD src/app_modules/common/entities/app_settings/model.js
+	git restore --source=HEAD~2 src/app_modules/common/entities/app_settings/model.js
+	git restore --source=57fabf8 src/app_modules/common/entities/app_settings/model.js
+
+========= Ingore files 
+- we don't want to include log files or binary files which is generated after compiling code like (exe, node_modules).
+- adding this files will increase the size of our repo without adding any value, beside each developer can have
+  his own log file or connection file
+
+- learn how to create txt file and append text to it using cmd.
+- create .gitignore file and put files and folders you don't want to include in repo, can accept patterns
+logs/		// folder
+node_modules	// folder
+connection.ini  // file
+*.logs
+*.exe
+
+- gitignore file is added to repo.
+- including a commited file or staged file in .gitignore will not ignore this file if any changes happen to it.
+- you have to remove file or folder from staging area in order to ignore it
+- there are logs for each language which ignore its related files extensions.	!!! SEARCH FOR NODEJS
+
+========= Short status
+- if you have a file in staging area, then you modified this file again then you have to add it again to staging area
+	git stats -s will show  MM file1.js	// left M is green means staged , right M is red means modified but this modifications not staged.
+
+========= view changes (staged and unstaged)
+- (based on Option you specify) it compares changes between modified file in working directory and commited version of this file.
+- view code changes in unstaged files
+	git diff			// its better to view the changes in editor like vscode
+
+- view code changes in staged files
+	git diff --staged
+	git diff --cached
+
+========= Visual diff tools
+- see at min:50 how to configure git to use vscode as diff tool.
+
+- in our case we can see diff in staged files by going to git tab in vscode
+========= viewing a commit
+git show d49		you can type only a few characters of commit id as long as its not shared by another id
 
 - to show a given commit with code changes
 	git show 6fcc92b
@@ -146,16 +202,13 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 
 !!! how to show changes in code editor
 
-- revert the changes in a file  (copies messages.js from index to working directory)
-	git restore src/global/app_constants/messages.js
-	git restore file1 file2 	revert multiple files 
-	git restore .			revert all local changes (except un tracked files)
-	git clean -fd			remove all untracked files
+- to show all changes in a commit
+	git ls-tree HEAD~1			// it will list all files (trees) changed in this commit, with id for each one
 
-- restore an ealier version a file 
-	git restore --source=HEAD src/app_modules/common/entities/app_settings/model.js
-	git restore --source=HEAD~2 src/app_modules/common/entities/app_settings/model.js
-	git restore --source=57fabf8 src/app_modules/common/entities/app_settings/model.js
+- to list a tree shown in ls-tree
+	git show fileID
+
+- git show can view (commits ,blobs, trees, tags)
 
 ========= Browsing History
 
