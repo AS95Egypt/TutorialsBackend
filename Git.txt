@@ -55,6 +55,54 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 
 - download and install git
 
+- git has 4 stages ( 1- working directory 	2- staging area		3- commit (local repo)  	4- Remote repo)
+
+- how to start a new project , how to link this local project with a remote repo
+	- in a new folder write 	git init
+	- add, commit and manipulate files in working directory
+	- create a new repo on github then you will have a link
+	- use this url to link your project with remote repo
+		git remote add origin git-url.git
+	- push your code to remote repo
+		git push --set-upstream origin main
+
+- in order to share project between team members or edit it in another device
+		git close git-url.git
+
+- get the latest changes by your team 
+		git fetch			// these changes will be only in commit stage
+		git merge			// to merge these changes in working directory
+
+	OR
+		git pull			to do both steps at once	
+
+======= branches
+- its allows multiple versions of repo to exist at the same time.
+- use different branch to develop a new feature away from team's main branch where it has a separate development and testing.
+
+- create a new branch
+	git branch newBranchName
+
+- list all branches
+	git branch	
+
+- to switch to new branch
+	git checkout newBranch
+
+- after adding a new branch and switching to it push changes to this branch on remote repo
+	git push --set-upstream origin newBranch			// you to specify branch name
+
+- merge features from newBranch to main branch
+	git merge origin/newBranch		??? where we pass main branch or is it main by default
+
+- these changes will be added to main branch on remote repo only when push them.
+
+--- how to solve conflicts and merge changes from differnet branches with alot of modifications?
+	what is squash merge
+	or
+	cherry-pick which moves commits between branches
+
+=======
 -- configuring git
 - there is 3 levels of configuration
   1- System
@@ -118,6 +166,9 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 
 - list files in staging area
 	git ls-files
+
+- push to specific branch
+	git push origin master
 
 - commit the changes and open editor to enter commit message
 	git commit
@@ -228,6 +279,8 @@ git show d49		you can type only a few characters of commit id as long as its not
 - git checkout			to show current branch
 	
 - git checkout branch-nanme	to switch to another branch
+
+- git checkout commitId		to retreive this snapshot
 
 - git status 			also to show current branch
 

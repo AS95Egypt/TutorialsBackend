@@ -1,0 +1,186 @@
+======== section 15 ZTM course
+=== 15.1
+- you should specify development process steps.
+- quality process steps 
+	- your code must pass test before release to users.
+
+- have certian checks in place that run automatically when change code, 
+	will make sure that you will not leave this checks to the end, 
+	because most probably you will miss them when you are in a rush to deploy.
+
+- CI continous integration
+  CD continous delivery / deployment
+
+- use Github Actions
+
+=== 15.2  Continous Integration
+- its a software development best practices
+- example: sharing and updating the code between team members using git & github
+	- frequently commit code to a shared repo.
+
+- when developer commit the code to remote repo (check in), after that the code should be automatically 
+	built, tested and show result issues then developer got red or green light.
+
+- we can add more checks (ex: linting, security) and tests to CI pipeline like code linter to verify code formatting and naming.
+	or have automated security tests.
+
+- so these checks happends automatically when user commits code to github to provide feedback to developer , 
+	and don't leave these checks to the end.
+
+- this gives the ability to fix issues returned by CI checks and fix them as soon as possible.
+
+- CI arises when agile and extreme programming comes to place, 
+	extreme programming is about delpoying app multiple times frequently
+
+- theres are some CI tools like (circle CI, travis CI, github actions, genkins)
+
+=== 15.3 Continous Delivery
+- Continous Delivery is built on Continous Integration.
+- Continous Delivery means each time code added to repo (main branch because all branches are merged into it when release)
+	 its ready to be delivered.
+
+- sometimes its CI/CD pipelines is not enough to have full confidence in application, 
+	so quality team should test and check the application.
+
+- CI/CD improves software quality, because developers know that this is built for end users and can be released any time.
+
+=== 15.4 Continous Deployment
+
+- continous deployment is not suitable for all applications, 
+	because some applications should not be deployed often.
+- because these applications can be hard to write or run tests and checks.
+
+=== 15.5 Pipelines
+- see diagram of CI/CD pipeline and the flow of the process.
+
+- we have 4 stages in pipeline 
+
+  - source 	git push
+  - build	compile		docker build
+  - test	smoke		integration		unit
+  - deploy	staging (CI-automatic)-> QA -> production (manual) it can also be automatic (CI/CD)
+
+=== 15.6 Githut Actions
+- its a CI/CD tool.
+- is a service built in github that allows you to build CI pipelines for your github project.
+- its repsonible for various triggers ex: (commit, push)
+	when action triggers it runs through workflow to automate different actions that you want to perform.
+- workflow might include (test, linting, deploy your code to different environment)
+- you can run github actions on (Linux, mac, windows) and with any programming language
+- if we are running pipeline and there is an error in the code the workflow will fail 
+	and automatically notify developers with found issues.
+	and also publish these issues to chat server like discord.
+- we are going to use github actions to create CI pipeline
+- Why Github Actions ? 
+	- pipeline is in the same place as source code, and we can take advantage of github.
+	- we can make use of what has done by other developers.
+- how we can create a CI pipeline ? 
+	- in ci.yaml file we write all pipeline configuration
+	- it contains the steps that are going to be performed by CI server
+	- we can use actions which already built before
+
+=== 15.7 Setting up github actions
+- view and setup github actions in Actions tab.
+- github detects project's language and suggests existing workflows.
+- we write workflow configuration script in .yml file
+
+=== 15.8 Continous Integration build pipeline
+--- apply workflow on nodejs project
+ - add .github folder & inside it create `workflows` folder & and inside it create file `node.yml`	
+	.github/workflows/node.yml
+
+ - first step we want to build the project when push
+
+
+
+- CI file 
+name: CI project name
+on:				// run workflow when these events fire
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:				// actions that will be taken
+  build: 
+    runs-on: ubuntu-latest	// specify operating system that app will run on
+    steps: 
+      - uses: actions/checkout@v2	// means checkout the code before run tests, 
+      - name: install nodejs 20 	// you can name this step
+	uses: actions/setup-node@v2	// install node on machine (CI Server) that runs this script
+	with: 
+	  node-version: '20'
+      - run: npm install		// in this step and after installing nodejs we install packages
+      - run: run react client app 
+  deploy: 
+    needs: build		// this means `build` has to run before `deploy`
+
+
+- actions which are listed under `steps` are reusable scripts which we use to automate things we do in our jobs.
+
+=== 15.9 build pipeline in action
+- so when making a push request to github repo, github actions will run
+	git push origin master
+- in github actions we can view executed jobs or workflows in detail and its status
+
+=== 15.11 Github actions marketplace
+- search for github actions marketplace
+- you will find basic and advanced actions made by official github actions or users.
+
+=== 15.12 Continous Integration test pipline
+
+jobs:
+  build:
+    env:
+      CI: true			// set this variable to true, to let server know it CI environment,
+					and not run test in watch mode
+      PORT: 5000		// set the port that the application will run on
+    strategy: 			// to run pipeline on different environments
+      matric:
+	node-version: [16.x, 20.x]	// means latest 16 version and latest 20 version
+    steps: 
+      - uses: ...
+	...
+      - run: npm test		// here we run tests
+
+
+-- run pipeline in multiple versions
+    strategy: 			// to run pipeline on different environments
+      matric:
+	node-version: [16.x, 20.x]	// means latest 16 version and latest 20 version
+ - specify the version from strategy in steps
+      - name: install nodejs ${{ matrix.node-version }} 	// you can name this step, name version you test on
+	uses: actions/setup-node@v2	// install node on machine (CI Server) that runs this script
+	with: 
+	  node-version: ${{ matrix.node-version }}	// will test on 16 and 20 node versions
+
+- make sure to specify branch when push (the branch set in the pipeline)
+- pipeline might not succesed because .env file is not uploaded to github , so mongodb url is missing 
+
+=== 15.13 Mocking out databases
+- how we can work with databases in CI.
+- we will setup a new mongo database which is for test.
+
+=== 15.14 databases with continous integration
+
+- you can specify mongodb version in strategy
+
+    strategy: 			
+      matric:
+	node-version: [16.x, 20.x]	// means latest 16 version and latest 20 version
+	mongodb-version: ['4.2', '4.4']
+
+- Search for mongodb action on github actions marketplace
+- set mongodb url .env variable in env section 
+jobs:
+  build:
+    env:
+      DATABASE_URL: ...
+
+- see how to setup mongodb in actions
+
+- or should we use database url instead of mongodb action.
+
+=== 15.15 Populating data for continous integration
+
+
+

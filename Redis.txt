@@ -1,0 +1,29 @@
+======== Tutorials
+- what to cache
+	https://claude.ai/chat/b020b709-7844-493f-9d6f-8e8adc6b366b
+
+========
+- Redis can be used to persist database like nosql database
+- Redis can make apis faster by making less requests to database.
+
+
+======= Redis caching in nodejs		https://www.youtube.com/watch?v=oaJq1mQ3dFI
+
+-- first download and install redis 
+ - download redis from this link (.msi)
+	https://github.com/tporadowski/redis/releases
+
+- after install redis , open cmd as admin, then write, and you are ready to type redis commands
+	redis-cli
+
+- create a new nodejs project and install
+	redis ,express, axios, 
+
+// setup redis in nodejs app
+
+	const redis = require("redis");
+	const REDIS_PORT = 6379;
+	const client = redis.createClient(REDIS_PORT);
+
+=== see example in Crystal-RMS-APIs
+- flushAll or flushDB to delete all keys
