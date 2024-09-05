@@ -2,6 +2,7 @@
 - SQL tutorials
 	https://www.youtube.com/watch?v=q_JsgpiuY98&list=PL9ooVrP1hQOG6DQnOD6ujdCEchaqADfCU&pp=iAQB
 
+- https://www.freecodecamp.org/news/learn-sql-for-analytics/
 =========
 
 - common data types in sqlite

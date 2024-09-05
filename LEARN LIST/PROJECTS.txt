@@ -28,3 +28,8 @@ give me linkes of node repositories for node and express projects to learn from.
 === Hang man game
 	https://www.youtube.com/playlist?list=PLDoPjvoNmBAwPhjRUnmlUlc377dmYtpWg
 
+=== create a PC game using javascript
+	https://www.freecodecamp.org/news/create-a-pc-game-using-javascript/
+
+=== 
+	https://www.analyticsvidhya.com/blog/2022/11/creating-a-music-streaming-backend-like-spotify-using-mongodb/

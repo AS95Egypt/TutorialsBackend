@@ -1,0 +1,11 @@
+========= Tutorials
+- https://www.freecodecamp.org/news/solid-principles-for-microservices/
+
+- https://www.freecodecamp.org/news/how-to-deal-with-traffic-surges-in-distributed-systems/
+
+- https://www.freecodecamp.org/news/microservices-vs-monoliths-explained/
+
+- https://www.freecodecamp.org/news/build-a-custom-api-gateway-with-node-js/
+
+- https://www.freecodecamp.org/news/serverless-node-js-tutorial/
+========= 

@@ -1,3 +1,8 @@
+========== Tutorials
+
+- closures & hoisting
+	https://www.freecodecamp.org/news/scope-closures-and-hoisting-in-javascript/
+
 READ THIS
 	https://dev.to/_ndeyefatoudiop/javascript-data-types-27-quick-questions-you-need-to-master-1828?ref=dailydev	
 

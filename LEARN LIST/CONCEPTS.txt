@@ -99,7 +99,18 @@ https://www.mongodb.com/products/capabiltiies/column-store-indexes
 ===== DNS
 
 ===== API gateway
-
+- examples:  (Amazon API gateway, Azure API management, Goolge API gateway, Cloudflare)
+- its a single point of entry for client applications
+- its sits between clients and collection of backend services.
+-- API Gateway provides: 
+	- authentication and security policy enforcement
+	- load balancing and circuit breaking
+	- protocol transalation and service discovery
+	- monitoring, logging, analytics and billing
+	- ratelimiting
+	- caching
+	- allow/deny IP like cors
+- api gateway forwards requests to right services by path matching and service discovery
 ===== Circuit Breaker pattern
 
 ===== Test-driven development (TDD)
@@ -109,4 +120,43 @@ https://www.mongodb.com/products/capabiltiies/column-store-indexes
 ===== Common practice is to also set CORS settings Cross-Origin Resource Sharing (CORS) settings are important for web security. 
 	They control which domains can access your API, preventing unwanted cross-site interactions.
 
-===== 
+===== Database Concurrency
+	https://chatgpt.com/c/cf12dccc-2463-4da5-8d58-74eb6e0c8848
+
+===== CQRS (command query representation separation)
+
+===== Distributed system principles 
+
+===== message broker & message queues
+
+===== gRPC
+
+===== integration testing & end-to-end testing
+
+===== learn profiling
+
+===== Elastic search
+
+===== Circut breaker
+
+===== Load Balancer & reverse proxy ex: nginx
+
+===== postman collection runner
+
+===== Shadring
+	https://www.geeksforgeeks.org/what-is-sharding/
+
+===== Replication
+
+===== Eager and lazy loading
+
+===== API versioning
+
+===== Graph database (ex: Neo4j) for complex linking and relationships like social media and recommendedations
+
+===== Mongodb Atlas Services
+
+===== Cloudinary 
+
+===== aws s3 
+https://claude.ai/chat/3dc03768-ef83-49d0-bce4-73601fad9a09

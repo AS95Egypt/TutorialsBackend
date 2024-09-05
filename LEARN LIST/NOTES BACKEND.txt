@@ -8,3 +8,26 @@
 --- Nestjs can better in building enterprise and large applications, it provides modularity and rich features comparing to express which requires
 packages , express can be faster and better for small applications
 
+--- install @types/... packages as dev dependancies 		--save-dev
+
+
+--- Common Resources to Free or Disconnect
+
+- Database Connections:
+	MongoDB: Disconnect the MongoDB client.
+	MySQL/PostgreSQL: Close the database connections or pool.
+	Redis: Quit the Redis client.
+
+- File Descriptors: Close any open file descriptors, such as files being read or written.
+
+- Network Sockets: Close any open network sockets or server connections.
+
+- External APIs: Ensure that any long-running connections to external APIs are properly closed.
+
+- Message Queues: Disconnect from message queues like RabbitMQ, Kafka, or other similar services.
+
+- Timers: Clear any active setTimeout or setInterval timers to prevent them from running unexpectedly.
+
+- apply business in the endpoint and in the schema model, (collect list of fields validation) 
+
+- study express-validator built in validation, 	and collect situations when to apply them (make solid validation & sa).

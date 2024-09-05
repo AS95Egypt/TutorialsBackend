@@ -31,6 +31,11 @@
 ==> CORS
 	https://www.devsecurely.com/blog/2024/06/cors-the-ultimate-guide?ref=dailydev
 
+==> https://www.freecodecamp.org/news/more-secure-authentication-from-passwords-to-passkeys/
+
+==> https://www.freecodecamp.org/news/web-api-security-guide/
+
+
 ============= Security ACTIONS
 - validate input with each input type valid values, prevent special characters, using (express-validator)
 - use csrf package to protect against csrf attacks.
@@ -45,16 +50,15 @@
 - perform Testing like : (integration testing (APIs), Unit testing, penetration testing, rate limit testing)
 - don't return detailed or techniqual error stack messages in production
 - log error and success requests -support and faciliate search using keywords-
-- 
+ 
+
+============= QUESTIONS
+- How forget password & reset password & verification code work
 
 ============= 
 -- GET requests are cachable be default be the browser
 -- POST: are not cached by default, but it can be cachable 
 -- PUT, DELETE: are not cachable at all.
-
-
-
-
 
 
 --- search about refresh tokens and openid protocol

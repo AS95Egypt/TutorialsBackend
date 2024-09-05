@@ -1,14 +1,24 @@
-==> 8 Strategies for Reducing Latency
-	https://newsletter.systemdesigncodex.com/p/8-strategies-for-reducing-latency?ref=dailydev
-
-==> Database shadring
-
-============= Scalaling & Performance LINKS
+============= Tutorials Scalaling & Performance LINKS
 - https://medium.com/codex/how-pinterest-scaled-to-11-million-users-with-only-6-engineers-a0f62cea62b8
 
-==> How to Scale a Database ?
+- How to Scale a Database ?
 	https://blog.algomaster.io/p/system-design-how-to-scale-a-database?ref=dailydev
 
+- https://www.freecodecamp.org/news/how-to-deal-with-traffic-surges-in-distributed-systems/
+
+- 8 Strategies for Reducing Latency
+	https://newsletter.systemdesigncodex.com/p/8-strategies-for-reducing-latency?ref=dailydev
+
+- https://www.freecodecamp.org/news/database-optimization-principles/
+
+- https://www.freecodecamp.org/news/what-is-amazon-ec2-auto-scaling/
+
+- https://www.freecodecamp.org/news/nodejs-api-best-practices-for-scaling/
+
+- https://hackernoon.com/is-your-code-slow-avoid-these-19-common-javascript-and-nodejs-mistakes?source=rss&ref=dailydev
+
+============ Search
+- Database shadring
 
 ============ ZTM Improving node performance - section 11
 - javascript & event loop is single thread, means it can process one request at a time.
@@ -94,7 +104,8 @@ const cluter = require("cluster");
 -- using pm2 you don't have to use cluster module to fork() processes, pm2 basically is built on cluster with more and rich features.
 
 - start many instances of your server using pm2 
-	pm2 start server.js -i max / number
+	pm2 start server.js -i max
+	pm2 start server.js -i number
 
 - see server instances logs
 	pm2 logs

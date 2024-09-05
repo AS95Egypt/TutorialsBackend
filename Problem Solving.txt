@@ -1,6 +1,13 @@
 
-=========== Links
+=========== Tutorials
 - https://www.geeksforgeeks.org/
+
+- what is recursion
+	https://www.freecodecamp.org/news/what-is-recursion/
+
+- https://www.freecodecamp.org/news/higher-order-functions-explained/
+
+- https://www.freecodecamp.org/news/top-10-javascript-algorithms-for-coding-challenges/
 
 =========== Tips
 -  some algorisms (DFS, BFS, Sliding window, backtracing, union find, dijkstra's, sorting, hashmap, stack , queue, prim's)

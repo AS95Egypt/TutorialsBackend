@@ -1,4 +1,8 @@
---- TODO: try to inject database to services to make it pluggable.
+======== Tutorials
+
+- https://www.freecodecamp.org/news/learn-system-design-principles/
+
+- https://www.freecodecamp.org/news/learn-high-level-system-design-by-building-a-youtube-clone/
 
 ======== https://medium.com/@ben.dev.io/clean-architecture-in-node-js-39c3358d46f3
 - high-level modules (ex: root or main) should not depend on low-level modules.

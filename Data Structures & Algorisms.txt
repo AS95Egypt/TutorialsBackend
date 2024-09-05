@@ -1,0 +1,3 @@
+====== Tutorials
+--- 10 resources to learn data structures and algorisms
+	https://medium.com/javarevisited/10-resources-to-master-data-structures-and-algorithms-in-2024-5dcb33cd0a78

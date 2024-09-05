@@ -1,7 +1,5 @@
 =============== TODOOOO
 - study mongodb quries, and schema rules	DOWNLOAD sample mongodb database, learn how to backup and restore 
-- apply business in the endpoint and in the schema model, (collect list of fields validation) 
-- study express-validator built in validation, 		and collect situations when to apply them (make solid validation & sa).
 - saved articles
 - 
 
@@ -9,7 +7,10 @@
 - improve linkedin account
 - improve github account
 - learn SW engineering topics below
+=============== To learn Topics
 
+- RabbitMQ, Serverless, OAuth, cmd (advanced tool Ansible), gitflow, Linux, AWS basics, DS, Clean, DPtrn, 
+  Nginx, Microservices, Elastic search, Circuit breaker ,Refresh Tokens
 
 =============== Backend developer roadmap
 https://www.youtube.com/watch?v=b6zpvz1o1Ag
@@ -48,7 +49,7 @@ you can build desktop apps using js by electron -> https://www.electronjs.org/
 - Testing (unit testing , integration testing ,end-to-end testing)
 - software design & architecture  for building (scalable, maintainable, efficient)
 - message brokers (rabbitmq, kafka) also redis
-- containerization (docker, kubernetes ???, openshift)
+- containerization (docker, kubernetes ???)
 - nginx vs pm2 
 - nginx for (proxy request, static files , load balancing)
 	https://www.youtube.com/watch?v=9t9Mp0BGnyI&list=PLWKjhJtqVAbn21gs5UnLhCQ82f923WCgM&index=16&pp=iAQB
@@ -161,84 +162,15 @@ RESTful APIs, GraphQL, and WebSockets
 	- Koa
 	- Hapi
 Kafka (for event driven architecture)
-DevOps and CD-CI	(ArgoCD and Tekton)
+DevOps and CD-CI	
 Firebase
 ======= Soft skills
 
 
 ===============
 
-==> https://www.freecodecamp.org/news/nodejs-api-best-practices-for-scaling/
-==> How to make nodejs api scale
-	https://www.freecodecamp.org/news/nodejs-api-best-practices-for-scaling/
-==> best security practices for nodejs
-	https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications?slide=63
-	https://restfulapi.net/security-essentials/
-
-==> https://r.bluethl.net/how-to-design-better-apis
-==> how to test endpoints (backend)
-==> how to document (backend)
-	https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/#:~:text=this%20article.-,Document%20your%20API%20properly,-I%20know%20that
-==> apply SOLID principles,  & clean architecture
-==> How forget password & reset password & verification code work?
-==> how to arrange quries and piplines stages in code.
-==> what is Mongodb atlas?, learn it. 
-   configure mongodb atlas
-	https://www.analyticsvidhya.com/blog/2022/11/creating-a-music-streaming-backend-like-spotify-using-mongodb/
-	Mongodb charts
-
-==> Improve performance
-https://hackernoon.com/is-your-code-slow-avoid-these-19-common-javascript-and-nodejs-mistakes?source=rss&ref=dailydev
-==> version API
-
-
-
---- How to send file post request body?
-
---- What is Swagger? 		Swagger can help you design and document your APIs at scale.
-	https://www.youtube.com/watch?v=mViFmjcDOoA
-
---- *** eager and lazy loading
-
---- *** replication
-
---- *** Shadring
-	https://www.geeksforgeeks.org/what-is-sharding/
-
---- *** postman collection runner
-
---- *** Express Error Handling (common-global)?		https://expressjs.com/en/guide/error-handling.html
-
---- *** reverse proxy ex: nginx
-
---- *** Load Balancer
-
---- *** Circut breaker
-
---- *** Elastic search
-
---- *** learn profiling
-
---- *** what will happen if id is two fields in aggregate function		item._id === "CASH"
-
---- *** req.check()	...
-
 --- *** understand this file 
 	https://github.com/chintan-golakiya/online-exam-portal/blob/dev/backend/services/passportconf.js
 
---- *** integration testing
---- *** end-to-end testing
 
---- message queues
 
---- RPC
-
---- message broker
-
---- versioning APIs
-
---- graph database like Neo4j to help make recommendations to users about what to buy based on their past searches and purchases.
-
---- Distributed system principles
-
---- CQRS (command query representation separation): 

@@ -1,3 +1,6 @@
+======== Tutorials
+- https://www.freecodecamp.org/news/pass-the-github-actions-certification-exam/
+
 ======== section 15 ZTM course
 === 15.1
 - you should specify development process steps.

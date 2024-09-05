@@ -41,3 +41,6 @@ https://blog.algomaster.io/
 
 
 https://medium.com/explore-topics
+
+
+https://deploy.equinix.com/blog/

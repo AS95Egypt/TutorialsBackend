@@ -5,6 +5,8 @@
 - AWS Certified DevOps
 	https://www.youtube.com/watch?v=LC-KPdkVZ4I&list=PL9ooVrP1hQOE5SXbik4_EVVjpx9qG3CBb&pp=iAQB
 
+	https://www.freecodecamp.org/news/ultimate-aws-certified-developer-associate-dva-c02-course-from-andrew-brown/
+
 - Jenkins Tutorials
 	https://www.youtube.com/watch?v=3a8KsB5wJDE&list=PL9ooVrP1hQOGM6eCsjnfAousUSvpqD8dW&pp=iAQB
 
@@ -16,5 +18,10 @@
 
 - Kubernetes tutorials
 	https://www.youtube.com/watch?v=YXfLAWGTI38&list=PL9ooVrP1hQOF907pPru97cKY9nKwOrDTP&pp=iAQB
+
+- https://www.freecodecamp.org/news/what-is-amazon-ec2-auto-scaling/
+
+
+- https://www.freecodecamp.org/news/learn-how-to-deploy-to-digital-ocean/
 
 ========== 

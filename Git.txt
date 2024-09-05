@@ -19,6 +19,27 @@ https://pinjarirehan.medium.com/essential-git-commands-for-beginners-4b16ca87df8
 --- شخبط  وانت مطمن
 	https://www.youtube.com/watch?v=Q6G-J54vgKc
 
+- https://www.freecodecamp.org/news/learn-git-in-detail-to-manage-your-code/
+  https://www.freecodecamp.org/news/guide-to-git-github-for-beginners-and-experienced-devs/
+  https://www.freecodecamp.org/news/github-foundations-certified-exam-prep-guide/
+  https://pinjarirehan.medium.com/essential-git-commands-for-beginners-4b16ca87df8a?source=user_profile---------9----------------------------
+  https://pinjarirehan.medium.com/boost-your-code-quality-learn-git-github-like-a-pro-ff17073c5cfd?source=user_profile---------232----------------------------
+
+=========== Code Review
+1- All changes require at least one approval before getting committed to the codebase.
+
+2- Make pull requests small and digestible so code reviews can be done quickly. 
+	There shouldn’t be too many conceptual changes in a single PR.
+
+3- PRs should be reviewed within 4 hours (at least one reviewer should respond). 
+	If it’s been more than 4 hours, the engineer can add a comment to their 
+	pull request that will send a notification to all reviewers requesting feedback.
+
+4- Add context to the PR so a reviewer can easily understand what the PR is changing and why. 
+	If there are any changes that affect the UI, there should be screenshots of the UI that show the change.
+
+- Avoid redundancy in your comments; don’t write what you do, write why you do it.
+
 =========== learn how to integrate Github copilot in vscode
 	https://www.freecodecamp.org/news/developer-productivity-with-github-copilot/
 
@@ -65,6 +86,7 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 		git remote add origin git-url.git
 	- push your code to remote repo
 		git push --set-upstream origin main
+		git push --set-upstream origin master
 
 - in order to share project between team members or edit it in another device
 		git close git-url.git

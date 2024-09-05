@@ -1,3 +1,12 @@
+======= Tutorials
+- see section 18 in ztm course again and document
+- see created project
+
+- https://www.freecodecamp.org/news/learn-websockets-socket-io/
+
+
+=======
+
 https://chatgpt.com/share/62ce2279-310c-421b-8296-543b89332b22
 
 

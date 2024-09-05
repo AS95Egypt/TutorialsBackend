@@ -2,6 +2,14 @@
 	https://blog.logrocket.com/how-automate-api-tests-postman/
 	https://learning.postman.com/docs/collections/running-collections/intro-to-collection-runs/
 
+------ Documenting 
+==> how to document (backend)
+	https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/#:~:text=this%20article.-,Document%20your%20API%20properly,-I%20know%20that
+
+--- What is Swagger? 		Swagger can help you design and document your APIs at scale.
+	https://www.youtube.com/watch?v=mViFmjcDOoA
+
+
 --- learn how to import and export a collection 
 
 --- learn how to define environment variables which applies to all endpoints 

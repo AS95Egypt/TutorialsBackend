@@ -25,6 +25,8 @@
 --- aggregation pipline stages
 	https://www.mongodb.com/docs/v7.0/reference/operator/aggregation-pipeline/
 
+--- https://www.freecodecamp.org/news/mongodb-data-migration/
+
 --- USE Studio 3T tool for Mongo databases management.
 
 
@@ -75,6 +77,31 @@ db.sections.updateMany(
 -- key must be in ""
 
 - Json supports (strings, numbers , booleans, js objects, null, arrays)
+
+====== Mongodb Modeling 
+- database provider tool
+	https://www.mongodb.com/docs/v5.3/tutorial/manage-the-database-profiler/
+
+The embedded data model (objects and arrays inside object) combines all related data in a single document instead of normalizing across multiple documents and collections. 
+This data model facilitates atomic operations.
+
+
+--- In most cases, multi-document transaction incurs a greater performance cost over single document writes.
+
+--- Indexes
+   - Use indexes to improve performance for common queries. Build indexes on fields that appear often in queries and for all operations that return sorted results.
+   - MongoDB automatically creates a unique index on the _id field.
+   - Adding an index has some negative performance impact for write operations. For collections with high write-to-read ratio, 
+	indexes are expensive since each insert must also update any indexes.
+
+--- in this example, you better separate logs in different collectins (logs_dev ,logs_debug) instead of having types.
+{ log: "dev", ts: ..., info: ... }
+{ log: "debug", ts: ..., info: ...}
+
+
+--- there are 2 way to model in mongodb database  
+1- reference 
+2- embed objects, arrays
 
 ====== Learn Mongodb Queries 		https://www.youtube.com/watch?v=ofme2o29ngU
 

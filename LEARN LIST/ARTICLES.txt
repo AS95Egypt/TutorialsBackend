@@ -7,76 +7,23 @@
 - https://www.freecodecamp.org/news/podcast-cassidy-williams-cassidoo/
 ===================== READ THIS
 https://www.freecodecamp.org/news/tag/nodejs/
-
-
-- https://www.freecodecamp.org/news/ultimate-aws-certified-developer-associate-dva-c02-course-from-andrew-brown/
-
-- https://www.freecodecamp.org/news/typescript-for-beginners-guide/
-  https://www.freecodecamp.org/news/learn-typescript-for-practical-projects/
-
+ 
 - https://www.freecodecamp.org/news/host-your-first-project-on-github/
-
-- https://www.freecodecamp.org/news/create-a-pc-game-using-javascript/
 
 - https://www.freecodecamp.org/news/how-to-build-an-event-app-with-node-js/
 
-- https://www.freecodecamp.org/news/what-is-recursion/
-
-- https://www.freecodecamp.org/news/learn-system-design-principles/
-
-- https://www.freecodecamp.org/news/more-secure-authentication-from-passwords-to-passkeys/
-
 - https://www.freecodecamp.org/news/improve-your-javascript-projects-with-build-tools/
-
-- https://www.freecodecamp.org/news/scope-closures-and-hoisting-in-javascript/
-
-- https://www.freecodecamp.org/news/learn-high-level-system-design-by-building-a-youtube-clone/
-
-- https://www.freecodecamp.org/news/solid-principles-for-microservices/
-
-- https://www.freecodecamp.org/news/how-to-deal-with-traffic-surges-in-distributed-systems/
-
-- https://www.freecodecamp.org/news/microservices-vs-monoliths-explained/
-
-- https://www.freecodecamp.org/news/database-optimization-principles/
-
-- https://www.freecodecamp.org/news/learn-git-in-detail-to-manage-your-code/
-  https://www.freecodecamp.org/news/guide-to-git-github-for-beginners-and-experienced-devs/
-  https://www.freecodecamp.org/news/github-foundations-certified-exam-prep-guide/
-  https://pinjarirehan.medium.com/essential-git-commands-for-beginners-4b16ca87df8a?source=user_profile---------9----------------------------
-  https://pinjarirehan.medium.com/boost-your-code-quality-learn-git-github-like-a-pro-ff17073c5cfd?source=user_profile---------232----------------------------
-
-- https://www.freecodecamp.org/news/pass-the-github-actions-certification-exam/
-
-- https://www.freecodecamp.org/news/what-is-amazon-ec2-auto-scaling/
-
-- https://www.freecodecamp.org/news/higher-order-functions-explained/
-
-- https://www.freecodecamp.org/news/create-personalized-github-profile-page/
-
-- https://www.freecodecamp.org/news/learn-sql-for-analytics/
-
-- https://www.freecodecamp.org/news/learn-websockets-socket-io/
-
-- https://www.freecodecamp.org/news/learn-how-to-deploy-to-digital-ocean/
-
-- https://www.freecodecamp.org/news/web-api-security-guide/
 
 - https://www.freecodecamp.org/news/automate-boring-tasks-no-code-automation-course/
 
-- https://www.freecodecamp.org/news/comprehensive-nestjs-course/
-
-- https://www.freecodecamp.org/news/mongodb-data-migration/
-
-- https://www.freecodecamp.org/news/top-10-javascript-algorithms-for-coding-challenges/
-
 - https://www.freecodecamp.org/news/how-to-run-sql-like-queries-on-files/
-
-- https://www.freecodecamp.org/news/build-a-custom-api-gateway-with-node-js/
 
 - https://www.freecodecamp.org/news/practice-coding-skills-by-building-a-program-different-ways/
 
-- https://www.freecodecamp.org/news/serverless-node-js-tutorial/
+
+
+
+- [Software architect roadmap] https://www.youtube.com/post/UgkxfdK2XULnAJvZj-SXQcX-0oaJITKWss0K
 
 - https://pinjarirehan.medium.com/the-ultimate-guide-to-clean-code-32ab975e4d86?source=user_profile---------6----------------------------
 

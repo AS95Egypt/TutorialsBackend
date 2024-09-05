@@ -1,9 +1,19 @@
-offcial documentation
+======== Tutorials
+- offcial documentation
 	https://www.typescriptlang.org/
 
+- how to use typescript in nodejs backend project 
+	https://chatgpt.com/c/d0bea302-a048-4c88-a4fd-c3ec3e5772fc
 
+- https://www.freecodecamp.org/news/typescript-for-beginners-guide/
+
+- https://www.freecodecamp.org/news/learn-typescript-for-practical-projects/
+
+===
 execute 2 or more cmd commands 
 	tsc && node ./dist/index.js
+
+
 
 ===
 - typescript is a strongly typed language that builds on javascript
@@ -20,11 +30,29 @@ execute 2 or more cmd commands
 
 --- type script is complited into javascript  
 
+TypeScript provides better tooling for large-scale applications, including code navigation, autocompletion, and refactoring support. 
+It works well with popular code editors like Visual Studio Code.
+Transpilation to JavaScript:
+
+TypeScript code is transpiled into JavaScript, making it compatible with all browsers and JavaScript environments.
+ The transpilation process allows developers to use TypeScript features while ensuring broad compatibility.
+
+TypeScript is often used in large-scale projects where the benefits of static typing and enhanced tooling
+ can help catch errors early in the development process and improve code maintainability. 
+
+It is important to note that TypeScript code can coexist with existing JavaScript code,
+ as TypeScript files can reference JavaScript files.
+
+=== how to support module require in nodejs
+import fs from 'fs';
+
+- add this line in package.json
+	"type": "module"
 === 
 - get node version 
 	node -v
 
-- install typescript globally
+- install typescript globally, in dev dependancies  --save-dev	
 	npm install -g typescript
 
 - get typescript version 
@@ -718,4 +746,36 @@ col1.add({ name: "game 1", year: 2020, description: "game 1 description", score:
 === 38 How to master typescript 
 
 
+====
+-- you can not access value of object with string key, 
+	you should cast this string to this object keys
+  const [key, value] = subject;
+  const subjectMaxDegree: number = subjectsMaxDegrees[key as keyof typeof subjectsMaxDegrees];
 
+OR
+ - in order to access object by any string key you can define interface with index signature
+
+interface SubjectsMaxDegrees {
+  [key: string]: number;
+}
+
+const subjectsMaxDegrees: SubjectsMaxDegrees = {
+  arabic: 80,
+  foreign_1: 50,
+  foreign_2: 50,
+  math: 60,
+  biology: 60,
+  chemistry: 60,
+  physics: 60,
+  history: 60,
+  geography: 60,
+  philosophy: 60,
+  psychology: 60,
+};
+
+
+--- typeof only work for types
+	"string", "number", "bigint", "boolean", "symbol", "undefined", "object", or "function".
+
+--- to check for class types use instanceof
+	err instanceof ApiError ? (err as ApiError).success : false,
