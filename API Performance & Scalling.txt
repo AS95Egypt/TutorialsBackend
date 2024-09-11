@@ -17,6 +17,70 @@
 
 - https://hackernoon.com/is-your-code-slow-avoid-these-19-common-javascript-and-nodejs-mistakes?source=rss&ref=dailydev
 
+
+=== https://deploy.equinix.com/blog/designing-applications-for-horizontal-scalability/?ref=dailydev
+
+- horizontal scalling: (scalling out) 
+- vertical scalling: (scalling up)
+
+1- Implement a Stateless Architecture
+	- The instances don't need to know anything about their neighbors or the requests they've handled.
+
+2- Select an Appropriate Database Type
+	- Different database types can affect the horizontal scalability of your systems 
+ 	  based on how they store, shard and replicate data.
+	- SQL database are generally trickier to scale than document-oriented NoSQL engines.
+	- Databases can be horizontally scaled using sharding.
+3- Use Microservices
+	- building microservices lets you split the system into several small components 
+	  that you can independently operate and scale.
+	- Monoliths can be horizontally scaled, but this often causes resource wastage.
+	- you must have enough resources to run all instances even infrequently accessed components.
+	- in microservices, you can scale just the services that are experiencing capacity problems, 
+	   with more efficient load distribution and lower cost.
+	- A failure in one service won't affect any of your other components, improving your fault tolerance. 
+4- Adopt Asynchronous Patterns
+	- Using asynchronous patterns, such as message queues and event-based processing, 
+	  helps maintain the decoupled architecture.
+	- Asynchronicity makes it easier to horizontally scale services by reducing blocking activity between them.
+	- firing an event is an ideal way to notify another service that an activity
+	  has occurred without making your system wait for an immediate outcome.
+	- Message queues allow work to be batched up as a list of operations that are pending processing.
+	- Using asynchronous patterns, such as message queues and event-based processing, helps maintain the decoupled architecture.
+5- Prioritize API-First Development
+	- make services independant so that consumer services don't affect when make a change in relaying services APIs
+6- Build with CI/CD and Automation in Mind
+	- They can be used to automate your deployment processes, including scaling operations.
+	- CI/CD facilitates consistent scaling of your applications.
+	- you can use on CI/CD pipeline to deploy the same application on internal infrastructure, 
+	  a staging instance on single cloud and  multicloud production environment that demands high availability with downtimeless updates. 
+	- this can be done by using environment-level configuration within your pipelines.
+	-  If there's a problem in CI/CD pipeline, you can easily revert the commit and rerun the pipeline, 
+	  providing enhanced operational safety.
+7- Use Real-Time Observability and monitoring
+	- it  permits real-time monitoring for problems, including capacity constraints.
+	- good observability is vital to troubleshoot performance issues.
+	- it helps pinpointing the cause of a slowdown. Easy access to metrics, logs and traces provides a clear analytics.
+	  that you can follow to find processes running slowley.
+	- Proper observability allows you to make informed, data-driven decisions about app scalability and performance.
+	  resulting in more efficient operations that will usually incur lower costs.
+8- Optimize Your Design for Data Caching
+	- using caches reduces the number of database fetches and network calls required.
+9- Include Robust Fault Tolerance
+	- scalling horizontaly improves fault tolerance.
+	- Using autoscaling, you can automatically start new replicas of your service as 
+	  load increases to prevent outages due to capacity being reached.
+	- you have to be prepared to system failover and always has options.
+	- you must configure full backups for your entire service catalog.
+10- Evaluate Hosting Options for Horizontal Scalability
+	- Traditional public cloud providers offer services that make horizontal scalability relatively simple.
+	- check if the provider offers autoscaling so you can dynamically provision extra 
+	  capacity in response to changing utilization.
+
+
+ 
+
+https://www.mongodb.com/docs/manual/sharding/
 ============ Search
 - Database shadring
 

@@ -160,3 +160,59 @@ https://www.mongodb.com/products/capabiltiies/column-store-indexes
 
 ===== aws s3 
 https://claude.ai/chat/3dc03768-ef83-49d0-bce4-73601fad9a09
+
+===== service meshes
+
+===== Domain-Driven Design (DDD)
+- is an approach to software development that emphasizes the understanding of business domains 
+	and designing software that reflects the complexity of that domain. 
+
+- It encourages close collaboration between domain experts (business owners & developers)
+- DDD is ideal for complex business applications where the domain logic is the most important part of the system. 
+	It helps build systems that evolve with business needs.
+
+===== Hexagonal Architecture (Ports and Adapters)
+- is a software architecture that aims to isolate the core business 
+	logic from external systems like databases, UI, and APIs.  
+- The idea is to allow different layers of the system to communicate 
+	through well-defined interfaces (ports) and implementations (adapters).
+
+- Decoupling: The business logic is decoupled from technical concerns like databases or user interfaces. 
+	This makes the system more flexible and maintainable.
+- enabling easier unit testing and flexibility in switching technologies 
+	(e.g., switching databases or UI frameworks).
+
+-  is useful in applications where you want to achieve high separation 
+	between business logic and external dependencies
+
+
+===== Generators in javascript 
+	https://chatgpt.com/c/66de9f42-cb24-8003-958d-29d59bed3b34
+
+===== Cron jobs
+	https://chatgpt.com/c/66deeba4-d4c8-8003-94ea-21f1b24669c4
+
+===== DAL: data access layer
+- It is a part of the application's architecture that provides an abstraction between 
+	the application's business logic and the underlying database or data storage system. 
+
+===== P99
+https://chatgpt.com/c/66e12f15-0038-8003-85bb-fec1a464f10d
+
+===== Stdout 
+or standard output, is the default file descriptor where a computer program writes its output. 
+It is one of the three standard streams, along with stdin (standard input) and stderr (standard error), 
+which are used for input, output, and error handling in a program.
+
+===== APM (Applicaiton monitoring and performance) 
+is the monitoring and management of performance and availability of software applications. 
+APM strives to detect and diagnose complex application performance problems 
+to maintain an expected level of service. 
+
+===== Code smells
+The detection of "code smells" refers to identifying indicators in the source code that suggest deeper issues or potential problems. 
+Code smells are not bugs but rather signs that the code may be poorly structured or could lead to future maintenance difficulties.
+Examples of code smells include long methods, duplicate code, excessive comments, 
+and complicated class hierarchies. Detecting these smells helps developers improve code quality, 
+enhance readability, and simplify future updates.
+

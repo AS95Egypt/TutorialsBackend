@@ -16,6 +16,8 @@
 
 ========= how to create packages in nodejs
 	https://www.youtube.com/watch?v=J4b_T-qH3BY&t=1s
+
+	https://medium.com/@arnaudrinquin/build-modular-application-with-npm-local-modules-dfc5ff047bcc
 ========= how to check for packages updates and update them
 === way 1
 - install package `npm-check-update` globally (its used to check for udpates (report), and update pacakges)
@@ -48,6 +50,7 @@
 - used to match files in directory based on pattern , see docs for more
 
 const { glob } = require("glob");
+const { glob } = require("fs/promise");
 
 let modelFiles = await glob("**/model.js", {			// return all model.js files 
     ignore: "node_modules/**",
@@ -80,4 +83,7 @@ const { promisify } = require('util');
 
 =========== moment
 A JavaScript date library for parsing, validating, manipulating, and formatting dates.
+
+=========== eslint rules for code check and standards in typescript
+https://chatgpt.com/c/66de9f42-cb24-8003-958d-29d59bed3b34
 

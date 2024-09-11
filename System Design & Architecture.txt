@@ -8,13 +8,15 @@
 - high-level modules (ex: root or main) should not depend on low-level modules.
 
 --- Single Responsibility Principle (SRP)
-- Each module or function should have a single responsibility. This helps in creating a codebase that is easy to understand and maintain.
+- Each module or function should have a single responsibility. 
+	This helps in creating a codebase that is easy to understand and maintain.
 
 --- Clean Architecture emphasizes the separation of concerns, decoupling of dependencies, and modularity. 
 
 --- The goal is to create a codebase that is easy to understand, test, and maintain.
 
---- each layer of clean architecture has a specific responsibility. The layers communicate with each other through well-defined interfaces. 
+--- each layer of clean architecture has a specific responsibility. 
+	The layers communicate with each other through well-defined interfaces. 
 
 --- Clean Architecture Layers 
 - Infrastructure logic			concrete (domain specific, changes frequently)
@@ -52,7 +54,9 @@ that can change independently without affecting other components.
 	https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/breakintcomponents.md 
 - separate your system into microservices (only if needed)
 
-
+========= Layer your app, keep Express within its boundaries
+- https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/createlayers.md
+- organize each component into these layers (entry points (routes), Domain (handler/controller), Data access (repo/model))	
 
 =========
 ----------

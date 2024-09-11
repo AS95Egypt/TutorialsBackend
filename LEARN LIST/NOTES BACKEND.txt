@@ -31,3 +31,196 @@ packages , express can be faster and better for small applications
 - apply business in the endpoint and in the schema model, (collect list of fields validation) 
 
 - study express-validator built in validation, 	and collect situations when to apply them (make solid validation & sa).
+
+- if you multiple services which consume similar utilities you should start managing your dependancies.
+	- wrap this code in 3rd party private package , this makes it easily replacable in the future.
+	https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/projectstructre/wraputilities.md
+
+--- Use enviroment aware, secure and hierarchical config
+	- you should group related configs togther in config json file.
+	- to store senstive configs like (db pass) , some packages encrypt files, 
+	   specify the actual value during deployment via environment variables.
+	- inject configuration values via cmd (vargs) or sync configs via a centralized cache like Redis 
+	   so multiple servers will use the same configuration data.
+	- the application should fail as fast as possible and provide the immediate feedback 
+		if the required environment variables are not present at start-up.
+   - example of config package: https://www.npmjs.com/package/convict
+				https://www.npmjs.com/package/config
+
+---  how to choose the right framework? 
+- Express: 
+   - Pros:
+	- has the biggest popularity and eco system
+   - Cons: 
+	- Covers a small subset of a typical application needs, means leave some app concerns uncovered.
+   - Use when:
+	- having an experienced architect.
+	- also Koa is also a solid option with a more modern API than express.
+
+- Fasitfy:  
+   - Pros:
+	- simple and lean; mostly based on Node.js/JavaScript standards
+	- relatively shallow learning curve.
+	- with its official plugins cover many application concerns though not as rich as Nest.js.
+   - Cons:
+	- younger and has smaller eco system.	
+   - Use when: 
+	- you have a reasonably sized components/microservices (not a huge monolith)
+	- have solid js & nodejs knowledge
+- Nest: 
+   - Pros:
+	- its a rich framework with alot of built in features, covers many application concern including message queues, scheduled jobs and more
+	- OOP-style 
+	- awesome docs; well-maintained.
+   - Cons:
+	- High-level abstractions that cloud built-in Node.js conventions.
+	- push teams to increased complexity due to sophisticated patterns.
+	- Steeper learning curve due to unique narratives (e.g., interceptors, guards, modules, and more)
+   - Use when:
+	- It's desirable to design and code in OOP style.
+	- when the time to the first delivery is a critical factor.
+	- for large size app that can't be broken down (i.e. monolith) to autonomous component; 
+	- for teams who are highly experienced with java/spring/angular
+
+--- use typescript sparingly and thoughtfully (carfully)
+	- using typescript advanced features may inadvertently (بشكل غير مقصود) complicate projects.
+	- TypeScript can reduce bugs, but it will not capture all issues.
+	- so making complementary practices like linting and testing essential.
+
+--- avoid using nested callbacks
+	- because of its poor scalability, complicated code structure.
+	- use promise libs and try-catch error handling style for better code clarity and flow.
+	- callbacks is about writing code without a stack, its like driving a car without a brake pedal.
+	- callbacks might endup completely useless if the error happens on a different stack.
+	- Using promises results in more compact code and centralized error handling through a single .catch() method.
+	- promises prevent a loss of control flow.
+
+--- you don't have to make a promise from fs package , because it now supports promises
+import {readFile} from 'fs';
+import {readFile} from 'fs/promises';	// use this
+readFile('path').then(data).catch()		or await for it
+
+--- use glob to match files using regular expressions
+import {glob} from 'fs/promises';
+const files = glob("**/*.test.ts");// accepts pattern
+console.log(await files.next());
+
+--- Use only the built-in Error object
+	- Using Node.js built-in Error object helps to keep uniformity within your code and with 3rd party libraries
+	   and preserves significant information like the StackTrace.
+	- you can extend Error class to add more info like error name or http code but be careful don't overdo it.
+	- it's generally a good idea to extend the built-in Error object only once with an AppError for all the application level errors.
+	   No need to extend the Error object multiple times, just pass data to differentiate between different types of errors.
+	- don't throw a string , because lacks any stack trace information and other important Erorr properties
+		throw ('How can I add new product when no value provided?');
+
+- extend native javascript Error class, see typescript code
+
+// centralized error object that derives from Node’s Error
+function AppError(name, httpCode, description, isOperational) {
+    Error.call(this);
+    Error.captureStackTrace(this);
+    this.name = name;
+    //...other properties assigned here
+};
+
+AppError.prototype = Object.create(Error.prototype);
+AppError.prototype.constructor = AppError;
+
+module.exports.AppError = AppError;
+
+// client throwing an exception
+if(user == null)
+    throw new AppError(commonErrors.resourceNotFound, commonHTTPErrors.notFound, 'further explanation', true)
+
+--- Distinguish catastrophic errors from operational errors
+	- Operational errors (e.g. API received an invalid input) refer to known cases where the error impact 
+	  is fully understood and can be handled thoughtfully, usually logging the error is enough. 
+	- catastrophic error (also known as programmer errors) refers to unusual code failures 
+	    that dictate to gracefully restart the application
+	- for programmer's errors application might be in an inconsistent state that requires application restart.
+	- Distinguishing the following two error types will minimize your app downtime and helps avoid crazy bugs.
+	- Programmer errors are bugs in the program.
+	   option1: The best way to recover from programmer errors is to crash immediately and restart using restart like pm2.
+	   option2: programmer error might leave the app in an undefined brittle state, 
+			but it is not reasonable to abruptly shut those (open connections) down because an error was triggered by someone else.
+			The better approach is to send an error response and let others finish in normal time.
+	   option3: a balanced approach between the two.
+
+--- Handle errors centrally, not within a middleware
+	- Error handling logic such as logging, deciding whether to crash and monitoring metrics 
+	   should be encapsulated in a dedicated and centralized object that all entry-points 
+	   (e.g. APIs, cron jobs, scheduled jobs) call when an error comes in.
+	- Not handling errors within a single place will lead to code duplication and probably to improperly handled errors.
+	- errors thrown within (web requests, startup, scheduled jobs) might get handeled differently, 
+		this will lead to mismanagement of errors.
+	- This single error handler object is responsible for making the error visible 
+		- writing to a well-formatted logger 		- decide to crash and restart or send response
+		- firing metrics using some monitoring product (sentry, Prometheus, cloud watch, data dog)
+	- you should not provide error handling in middleware, because you will not be able to use this error 
+	   handler in different scenarios like (scheduled jobs, message queue subscribers, and uncaught exceptions)
+	- the error middleware should only catch errors and forward them to the handler.	
+    - see code at: https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/errorhandling/centralizedhandling.md 
+
+--- Document API errors using OpenAPI
+	- Let your API callers know which errors might come in return so they can handle these thoughtfully without crashing
+		- means if errors are expected then API caller can setup the appropiate UX to tell the user.
+		- the caller may then catch an error and tactfully handle it.
+	- this can be done in RestAPIs using documentation tools like (OpenAPI(swagger), Postman)
+	- An API client might decide to crash and restart only because it received back an error it couldn’t understand.
+	- Note: the caller of your API might be you (very typical in a microservice environment)
+
+--- Exit the process gracefully when a stranger comes to town
+	- error handler object is responsible for deciding how to proceed when an error is thrown.
+	   - if error is operational then writing to log file might be enough.
+	- for un familiar errors things might get hairy, 
+	   these errors might leave the app in unstable state (behave unexepctedly and cause all requests to fail) which requires restart.
+      - see code at https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/errorhandling/shuttingtheprocess.md
+	- in this code if error.isOperational === false then process.exit(1) and pm2 will restart app again.
+
+--- Use a mature logger to increase errors visibility
+	- A robust logging tools like Pino or Winston increases the errors visibility 
+ 	  using features like log-levels, pretty print coloring and more.
+	- logging tools allow attaching custom useful properties to log entries with minimized serialization performance penalty. 
+	- Developers should write logs to stdout and let the infrastructure pipe the stream to the appropriate log aggregator
+	- Skimming through console.logs or manually through messy text file without querying tools 
+	   or a decent log viewer might keep you busy at work until late.
+	- Logging recommendations:
+	  - Log frequently using different levels (debug, info, error).
+	  - log in json format
+	  - Timestamp each log line
+	  - Logging format should be easily digestible by humans as well as machines.
+	  - Allows for multiple configurable destination streams(console, file, elasticsearch)
+	  - Monitor and filter logs with a log querying API (built-in to many loggers) or log viewer software. 
+	  - Expose and curate log statements with operational intelligence tools such as Splunk.
+	The phrase means to collect and organize log data generated by systems or applications 
+	in order to analyze it using operational intelligence tools like Splunk. 
+	This helps in monitoring performance, identifying issues, and gaining insights into the system's operation.
+--- Test error flows using your favorite test framework
+	- Ensure that your code not only satisfies positive scenarios but also handles and returns the right errors.
+	    Whether its (professional automated QA or plain manual developer testing)
+	- ensure that the error handler treat uncaught exceptions properly.
+	- you can’t rely on your code to return the right errors without automatic or manual testing.
+	- Without meaningful errors – there’s no error handling.
+	- Good testing code coverage demands to test exceptional paths.
+     - See testing code in this example.
+
+--- Discover errors and downtime using APM products
+	- Monitoring and performance products (a.k.a APM) proactively gauge تقيس your codebase or API 
+	   so they can automagically highlight errors, crashes, and slow parts that you were missing.
+	- Exception != Error. because they are handled by applications
+	- but application errors might come in the form of slow code paths, 
+	   API downtime, lack of computational resources and more. 
+	- APM products come in handy as they allow to detect a wide variety of ‘burried’ 
+	   issues proactively with a minimal setup. 
+	- common features of APM products are for example alerting when the HTTP API returns errors, 
+	   detect when the API response time drops below some threshold, detection of ‘code smells’,
+	    monitor server resources, operational intelligence dashboard with IT metrics. 
+	- APM products constitute 3 major segments:
+		1- Website or API monitoring: external services that constantly monitor uptime and performance via HTTP requests.
+		2- Code instrumentation 
+		3- Operational intelligence dashboard 
+  - find tools here https://github.com/goldbergyoni/nodebestpractices/blob/master/sections/errorhandling/apmproducts.md	
+
+--- Catch unhandled promise rejections
+	- subscribe to process.uncaughtException & process.unhandledRejection to catch most of the errors.

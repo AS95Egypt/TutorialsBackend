@@ -86,6 +86,11 @@ describe("Test isLeapYear", () => {
 
 5- run the test file 
 	npm run test
+===== use node test runner 
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+
+- use assert built in functions instead of jest
 
 ===== ZTM nodejs course - section 10 - Testing APIs
 

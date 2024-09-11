@@ -1,0 +1,17 @@
+https://chatgpt.com/c/66e0346a-4eb4-8003-8c35-444815c44129
+
+https://claude.ai/chat/ebe47c14-c833-4ef4-924c-6a5136af7b54
+
+
+==== Kibana
+Kibana is a browser-based analytics and search dashboard for Elasticsearch, 
+which is part of the Elastic Stack. It allows users to explore data, find insights, 
+and share results efficiently, providing a visual interface to view and analyze data stored in Elasticsearch.
+
+--- when winston logges to elasticsearch its Async.
+
+--- consider senario when elsasticsearch node is down, in this case log to file as a fallback, 
+	see how to send missing logs when elasticsearch node back online !!!
+
+--- how to handle elsatic search errors? 
+

@@ -647,6 +647,30 @@ Item.find().skip(skip).limit(limit);
 
 
 
+=== use glob to match files using regular expressions
+import {glob} from 'fs/promises';
+const files = glob("**/*.test.ts");// accepts pattern
+console.log(await files.next());
 
 
+=== node has now built in sockets 
+
+const s = new WebSocket("");
+
+
+=== put try-catch in promise functions in order to call .catch on promise to show the custom message
+// 'throwing' an Error from a Promise
+const addProduct = async (productToAdd) => {
+  try {
+    const existingProduct = await DAL.getProduct(productToAdd.id);
+    if (existingProduct !== null) {
+      throw new Error('Product already exists!');
+    }
+  } catch (err) {
+    // ...
+  }
+}
+
+=== run eslint rules
+	npx eslint .
 
