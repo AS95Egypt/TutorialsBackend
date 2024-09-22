@@ -5,6 +5,7 @@
 - mongodb compass
 - git
 
+https://www.freecodecamp.org/news/skills-you-need-to-become-a-backend-developer-roadmap/?ref=dailydev
 
 ==== Javascript 
 	https://www.youtube.com/watch?v=PkZNo7MFNFg&t=84s&pp=ygUTamF2YXNjcmlwdCB0dXRvcmlhbA%3D%3D

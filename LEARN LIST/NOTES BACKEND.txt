@@ -10,6 +10,25 @@ packages , express can be faster and better for small applications
 
 --- install @types/... packages as dev dependancies 		--save-dev
 
+--- consider using validation packages like (ajv, zod, typebox) , compare between them.
+
+--- use eslint for formatting and code standard
+	https://chatgpt.com/c/66de9f42-cb24-8003-958d-29d59bed3b34
+
+--- continously update nodejs version to obtain most recent features and security patches.
+
+--- Nodejs Worker threads allows to offload complex calculations to separate threads, 
+	This frees up the main thread for handling user requests.
+
+--- encryption supported in nodejs instead of using bcrypt package
+	https://blog.platformatic.dev/nodejs-is-here-to-stay?ref=dailydev#heading-webcrypto
+
+--- use nodejs `fetch` instead of external libs like axios.
+
+--- use nodejs parseArgs instead of inqurier package	import { parseArgs } from 'node:util';
+
+--- use nodejs test runner instead of jest
+	https://blog.platformatic.dev/nodejs-is-here-to-stay?ref=dailydev#heading-test-runner
 
 --- Common Resources to Free or Disconnect
 
@@ -224,3 +243,177 @@ if(user == null)
 
 --- Catch unhandled promise rejections
 	- subscribe to process.uncaughtException & process.unhandledRejection to catch most of the errors.
+	- promises exceptions are not caught using `uncaughtException` event handler, but using `unhandledRejection`
+	- never forget adding .catch clauses within each promise chain call and redirect to a centralized error handler. 
+	- but relying on developer’s discipline is somewhat fragile, so you should subscribe to `unhandledRejection`. 
+	- The problem with being human is that if you can make a mistake, at some point you will. 
+	- we should design things in such a way that mistakes hurt as little as possible.
+	- Note: using AysncHandler package solve this issue, but its recommended to subscribe to those events
+process.on('unhandledRejection', (reason, p) => {
+  throw reason;
+});
+process.on('uncaughtException', (error) => {
+  errorManagement.handler.handleError(error);
+  if (!errorManagement.handler.isTrustedError(error))
+    process.exit(1);
+});
+
+--- Fail fast, validate arguments using a dedicated library
+	- Assert API input to avoid nasty bugs that are much harder to track later.
+	- use modern validation lib to validate API input.
+	- example: when you expect a numeric value `discount` and user forgets to pass it, and in your code 
+		you check if discount !== 0 , the bug is the code will pass and user will enjoy discount.
+	- checking arguments and failing fast is important to avoid hidden bugs.
+	- Making the software behave in a predictable manner despite unexpected inputs or user actions.
+
+--- Always await promises before returning to avoid a partial stacktrace
+	- don't forget to write await before promises, to benefit full error stacktrace.
+	- If a function returns a promise, that function must be declared as async function 
+	   and explicitly await the promise before returning it.
+	- The function that returns a promise without awaiting won't appear in the stacktrace.
+	   this will lead to errors and complicates understanding.
+	- When you use an async callback in a place where a sync callback is expected, it can "return" 
+		before the async operation is complete. This can lead to unexpected behavior.
+	- to fix this issue
+		// 👍 now the line below is in the stacktrace
+		Promise.all(userIds.map(async id => await getUser(id))).catch(console.log)
+	- resolving promises before returning them is the best practice for Node.js
+
+--- Subscribe to event emitters and streams 'error' event
+	- try-catch clause won't get errors that originate from Event Emitters and streams like it does with typical functions.
+	- Instead of try-catch, subscribe to an event emitter's 'error' event so your code can handle the error in context.
+	- for Event emitter there are no 'error' event and all errors end in the process.on('error) global event. 
+	- Event emitters are used in functionalities like DB or messages queues 
+	- When they throw an error, at best the process will crash due to unhandled exception.
+	   Even worst, it will stay alive as a zombie while a key functionality is turned off
+
+===== 3. Code Patterns And Style Practices
+	
+--- Use ESLint
+	- ESLint is the de-facto standard for checking possible code errors and automatically fixing code style.
+	- not only to identify nitty-gritty spacing issues but also to detect serious code anti-patterns.
+	   like: throwing errors without classification.
+	- tools like prettier are more powerful in formatting the fix and work in conjunction with ESLint.
+	- see more information here
+	  https://stackoverflow.com/questions/44690308/whats-the-difference-between-prettier-eslint-eslint-plugin-prettier-and-eslint
+	- ESLint is deprecating formatting rules and recommend you use a source code formatter instead (prettier).
+	- it's the recommended practice to let Prettier handle formatting and ESLint for non-formatting issues.
+   - see this explaination
+	https://claude.ai/chat/d72d30f8-a510-4b35-a4a3-accb0d118b92
+
+--- Use Node.js eslint extension plugins
+	- add Node.js specific plugins like 
+	  - eslint-plugin-node, 
+	  - eslint-plugin-mocha 
+	  - eslint-plugin-node-security
+	  - eslint-plugin-require
+	  - eslint-plugin-jest 
+	- Many faulty Node.js code patterns might escape under the radar.
+	- NOTE: developers might require(variableAsPath) files with a variable given as a path 
+		which allows attackers to execute any JS script. 
+
+--- Start a Codeblock's Curly Braces on the Same Line
+function someFunction() {
+  // code block
+}
+
+example: 
+return
+  { /* <--- curly brace on new line */
+    javascript: "fantastic"
+  };					// undefined
+
+return { /* <---- curly brace on same line */
+   javascript: "fantastic"
+};					// fantastic
+
+	- this is because javascript adds semicolon automatically.
+	- adding brakets in new line might lead to unexpected results.
+
+--- Separate your statements properly
+	- knowing the common pitfalls of improper linebreaks or automatic semicolon insertion, 
+	   will help you to eliminate regular syntax errors.
+	- use Eslint and prettier to solve these issues.
+	- JavaScript's interpreter automatically adds a semicolon at the end of a statement if there isn't one,
+  	  or considers a statement as not ended where it should.
+	  this might lead to some undesired results. 
+	- put a semicolon before the immediate invoked function
+const count = 2 // it tries to run 2(), but 2 is not a function, it does'nt add semicolon implicitly
+(function doSomething() {
+  // do something amazing
+}())
+	- writing semicolon at the end of line is mandatory, use eslint to enforce this. 
+
+--- Name your functions
+	- Name all functions, including closures and callbacks. Avoid anonymous functions. 
+	- This is especially useful when profiling a node app. 
+	- Naming all functions will allow you to easily understand what you're looking at when checking a memory snapshot
+	- Debugging production issues using a core dump (memory snapshot) might become challenging 
+	   as you notice significant memory consumption from anonymous functions.
+
+--- Use naming conventions for variables, constants, functions and classes
+     - Naming style
+	- Use lowerCamelCase when naming constants (not global), variables and functions.
+	- UpperCamelCase (capital first letter as well) when naming classes.
+	- UPPER_SNAKE_CASE when naming global or static variables. 
+
+      - This will help you to easily distinguish between plain variables, functions, classes 
+	  that require instantiation and variables declared at global module scope.  
+
+      - Use descriptive names, but try to keep them short.
+      - Avoid define class in javascript with function keyword, because in this case you will be able to 
+	call class (function) without creating instance, so after js added class syntax this become not allowed.
+
+--- Prefer const over let. Ditch the var
+	- Using const means that once a variable is assigned, it cannot be reassigned. 
+	- Using const makes the code clearer and will help you not to be tempted to use the same variable for different uses.
+	- use `let` if variable needs to be reassigned ex: in for loop.
+	- variable declared using let is only available in the scope of definition.
+	- Debugging becomes way more cumbersome (معقد) when following a variable that frequently changes.
+	- var is function scoped, not block-scoped , and you should not use it in ES6.
+
+--- Require modules first, not inside functions
+	- Require modules at the beginning of each file, before and outside of any functions.
+	- will practice will help you to easily tell the dependancies from the top the file,
+	  and avoid some potential problems.
+	- Requires are run synchronously by Node.js and this can delay the function 
+	   and block other request from begin handled at a more critical time.
+	- if a module is required at the top of a file, then it will be more likely to notice errors thrown
+	   by this module (when start script) than when run from a function (notice when call function).
+
+--- Set an explicit entry point to a module/folder
+	- When developing a module/library, set an explicit root file that exports the public and interesting code.
+	- Discourage the client code from importing deep files and becoming familiar with the internal structure. 
+// wrong
+const SMSWithMedia = require("./SMSProvider/providers/media/media-provider.js");
+// correct
+const { SMSWithMedia } = require("./SMSProvider");	
+	- Having an explicit root file acts like a public 'interface' that encapsulates the internals.
+	- this facilitates future changes without breaking the contract.
+	- this can be done with an index.js file at the folder's root , which re-exports all the public functionality.
+	- having package.json at the root will refer to entry file, 
+	   otherwise you should put index.js at root which exports puplic functionalities. 
+
+---  Use the === operator
+	- There is no type conversion in === , so === is more strict.
+	   and both variables must be of the same type to be equal.
+"" == "0"; // false
+0 == ""; // true
+0 == "0"; // true
+
+false == "false"; // false
+false == "0"; // true
+
+false == undefined; // false
+false == null; // false
+null == undefined; // true
+
+" \t\r\n " == 0; // true
+
+--- Use Async Await, avoid callbacks
+	- Async-await is the simplest way to express an asynchronous flow 
+	    as it makes asynchronous code look synchronous.
+
+
+
+--- 

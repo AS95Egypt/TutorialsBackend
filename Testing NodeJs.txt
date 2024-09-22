@@ -12,6 +12,8 @@
 - see how to implement native test runner in nodejs
 	https://snyk.io/blog/10-modern-node-js-runtime-features/?ref=dailydev
 
+- nodejs built in test
+	https://blog.platformatic.dev/nodejs-is-here-to-stay?ref=dailydev#heading-test-runner
 === 
 --- match all files in test folder 
 	"test2": "jest --testMatch='**/utils/**/*.test.js'"

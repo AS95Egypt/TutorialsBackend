@@ -89,7 +89,7 @@ https://www.youtube.com/watch?v=8JJ101D3knE
 		git push --set-upstream origin master
 
 - in order to share project between team members or edit it in another device
-		git close git-url.git
+		git clone git-url.git
 
 - get the latest changes by your team 
 		git fetch			// these changes will be only in commit stage

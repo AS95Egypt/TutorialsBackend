@@ -2,7 +2,7 @@
 ========= https://www.youtube.com/watch?v=dyMCr2lD5k0
 -- express Js is a framework of Nodejs , but node does'nt support request handling fuctions, http methods or serving files so express comes into picutre.
 -- express is a lightwheight framework which gives functionality and make node easy.
--[Express] is a node framework designed for buildling APIs, web applications and crossplatform mobile apps.
+-[Express] is a node framework designed for buildling APIs.
 
 -- freatures of express js 
 1- fast service side development: save alot of time.
@@ -29,7 +29,7 @@ DELETE: delete data
 - create a js file ex: index.js
 
 
--- create and endpoint with get request,  ex: to fetch categories 
+-- create endpoint with get request,  ex: to fetch categories 
 //  /categories endpoint 
 app.get('/categories', (req,res)=>{
    res.send('Hello World');
@@ -96,7 +96,7 @@ if(name || 'default'){
 
 
 === Routers 
--- handle if the index.js has many requests (routes), so arrange the code and put routes in separte files.
+-- handle if the index.js has many routes, so arrange the code and put routes in separte files.
 
 -- make a route file for an entity like users, and put all users requests in this route folder
 

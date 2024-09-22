@@ -216,3 +216,28 @@ Examples of code smells include long methods, duplicate code, excessive comments
 and complicated class hierarchies. Detecting these smells helps developers improve code quality, 
 enhance readability, and simplify future updates.
 
+===== Single Executable Applications in nodejs
+
+
+===== new `Permission System` in nodejs
+===== require(esm)
+
+===== https://docs.platformatic.dev/			what is it, and what it does ?
+
+
+===== LiteSpeed
+LiteSpeed is another web server software that helps websites handle lots of visitors without slowing down or crashing. 
+It’s great for businesses that expect a lot of traffic, like during busy times
+
+- LiteSpeed can handle double traffic of other web servers with the same number of servers.
+
+
+===== Anonymous functions 
+also known as lambda functions or closures, are functions defined without a specific name. 
+They are often used as one-time use functions or as arguments to higher-order functions.
+
+===== Core dump , GDB debugging tools
+
+
+===== REPL (Read Evaluate Print Loop)
+
