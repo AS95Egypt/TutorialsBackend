@@ -49,7 +49,7 @@ arr;  [1,2,3,4]
 
 === const
 const x = 1;	// means once you assign it you can't change.
-you have to assing it once you declare it.
+you have to assign it once you declare it.
 
 // this is allowed for object or array constants 
 const a = [];
@@ -116,7 +116,7 @@ console.log(x);		100		// x is visible outside the block
 if(1===1) {
     const x = 100;
 }
-console.log(x);		// x is not defineed outside the block 
+console.log(x);		// x is not defined outside the block 
 
 --- scope with let & const 
 {
@@ -273,7 +273,7 @@ max;
 
 -- get the sum of array 
 function sum(...numbers) {
-    return numbers.	((acc, number) => acc + number);
+    return numbers.reduce((acc, number) => acc + number);
 }
  
 
@@ -315,7 +315,7 @@ const message = error`An error has occurred: ${err}`
  
 console.log(message);
 
-==== Raw
+==== Row
 str.row[0]		// to print the string with \n 
 const myname = `ahmed\nsalah\nsalem`;
 
