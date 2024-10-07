@@ -18,6 +18,19 @@
 	https://www.youtube.com/watch?v=J4b_T-qH3BY&t=1s
 
 	https://medium.com/@arnaudrinquin/build-modular-application-with-npm-local-modules-dfc5ff047bcc
+
+========= Seprate common function in RMS system in packages
+Like:
+	- Database 		`rms-db`	ex: Models, Repos
+	- Core functionalities  `rms-core`	
+		- constants 
+		- trx (ACID) 
+		- middelwares (validationMiddleware)
+		- plugins (getNextCodePlugin, checkTenantIdPlugin)
+		- Utils (ApiError, app_utils, custom_validation (TODO), security, )
+- in order to make importing these functionalities easier.
+- consider deploying these pacakges with app too.
+
 ========= how to check for packages updates and update them
 === way 1
 - install package `npm-check-update` globally (its used to check for udpates (report), and update pacakges)

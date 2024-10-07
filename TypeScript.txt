@@ -85,6 +85,9 @@ import fs from 'fs';
 - generate js files as you save
 	tsc -w 
 
+=== how to export object in typescript , ECMAScript Modules (ESM)
+export { addTwo, ... };
+
 === Statically Typed Languages VS Dynamically Typed Languages
 Statically Typed Languages (C, C++)
  - once you declare a variable type cannot change

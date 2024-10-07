@@ -1433,4 +1433,18 @@ const numbers = [1, 2, 3, 4, 5];
 const anotherArray = numbers.with(-2, 8);
 console.log(anotherArray); // [1, 2, 3, 8, 5]
 
+
+--- use Promise.all to wrap/execute list of promises, make .map, .foreach async
+	Promise.all(userIds.map(getUser)).catch(console.log)
+
+// 👍 now the line below is in the stacktrace
+Promise.all(userIds.map(async id => await getUser(id))).catch(console.log)
+
+- but note the usage of async callbacks when sync callbacks is expected will lead to unexpected behaviour and errors.
+
 --- javascript array functions 
+
+--- you can directly print this array items by passing console.log as a callback
+	const items = [1, 2, 3]
+	items.forEach(console.log)
+

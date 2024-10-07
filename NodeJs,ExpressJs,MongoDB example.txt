@@ -481,6 +481,9 @@ then call
 
 - you can different run script to run development and online with different databases
 
+- encryption supported in nodejs instead of using bcrypt package
+	https://blog.platformatic.dev/nodejs-is-here-to-stay?ref=dailydev#heading-webcrypto
+
 ============================ Best Practices 
 - Wrap common utilities as private npm packages 
 ============================ ZTM 
@@ -674,3 +677,5 @@ const addProduct = async (productToAdd) => {
 === run eslint rules
 	npx eslint .
 
+=== how to require any built in module
+	require('node:worker_threads');

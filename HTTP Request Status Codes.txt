@@ -30,6 +30,7 @@ PATCH:
 401:  UnAuthroized	you don't have credintials to access this url , ex: when access api without API key.
 403:  Forbidden		ex: when a basic user tries to access an admin feature.
 404:  not found		when user tries to access url that does'nt exist.
+429:  too many request - ratelimiting 
 
 ====== 5**
 500   Internal server error:   when somthing bad happend in the server like database is down , but you don't know exactly what it is.
