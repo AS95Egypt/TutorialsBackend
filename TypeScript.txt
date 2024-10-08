@@ -782,3 +782,7 @@ const subjectsMaxDegrees: SubjectsMaxDegrees = {
 
 --- to check for class types use instanceof
 	err instanceof ApiError ? (err as ApiError).success : false,
+
+--- you should put typeof before Schema here in order to use class as Type not value
+	export const getNextCodePlugin = (schema: typeof Schema)
+

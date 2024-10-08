@@ -1,3 +1,57 @@
+Task
+
+order (_id, order_date, customer_name, items: [], total_amount, paid_amount, remaining_amount, payment_method: enum, order_status: enum)
+customer (_id, code, customer_name, email, phone, address, owe_by)
+item (item_name, category, code, sell_unit, price, cost, quantity)
+
+validate array elements
+
+- docker
+- README
+
+
+- redis
+- logging (console in development , file in production)
+- ratelimit
+
+- pagination
+- createdAt, updatedAt
+
+- cors
+- architecture	entities, utils
+- monogodb
+- validation
+- error handling
+
+
+
+
+
+const allowedOrigins: string[] = [
+    'http://127.0.0.1:3000',
+    'http://0.0.0.0:3000',
+    'http://localhost:3000',
+  ];
+
+  // Define CORS options
+  const corsOptions: CorsOptions = {
+    origin: (
+      origin: string | undefined,
+      callback: (err: Error | null, allow?: boolean) => void,
+    ) => {
+      // Check if the origin is allowed      
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    // http methods
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    // Request headers
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  };
+
 ====== Tutorials
 -- Nestjs Course (udemy)
 	https://downloadlynet.ir/2021/30/46886/07/nestjs-the-complete-developers-guide/11/?#/46886-udemy-092457093005.html
@@ -5,4 +59,236 @@
 
 - Nestjs Course (freecodecamp)
 	https://www.freecodecamp.org/news/comprehensive-nestjs-course/
+
+======= Beginners guide article 
+	https://medium.com/@wteja/getting-started-with-nestjs-a-beginners-guide-9283c3a3f8ac
+
+--- create new nest project 
+npm install -g @nestjs/cli
+nest new my-nest-app
+cd my-nest-app
+
+
+--- Controllers
+	- handle incoming requests and return responses to the client.
+	  where we define our routes and handle requests.
+
+--- create new controller using cli
+	nest generate controller cats
+	// This will create a new file named cats.controller.ts inside the src folder with a basic controller template.
+
+- Controllers are responsible for handling requests, but they should delegate the business logic to services.
+
+--- create a service (handel the logic of endpoint)
+	nest generate service cats 
+	// This will create a new file named cats.service.ts inside the src folder
+	// with class name CatsService
+
+--- Connecting Controller and Service
+	- In cats.controller.ts, import the CatsService and inject it into the constructor of the CatsController. 
+	
+======= NestJs Course	https://www.youtube.com/watch?v=8_X0nSrzrCw&t=1s
+- nest uses FP(functional programming), or FRP(functional reactive programming)
+- .spec is a test file.
+
+--- generate new module (it refers to (controllers, services, schemas))
+	nest g module items
+
+--- generate new controller  (it handels the routing)
+	nest g controller items
+
+--- generate new service     (it handels endpoint logic)	
+	nest g service items				
+
+// name should be the same for (module, controller, service)
+
+--- imports in app.module.ts registers modules in the app.
+
+--- /order  refers to the route
+	@Controller('order')
+	export class OrderController {}
+
+--- define routes for each endpoint
+@Get()		//  /users
+findAll(@Query role: 'REGULAR'|'ADMIN'){	// import Query
+  return [];
+}
+
+@Get(':id')	//   /users/:id
+async findOne(@Param('id') id: string) {
+    return this.taskService.findOne(id);
+}
+
+
+ @Post()
+  // async create(@Body() task: {}) {		// means task type is object
+  async create(@Body() createTaskDto: CreateTaskDto) {
+    return this.taskService.create(createTaskDto);
+  }
+
+--- the order of the routes inside controller matters, 
+	means static routes like `users/interns` should come first before `users/:id`
+
+--- name of functions inside controller 
+
+findAll	  GET /users 
+findOne	  GET /users/:id
+create	  POST /users
+update	  PUT  /users/:id
+remove/delete	  DELETE /users/:id
+
+--- providers can be (service, repositories, helpers) 
+ - it can be injected as a dependancy.
+
+--- inside service file add query methods
+
+findAll(role?: 'REGULAR'|'ADMIN'){		// you don't have to add function keyword
+  return users;
+}
+
+findOne(id: number){
+  return users[id];
+}
+
+--- define a type for user parameter 
+type User = {
+ name: string, 
+ email: string, 
+ role: 'ADMIN'|'REGULAR' 
+}
+
+create(user: { name: string, email: string, role: 'ADMIN'|'REGULAR' }) 
+
+return {...user, ...updatedUser};	// this will return a new user with the updated field
+					// fields in `updatedUser` will override `user` fields and form a new object
+
+--- we can use service methods inside each others.
+
+--- inject the service into controller by constructor
+	constructor(private readonly userService: UserService) {}
+
+--- pipes is a middleware
+- it has two uses cases 
+	- transformation
+	- validation
+
+- parseIntPipe	to cast (transform input to integer), not need to write +id.
+
+@Get(':id')
+  async findOne(@Param('id', parseIntPipe) id: string) {
+    return this.taskService.findOne(id);
+  }
+
+- when pass character instead of number id , we got error response.
+
+--- DTO Data transfer object (define objects for update and create)
+
+- create dto folder , inside it create file called `create_user.dto.ts`
+
+- for update user 
+export class UpdateUser extends PartialType(CreateUserDto)
+
+PartialType makes these Dto fields optional
+
+import { PartialTypes } from "@nestjs/mapped-types";
+
+npm install @nestjs/mapped-types  -D		for dev dependancy instead of --save-dev
+
+
+- for more validation install these dependancies 
+
+npm i --save class-validator class-transformer
+
+import { IsString, IsInt } from 'class-validator';
+
+export class CreateUserDto {
+@IsString()
+name: string
+
+@IsInt()
+age: number;
+
+}
+
+--- see class-validator github page for more validations
+
+see @IsEnum(), @IsNotEmpty
+
+import {ValidationPipe} from '@nest/common';
+
+- then pass ValidationPipe to @Body 
+- we should apply ValidationPipe in order to check DTOs
+
+- see nestjs exceptions
+
+import { NotFoundException } from  '@nest/common';
+
+- to return 404 error when user (entity) not found
+
+if(!user) throw NotFoundException('User not found');
+
+--- set the initial route  ex: api/v1
+
+	app.setGlobalPrefix('api/v1')		in main.ts
+
+--- CORS
+
+app.enableCors();	// set allowed domains , so when client sends request he got response origin not allowed.
+
+- add cors options to limit access to api.
+- see @2:12
+
+
+--- RateLimiting 
+
+npm i --save @nestjs/throttler
+- see @2:17
+- see how to skip throttle @2:21	, throttle the entire controller endpoints or a specific one.
+ 	- define throttle object for an enpdoint
+
+--- logging
+- see how to log different messages types (levels)
+- see how to create custom logger (file logger)	@2:34
+- see how to implement custom logger to the app in main.ts
+
+- see how to catch exceptions globally @2:40
+	all-exceptions.filter.ts
+- add AllExceptionsFilter class to main.ts	@2:51
+
+- Note: adding \t (tabs) to the logs , will make it possible to convert it to spread sheet
+
+
+--- config (.env)
+- specify multiple .env files
+	envFilePath: ['.env.development.local', '.env.development'] first one is pirority when variables match, 
+
+- specify .env path
+	{envFilePath: '.development.env',}
+
+
+--- explicitly set collection name
+	@Schema({ collection: 'myCustomTasks' }) 
+
+	
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
 

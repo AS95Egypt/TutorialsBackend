@@ -416,4 +416,102 @@ null == undefined; // true
 
 
 
+--- Structure tests by the AAA pattern
+	- Structure your tests with 3 well-separated sections: Arrange, Act & Assert (AAA). 
+   (AAA)
+	- Arrange: includes the test setup.
+	- Act: execution of the unit under test.
+	- Assert: assertion phase.
+	
+	- this structure guarantees simplicity and easy understand.
+	- testing code must stay dead-simple and easy to understand because we are already so busy with production code.
+	- AAA pattern provides a uniform structure for all tests in the suite.
+	- keep the AAA convention so the readers' mind will parse the test intent effortlessly.
+- example
+test('When customer spent more than 500$, should be classified as premium', () => {
+     //Arrange
+     const customerToClassify = {spent:505, joined: new Date(), id:1}
+     const DBStub = sinon.stub(dataAccess, 'getCustomer')
+        .reply({id:1, classification: 'regular'});
+
+     //Act
+     const receivedClassification = customerClassifier.classifyCustomer(customerToClassify);
+
+     //Assert
+     expect(receivedClassification).toMatch('premium');
+});
+
+	- Include 6 parts in each test:
+	  1- unit under test   describe("customer classifier")
+	  2- senario           test(" senario , expectation ") 
+	  3- expectation
+	  4- arrange
+	  5- act
+	  6- assert
+
+--- Ensure Node version is unified
+	- Use tools that encourage or enforce the same Node.js version across different environments and developers.
+	- Tools like: https://github.com/nvm-sh/nvm	https://volta.sh/
+	- specifying the project's version in a file (in project root ) so each team member 
+	   can run a single command to conform with the project's version.
+	- this definition can be replicated to CI and the production runtime 
+	   (e.g., copy the specified value to .Dockerfile build and to the CI declaration file)
+	- Otherwise: A developer might face or miss an error because she uses a different Node.js version than her teammates.
+ - how to use nvm tool to enforce same nodejs version ?
+   https://chatgpt.com/c/66efbcb6-7fc4-8003-9bf7-e0e10763d0be
+
+--- Avoid global test fixtures and seeds, add data per-test
+	- To prevent test coupling and easily reason about the test flow, 
+	   each test should add and act on its own set of DB rows.
+	- a test must explicitly add that data and avoid mutating any other records.
+	- make each test case explicitly add the DB records it needs and act only on those records.
+	- adding test fixtures per test case can make performance worse, 
+	   but in order to achive isolation between test cases you should not focus on performance.
+	- avoid adding global fixtures and seeds so data not be mutated by test cases.
+
+--- Tag your tests
+	- Different tests must run on different scenarios.
+	- This can be achieved by tagging tests with keywords like #cold #api #sanity.
+	- you can specifiy which test (tag) you will run. ex: using mocha	mocha --grep 'sanity'  // only sanity
+	- quick smoke, IO-less, tests should run when a developer saves or commits a file.(using CI) (fast tests only on save)
+	   - quick smoke: a simple and fast test that ensures that the system is generally functioning well. 
+	   - IO-less: no database or network,... interaction ex: unit testing. 
+	- full end-to-end tests usually run when a new pull request is submitted.
+
+--- Check your test coverage, it helps to identify wrong test patterns
+	- test coverage tools like istanbul, nyc are free and require no effort to benefit from tool's reports
+	- it helps to identify a decrease in testing coverage.
+	- by looking at colored code coverage reports you may notice, for example, code areas that are never tested.
+	- Set it to fail builds if the coverage falls under a certain threshold.
+	- Otherwise: There won't be any automated metric telling you when a large portion
+	   of your code is not covered by testing.
+
+--- Use production-like environment for e2e testing
+	- End to end (e2e) testing which includes live data used to be the weakest link 
+	   of the CI process as it depends on multiple heavy services like DB. 
+		because (hard to setup, time to respond, consistency between enviroments and devices)
+	- Use an environment which is as close to your real production environment as possible.
+	- "Live data" refers to real, production-like data. 
+	- the solution is in `Docker compose`
+	- Without docker-compose, teams must maintain a testing DB for each testing environment 
+	  including developers' machines, keep all those DBs in sync so test results won't vary across environments.
+	- docker-compose helps to test with the same configuration include databases, developer can start a fresh
+	  container (which is similar to production) to run tests.
+	- Sync databases between different environments require a lot of effort to keep all these databases in sync, ensuring 
+	  that test results remain consistent across different environments.
+	- docker compose guarentes that testing enviroment is similar to production enviroment.
+	- databases in different enviroments might mismatch in schema, configuration, datasets.
+	- NOTE: if you don't want to use docker compose, you should create a completely new database in each test
+	  and drop database after finish test, so database created with the latest shcema and options.
+
+--- Refactor regularly using static analysis tools
+	- static analysis tools helps by giving objective ways to improve code quality and keeps your code maintainable.
+	- You can add static analysis tools to your CI build to fail when it finds code smells.
+	- Its main selling points over plain linting are the ability to inspect quality 
+	   in the context of multiple files (e.g. detect duplications)
+	- perform advanced analysis (e.g. code complexity).
+	- use tool like sonarqube for code analysis https://www.sonarqube.org/
+
+ 
+
 --- 

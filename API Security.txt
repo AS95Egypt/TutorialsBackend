@@ -87,6 +87,17 @@ or app.use(helmet.hidePoweredBy());
 - CORS (whitelisting, blacklisting)
 
 
+=> The origin parameter can become undefined in certain scenarios when making HTTP requests, particularly in the context of CORS:
+
+1- Same-Origin Requests: If a request is made from the same origin (i.e., the same protocol, domain, and port) as the server, the browser does not include the Origin header. 
+	In this case, the origin parameter will be undefined. This means that the request does not involve a cross-origin scenario, so the CORS check typically doesn't apply.
+
+2- Request Made from Non-Browser Clients: Tools like curl, Postman, or other HTTP clients may not send an Origin header in requests. In these cases, the origin will also be undefined.
+
+3- Direct Navigation: If a user directly types a URL in the browser or bookmarks a page, they are not making a cross-origin request, and again, the origin will not be present.
+
+
+
 ======= Top 12 Tips for API Security
 	https://www.youtube.com/watch?v=6WZ6S-qmtqY
 

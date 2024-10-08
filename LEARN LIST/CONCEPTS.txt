@@ -65,6 +65,8 @@ Load balancer: distribute incoming traffic across multiple backend servers, impr
 
 ===== Event Driven architecture
 
+===== Event Driven programming
+
 ===== WebSocket
 
 ===== TLS/SSL Encryption

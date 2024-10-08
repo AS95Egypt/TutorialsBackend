@@ -1,3 +1,4 @@
+====
 ==== Tutorials
 
 - perform unit testing for backend enpoints
@@ -14,10 +15,41 @@
 
 - nodejs built in test
 	https://blog.platformatic.dev/nodejs-is-here-to-stay?ref=dailydev#heading-test-runner
-=== 
+=== Tools
+- Test coverage tools
+	https://github.com/istanbuljs/istanbuljs
+	https://github.com/istanbuljs/nyc
+===
 --- match all files in test folder 
 	"test2": "jest --testMatch='**/utils/**/*.test.js'"
 
+=== Test Fixture:
+	is a setup or preparation that is done before running a series of tests in software development. It's a way to establish a known and controlled environment where tests can be executed.
+-- The test fixture might include things like:
+ -Sample data
+ -Mock objects or stubs
+ -Database connections
+ -Configuration settings
+ -Initialized variables
+
+-- The purpose of a test fixture is to:
+ -Ensure tests are repeatable and consistent
+ -Minimize test setup and teardown time
+ -Isolate tests from external dependencies
+ -Make tests easier to write and maintain
+
+=== Quick smoke tests: 
+These are basic, high-level tests that ensure the software is working as expected. 
+A "smoke test" is a colloquialism for a simple test to see if the application is functional and doesn't crash immediately.
+
+=== IO-less tests: 
+mean that the tests do not interact with external systems, such as databases or file systems. 
+They are usually isolated unit tests that only test the code's logic.
+
+=== End-to-end (E2E) testing 
+is a key quality assurance activity that ensures a software application behaves as expected from start to finish. 
+
+The goal is to mimic real-world scenarios and user interactions to detect system dependencies and ensure that all integrated pieces work together perfectly
 
 === You should expect 
 - status code (200 get&put, 201 post, 204 delete)
@@ -167,4 +199,4 @@ const response = await request(app)
 
 - INCLUDE: npm-check-update in the test to update the packages, after update run the test
 
-- RUN:  (another tests)  (load testing/ratelimiting, security tests..., )
+- RUN:  (another tests)  (load testing/ratelimiting, security tests, Performance, database, ...)

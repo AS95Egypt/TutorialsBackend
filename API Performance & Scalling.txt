@@ -20,7 +20,7 @@
 
 === https://deploy.equinix.com/blog/designing-applications-for-horizontal-scalability/?ref=dailydev
 
-- horizontal scalling: (scalling out) 
+- horizontal scalling: (scalling out)
 - vertical scalling: (scalling up)
 
 1- Implement a Stateless Architecture
@@ -82,7 +82,7 @@
 
 https://www.mongodb.com/docs/manual/sharding/
 ============ Search
-- Database shadring
+- Database sharding
 
 ============ ZTM Improving node performance - section 11
 - javascript & event loop is single thread, means it can process one request at a time.

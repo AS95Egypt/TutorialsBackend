@@ -59,4 +59,5 @@ de-facto	بحكم الأمر الواقع
 nitty-gritty	التفاصيل الدقيقة ومفاصل الأمور - (كل فتفوتة (
 tempted 	يغرى - يجذب
 cumbersome 	معقد - مرهق
-
+conform 	يتوافق
+unified		موحد

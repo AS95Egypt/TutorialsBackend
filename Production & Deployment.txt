@@ -1,0 +1,68 @@
+
+
+============ section 16 
+
+===== 2. Serverless VS Containers
+- in Serveless we still have servers but the cloud manges the configurations of the servers,
+	and we don't worry about the operating system will be using.
+
+- we only need to worry when our code will run.
+
+- AWS Lambda: is a popular serverless platform.
+	- lets you run code without provisioning or managing servers.
+	- allow you to run any backend service with zero administration.
+	- lamdba takes care of every thing to run and scale your code with high availability.
+	- you can set your code to automatically trigger from other AWS servcies or call it 
+	  directly from any web or mobile app.
+
+- its a form of event driven programming , when your code runs in response to event outside.
+	ex: of events (email send or file uploaded)
+
+- we can deploy our project to a lambda function but your code will suffer from higher latency and bigger 
+	response times if you are not careful of how to setup your serverless architecture.
+
+- some other limition of lambda functions service is that it might be costy to move to the serverless 
+	service of another provider or to move to on promises server.
+
+- docker is now widely used for deployment.
+
+===== 3. Virtual machines
+- Amazon EC2 : allows multiple deplyments on the same server with multiple operating systems using VMs.
+
+===== 4. What is Container ? 
+- docker makes sure that your application can run on any machine.
+- we use docker and VMs togther when we run services on EC2 amazon service.
+
+===== 5. Installing Docker
+run `docker` command in CLI to see all docker commmands
+
+===== 6. Running our first docker container 
+
+===== 7. Dockerhub
+- in dockerhub you can make use of created images or upload our docker images. 
+- login to your dockerhub account using cmd.
+
+===== 8. Creating Dockerfile
+- install docker extension in vscode.
+- *.alpine images takes a small sizes in images.
+
+- in docker file
+	FROM node:lts 		// specify base image and its version.
+
+- install production packages (not dev dependancies) only in docker images
+
+	RUN npm install --only=production
+
+- run command in a certian directory
+
+	RUN npm run build --prefix client		// run this command in client app folder, to build client
+
+- command line sentence is splited into array elements
+	CMD ["npm","start","--prefix","server"]		// run this command in server app folder to start app
+
+- docker by default run command through root user , we have to change this for security issues.
+
+- we want to run application with user that has minimal amount of permissions.
+
+	
+
