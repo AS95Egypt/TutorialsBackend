@@ -1,3 +1,15 @@
 ====== Tutorials
 --- 10 resources to learn data structures and algorisms
 	https://medium.com/javarevisited/10-resources-to-master-data-structures-and-algorithms-in-2024-5dcb33cd0a78
+
+
+======= ZTM course
+- you will learn techniqual and non techniqual skills.
+- techniqual:
+	(Big O, how to solve problems, Data structures, Algorisms, Excercies) 
+
+- non techniqual
+	(Getting the interview, Non techniqual interview)
+
+
+	

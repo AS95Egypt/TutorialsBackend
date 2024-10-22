@@ -37,6 +37,8 @@ https://www.youtube.com/watch?v=heXQnM99oAI
 
 --- F2 			to rename a variable
 
+--- F3			to goto next search in search pane
+
 --- Ctrl+click 		to navigate to definition
 
 --- Ctrl+K , then press Z	to enter zen mode (full screen mode)	
