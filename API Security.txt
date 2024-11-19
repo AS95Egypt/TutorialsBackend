@@ -35,6 +35,8 @@
 
 ==> https://www.freecodecamp.org/news/web-api-security-guide/
 
+==> don't use .env
+	https://www.nodejs-security.com/blog/do-not-use-secrets-in-environment-variables-and-here-is-how-to-do-it-better?ref=dailydev
 
 ============= Security ACTIONS
 - validate input with each input type valid values, prevent special characters, using (express-validator)

@@ -1,0 +1,17 @@
+https://www.youtube.com/watch?v=4NB0NDtOwIQ
+
+- Examples of Reverse proxy: Nginx
+
+- types of proxy
+   - Forward proxy: is a server that sets between client machines and internet
+	- forward proxy acts as a middleman and intercepts these requests and talks to web servers on behalf of clients
+
+     - why to use forward proxy ? 
+	- protects clients online identity, and makes IP address of clients hidden from the server.
+	   only ip address of proxy server is visible to web servers.
+
+- some govern
+	- bypass browsing restrictions
+	
+   - Reverse proxy
+

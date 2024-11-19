@@ -100,3 +100,16 @@ A JavaScript date library for parsing, validating, manipulating, and formatting 
 =========== eslint rules for code check and standards in typescript
 https://chatgpt.com/c/66de9f42-cb24-8003-958d-29d59bed3b34
 
+
+--- ESlint, Prettier 		to enforce code standards and styles.
+--- joi or express-validator	to validate and sanitize input
+--- passport 			for auth
+--- winston or morgan		logging
+--- Mocha or Jest		testing
+--- JSDoc			documentation
+--- cross-env ?
+--- general errorhandler	???
+--- express-rate-limiter	https://www.npmjs.com/package/express-rate-limit
+				to prevent DOS denial of service arises from excessive requests by attackers  
+				https://express-validator.github.io/docs/
+--- seqalize

@@ -9,6 +9,7 @@
 
 - https://www.freecodecamp.org/news/top-10-javascript-algorithms-for-coding-challenges/
 
+- https://dev.to/davinderpalrehal/1-year-of-consistent-leetcoding-26d0?ref=dailydev
 =========== Tips
 -  some algorisms (DFS, BFS, Sliding window, backtracing, union find, dijkstra's, sorting, hashmap, stack , queue, prim's)
 - you should not solve dynamic programming problems unless you have solid understanding for backtracking

@@ -243,3 +243,8 @@ They are often used as one-time use functions or as arguments to higher-order fu
 
 ===== REPL (Read Evaluate Print Loop)
 
+
+====== A "dark launch" 
+refers to a type of software launch where a new feature or change is released, 
+but only a small portion of users can see it. This is often done in secret (or "in the dark") 
+without public announcement.

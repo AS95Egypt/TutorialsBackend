@@ -4,4 +4,19 @@
 2- follow software & tools updates and know what is new 
 3- see bugs on your tech communities and learn from it.
 
-========
+========  3 lessons from the smartest developers ive worked with
+https://brianjenney.medium.com/3-lessons-from-the-smartest-developers-ive-worked-with-5b233f51fc15
+
+- You won’t recognize what’s bad until you’ve experienced what’s good.
+- Learn keyboard shortcuts very well.
+- write testing 
+- how to do code reviews ? 
+	1- Run the code locally and test the functionality before even looking at the code. 
+	  If it doesn’t work then no point in reviewing.
+	2- Look over the new code line by line to understand what is being introduced.
+	3- Ask clarifying questions to make sure you understand anything that isn’t obvious.
+	4- Meet up to go over large reviews and have the developer explain the code.
+	5- Always do reviews in the morning before starting on your own work so you’re not context switching.
+- if you’re the smartest person in the room, then you’re in the wrong room.
+
+

@@ -1,3 +1,9 @@
+====== Links
+
+
+====== Tips
+
+
 ====== Tutorials
 --- 10 resources to learn data structures and algorisms
 	https://medium.com/javarevisited/10-resources-to-master-data-structures-and-algorithms-in-2024-5dcb33cd0a78
@@ -12,4 +18,36 @@
 	(Getting the interview, Non techniqual interview)
 
 
-	
+- check zerotomastery website 
+	(community, cheatsheets ***, open source projects, web dev monthly, Career path, youtube channel)
+
+=== Getting more interviews
+--- Introduction
+- apply for interviews and while that practice coding.
+- no matter how many times you are rejected if you are accepted at the end.
+
+- you should work on (Resume, LinkedIn, Protofolio, Email)
+
+--- Resume
+- writing resume is not interesting to any one.
+- resume is a way to get an interview but its not the only way.
+
+- create resume online `resumemaker.online`
+
+- you should not focus on formatting cv but use a tool to do this instead.
+
+- Making a good resume: 
+	1- One page
+	2- Relevant skills for job description
+	3- customize resume for each company.
+	4- online link (github, protofolio, linkedin, ...)
+
+--- Enchance resume ,walk through resume
+- recuirter focus on the main points
+- Resume Cheat sheet
+	- use predesigned resume template, which is good looking.
+	- fit on one page.
+	- include words from job description
+	- 
+
+

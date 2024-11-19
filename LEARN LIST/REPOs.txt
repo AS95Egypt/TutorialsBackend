@@ -39,3 +39,39 @@ https://github.com/goldbergyoni/nodebestpractices
 === Store POS
 	https://github.com/tngoman/Store-POS
 
+
+
+## Bing
+Sure, here are some public repositories on GitHub that you can explore to learn advanced techniques in Node.js and Express.js:
+
+1- MERN Stack Antd Admin Dashboard: A full-stack admin dashboard built using the MERN stack and Ant Design.
+	https://github.com/topics/nodejs-projects
+
+2- 10 Full Stack Projects: A collection of 10 full-stack projects built using Node.js and JavaScript. 
+This repository is a great resource for those who want to learn advanced techniques in full-stack development.
+	https://github.com/topics/nodejs-projects
+
+3- Ecommerce-Store: A full-stack eCommerce store web application built using Node.js and Express.js.
+	https://github.com/topics/nodejs-projects
+
+4- Online Exam Portal: A web application for online exams with a backend in Node.js and a frontend in React.js.
+	https://github.com/topics/nodejs-projects
+
+5- Blog App using MERN stack: A blog application built using the MERN stack.
+	https://github.com/topics/nodejs-projects
+-----------
+In addition to these repositories, you can also check out Udemy's courses on Node.js and Express.js. Here are some courses that you might find helpful:
+1- Projects in ExpressJS - Learn ExpressJs building 10 projects: This course teaches you how to build professional websites using Express.js and MongoDB. 
+    You'll learn how to use MEAN stack technologies, create a RESTful API, and handle and display custom errors.
+
+	https://www.udemy.com/course/projects-in-expressjs-learn-expressjs-building-10-projects/
+
+2- Projects in Node.js - Learn by Example: This course teaches you how to use Express, Swig, and Mongoose to develop an app for recording meeting notes. 
+    You'll also learn how to create a RESTful API and implement it using best practices.
+
+	https://www.udemy.com/course/projects-in-nodejs/
+
+3- Node JS Advanced Training: Learn with Tests, Projects & Exercises: This course teaches you how to master the event loop, 
+    utilize worker threads and clustering to improve the performance of Node servers, and speed up database queries with caching for MongoDB backed by Redis.
+
+	https://www.udemy.com/course/advanced-node-for-developers/

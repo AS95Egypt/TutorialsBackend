@@ -1,10 +1,28 @@
+- send only changes in update not the entire object.
+
+
+- how to compress request (web socket or Rest)
+	https://chatgpt.com/c/671f33df-cce8-8003-896d-bbef4c7cda53
+
+- try to fix issue, client cannot connect to server again after server restarts.
+
+socket.on('disconnect', ()=>{
+  if(reason === 'io server disconnect'){
+	socket.connect();			// try to connect to client if disconnect is from the server.
+  }
+  // else socket will automatically try to connect
+})
 ======= Tutorials
 - see section 18 in ztm course again and document
 - see created project
 
 - https://www.freecodecamp.org/news/learn-websockets-socket-io/
 
+- Socket.IO emit cheetsheet
+	https://socket.io/docs/v3/emit-cheatsheet/
 
+- How discord reduces websocket traffic by 40%
+	https://discord.com/blog/how-discord-reduced-websocket-traffic-by-40-percent?utm_source=newsletter.programmingdigest.net&utm_medium=referral&utm_campaign=how-discord-reduced-websocket-traffic-by-40
 =======
 
 https://chatgpt.com/share/62ce2279-310c-421b-8296-543b89332b22
@@ -13,3 +31,204 @@ https://chatgpt.com/share/62ce2279-310c-421b-8296-543b89332b22
 --- handle sending socket io events to clients when they are offline
   (express server with socketio server)
 	https://claude.ai/chat/d4365e75-b553-4d17-ac52-1a31c00e77d1
+
+
+======== ZTM
+
+
+=== 3. polling
+- means make request periodically, to check if there is any changes.
+
+- Examples of Network sockets:
+	(IP Sockets, Datagram sockets, TCP sockets, Web sockets, Http)
+
+=== 4. Sockets vs Polling
+- the communication between client-server in websockets is bi-directional.
+- sockets opens a channel between web browsers and web server that allows realtime communication and transfer of data.
+- server can now send messages to client without relying on client to make a request.
+
+=== 6. Web Sockets
+- web sockets extends EventEmitter class.
+- we will use `socket.io` package.
+
+=== 7. Introduction to Socket.io
+- socket.io enables realtime, bidirectional and event based communication.
+- it works on every platform, browser or device.
+- socket.io switches to pooling if browser doesn't support web sockets.
+
+=== 8. Socket.io Client and Server APIs
+- with socket.io you can send to all clients or all clients except the sender or to a single room or namespace and so on.
+- see Emit cheet sheet
+
+=== 9. Multiplayer pong game
+
+
+=== 11. Review our pong front end
+- the game logic and how it works.
+
+=== 12. Multiplayer pong message squenece
+
+=== 13. Setting up socket.io server 
+
+// --- create socket.io server with express server
+const express = require("express");
+const app = express();
+const http = require("http").createServer(app);
+const cors = require("cors");
+
+app.use(cors());
+let io = require("socket.io")(http, {
+  cors: {
+    origin: "*", // Allow all origins
+    methods: ["GET", "POST"],
+  },
+});
+
+
+//--- make web socket server listen to events from client
+io.on("connection", (socket) => {
+  console.log(`Client connected: ${socket.id}`);
+
+  socket.on("FROM_CLIENT_NEW_MESSAGE", (data) => {
+    console.log(`From Server: ${data}`);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`Client disconnected: ${socket.id}`);
+  });
+});
+
+=== 14. Connect to socket server from frontend
+- you can test socket.io using `postman`
+- see how to integrate socket io in client in project `single player pong`.
+
+-- connect to socket.io server from client
+	const socket = io("http://localhost:3000");
+
+=== 16. Identifying connected clients
+- client have a socket id each time it connects to socket io server
+
+// on client
+socket.on('connect',()=>{
+   console.log('connected', socket.id);
+})
+
+=== 17. Listening for events in Pong server
+- listen for clients events on server inside io.on('connection', ...)
+
+socket.on("connect", () => {
+  console.log("Browser Connected :" + socket.id);
+
+  socket.on("FROM_CLIENT_NEW_MESSAGE", (data) => {
+    console.log("from client", data);
+  });
+});
+
+=== 18. Broadcasting Events
+	io.emit('event name', info);
+
+=== 19. Handling Events in the pong client 
+// listen to events on client 
+
+socket.on("server_new_session", (data) => {
+    console.log("from client", data);
+});
+
+=== 20. Impelementing the game logic paddle
+- broadcast to all sockets except the sender 
+
+=== 22. 
+- log the reason for disconnect
+socket.on('disconnect', ()=>{
+  console.log(`client ${socket.id} disconnected: ${reason}`);   
+})
+
+=== 23. 
+- separate websocket on connection code to a new file in a function and call this function in app.js
+
+// sockets.js
+function listen(io){
+  io.on('connection', {...});
+}
+
+export listen;
+
+- put express sever in a separate file and pass it to sever where we start sockets.
+- arrange servers (express, http, socket) in varaibles with good naming.
+
+=== 24. Namespaces
+- Namespace is a communication channel that allows you split the logic of your application over a single shared connection.
+- allows you to use one server for multiple purposes.
+
+--- specify namespace and set query id for socket in client 
+const socket = io(`http://localhost:5000/${tenantId}`, {  
+    query: {  
+      deviceId: deviceId,  
+    },  
+  });
+
+--- get socket namespace name
+let tenantId = socket.nsp.name;
+
+// get it on server 
+const deviceId = socket.handshake.query.deviceId;
+
+// listen to message in client
+socket.on("reply", (msg) => {
+    console.log(msg);
+  });
+
+--- get namespace instance 
+	const chatNamespace = io.of('/chat');
+
+-- attach events to this namespace
+chatNamespace.on('connection', (socket) => {
+  console.log('Client connected to chat namespace');
+  
+  // Your connection handling logic
+});
+
+--- get online clients IDS
+	const onlineClients = Array.from(chatNamespace.sockets.keys());
+
+--- get online clients for default namespace
+	const socket = io.sockets.sockets.get(clientId);
+
+-- get socket by ID in namespace level
+	const socket = chatNamespace.sockets.get(clientId);
+
+-- emit to namespace clients only
+	chatNamespace.emit('event', data);
+
+
+=== 25. Rooms
+// set id to room and let socket join this room 
+	let room = 'room'+ ID;
+	socket.join(room);
+
+// leave the room
+	socket.leave(room);
+
+// emit to sockets in a room
+	io.in(room).emit('event', data);
+
+// emit to all sockets in a room except sender
+	socket.to('game').emit('event',data);
+
+// To get all sockets in a specific room in a namespace
+	const sockets = await io.of('/your-namespace').in('room-name').fetchSockets();
+
+// Loop through the sockets
+	sockets.forEach(socket => {
+	    console.log('Socket ID:', socket.id);
+	    // Access other socket properties/data as needed
+	});
+
+// To get the number of clients in a room
+	const count = io.of('/your-namespace').adapter.rooms.get('room-name')?.size || 0;
+
+// To get all rooms in the namespace
+	const rooms = io.of('/your-namespace').adapter.rooms;
+
+// To check if a specific socket is in a room
+	const isInRoom = socket.rooms.has('room-name');

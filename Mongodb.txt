@@ -29,7 +29,8 @@
 
 --- USE Studio 3T tool for Mongo databases management.
 
-
+====== *** TIPS
+- model(collectionName) is not working as expected in worker threads, so you have to use the model itself.
 ====== NoSQL databases 
 -- every item (document) in the database stands in its own, no relations between them
 -- relational databases in hard to scale unlike no sql databases.
@@ -1067,6 +1068,34 @@ employeeSchema.index(
   { email: 1 },
   { unique: true, partialFilterExpression: { email: { $type: "string" } } }
 );
+
+--- how to update only one element of array (array of objects not literals)
+UpdateMenuTrx.updateMany(
+  {
+    tenant_id: tenantId,
+    "branches.branch_id": branchId, // Match the specific branch
+    "branches.devices.is_sent_to_device": true, // Ensure at least one device has the condition
+    $not: {
+      "branches.devices": {
+        $elemMatch: { is_sent_to_device: false }, // Ensure all devices are sent
+      },
+    },
+  },
+  {
+    $set: {
+      "branches.$[branch].is_sent_to_all_devices": true, // Update only the matched branch
+    },
+  },
+  {
+    arrayFilters: [
+      {
+        "branch.branch_id": branchId, // Identify the branch to update
+      },
+    ],
+  }
+);
+
+
 ========== Validations
   drink: {
     type: String,

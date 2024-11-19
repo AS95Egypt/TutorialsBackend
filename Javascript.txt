@@ -193,6 +193,74 @@ var obj = {
   }
 };
 
+==== JavaScript closures
+- its an inner function that has access to its outer function’s scope.
+- inner function gets both its own scope and access to the parent scope.
+- but outer function don't have access to inner function scope.
+- higher-order function (or metafunction, a function that takes or returns another function)
+
+example
+
+let count = (function(){
+  var _counter = 0;
+  return function () {return _counter+=1;}	// closure function
+})();
+
+count();
+count();
+count();	// counter now is 3
+
+or 
+map(innerFunction),
+
+==== JavaScript prototypes
+- Every JavaScript function has a prototype property that is used to attach properties and methods.
+- It allows the developer to attach methods or member functions to its objects. 
+- JavaScript supports inheritance only through the prototype property.
+- Although modern JavaScript has pretty sophisticated class support, it still uses the prototype system under the hood
+function Rectangle(x,y){
+  this.length = x;
+  this.width = y;
+}
+
+Rectangle.prototype.getDimensions = function(){
+  return { length: this.length, width: this.width };
+}
+==== Defining private properties using hash names
+- previously prefixing variables with an underscore was used to indicate that a variable was supposed to be private
+class MyClass{
+  #privateField;
+  #privateMethod(){}
+}
+
+==== JavaScript modules
+- ES5
+const mongoose = require('mongoose'); 
+
+module.exports = saveData;
+
+- ES6
+export function main(){}
+
+import main from './file1';
+
+export default function main(){}	// this is like `module.exports = ...` in ES5
+
+==== Error handling
+- There are three basic ways you’ll deal with errors: try/catch blocks, throwing new errors, and on() handlers.
+- inside try, catch block we can log the error or throw it.
+- you could choose to throw the error, passing it up to the next handler. 
+- Note that this breaks code flow execution; 
+	that is (means), the current execution stops and the next error handler up the stack takes over.
+catch(error){
+  throw new Error("you should enter data", error);	// here we set error message and cause in constructor
+}
+
+- If you use await on the async call, you can wrap it in a try/catch to handle any errors.
+- No matter what, don’t ever swallow errors.
+	- you program should not continue operating if there is an error.
+- providing a finally{} block without a catch block will cause your errors to be swallowed.
+
 ==== optinal parameters
 function addItem(itemname= {item: 'milk'}, amount = 1){		// so you don't have check if parameter is undefined
   console.log(itemname, amount);
@@ -1448,3 +1516,9 @@ Promise.all(userIds.map(async id => await getUser(id))).catch(console.log)
 	const items = [1, 2, 3]
 	items.forEach(console.log)
 
+--- export default in ES6
+export default function broadcastData(io){...}
+
+import broadcastData from 'file path';
+
+--- 

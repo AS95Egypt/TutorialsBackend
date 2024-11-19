@@ -1,0 +1,63 @@
+Naming Convensions (use descriptive names)
+  - Folders:  	lowercase separted by -	ex: cost-centers
+
+  - Fields     	lowercase separated by _		no prefix
+
+  - Tables (Collections)  CamelCase separated by _
+
+  - Model Name(classname): Camel case	مفرد
+
+  - Constants	upper case with underscore _
+
+  - routes, services, validators, models (filenames)  lowercase   items-categories.router.js
+
+  - methods, parameters		sectionId, getMaxValue
+
+  - URL		/deliveries/:id/confirm-pickup	 how to write 2 words or more in url.
+
+==== TIPS
+- مطابقة الحقول فى ملف التصميم مع المكتوب فى تحليل المتطلبات
+- consider using custom queries in mongodb schema like  `findByEmail`
+- Use meaningful comments & documentation.
+- Extract reusable code into separate modules
+=========== Naming 
+
+1- Model names CammelCase
+	const CategoryModel = require("./../models/category_model");
+
+2- Service methods
+	createCategory			// add new category
+	categoryInfo			// get one category 
+	categoryChildren		// get category children
+	updatCategory			// update category
+	getAllCategories		// get all categories 
+	deleteCategory			// delete category
+	
+3- messages 
+
+4- models names
+	مفرد		filename:	entityname_model,	classname: EntityNameSchema
+5- routes names 
+	جمع 		filename:	entityname_router,	classname: EntityNameRouter
+6- services names
+	جمع 		filename:	entityname_service,	classname: EntityNameService
+7- Constants 
+	capital letters with _ underscore 
+
+consider this:
+orders.services.js
+orders.routes.js
+
+
+--- Paramter name 	sectionId		cammel case
+
+
+
+ 
+
+
+
+
+
+
+

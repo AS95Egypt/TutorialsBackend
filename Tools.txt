@@ -1,0 +1,7 @@
+=== Tasks managment tools
+jira
+clickup
+
+=== Communication tool
+slack messages
+

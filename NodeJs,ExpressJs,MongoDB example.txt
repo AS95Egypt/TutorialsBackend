@@ -1,6 +1,11 @@
 ============== Links
 - what is new in nodejs 20
 	https://snyk.io/blog/10-modern-node-js-runtime-features/?ref=dailydev
+============== Tips 
+- how to use package in terminal
+	- `node`
+	- `const {v4: uuidv4} = require("uuid")`		// require the package 
+	- `uuidv4().toString()`
 
 ==============
 https://www.youtube.com/watch?v=fgTGADljAeg

@@ -29,8 +29,6 @@
 [Higher Order Function] : عبارة عن Function تقبل منك Function أو أكتر ك Argument ويمكن أن ترجع لك Function ك Result أيضا ومن أمثلتها Map, Reduce, Filter, ForEach أما ال Functions العادية تسمى First Order Function
 
 >>>>>>>>>>>>>>>>>> Free Time
-- Delphi Embarcadero Demos
-- Flutter 
 - Design Pattern
 - DataStructure and Algorisms
 - DailyDev
@@ -38,16 +36,6 @@
 
 >>>>>>>>>>>>>>>>>> Courses
 
->>>>>>>>>>>>>>>>>> Libs 
- - Delphi Styles Library:		https://github.com/RRUZ/vcl-styles-utils
-- Delphi Barcode Library:  		https://github.com/Spelt/ZXing.Delphi
-- VCL Components:			https://github.com/cnpack/cnvcl
-- Themes Library:			https://github.com/VuioVuio/UniversalCL
-- DevExpress AutoInstaller		https://github.com/Delphier/DxAutoInstaller
-- Grid Delphi			https://github.com/Steema/TeeGrid
-- Buttons Delphi			https://github.com/pauloalvis/Delphi-PraButtonStyle
-- Firebase and Delphi		https://github.com/SchneiderInfosystems/FB4D
-- Invoice 				https://github.com/quartexNOR/RaptorInvoice
 
 >>>>>>>>>>>>>>>>>> Tasks
 Watch 1/2 hour of video
