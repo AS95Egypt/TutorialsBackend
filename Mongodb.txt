@@ -1,4 +1,9 @@
-====== Mongodb Documentation
+====== Tutorials Mongodb Documentation
+
+--- Learn Aggregation pipeline stages & Operators
+	https://www.mongodb.com/docs/manual/reference/operator/aggregation-pipeline/
+
+--- 
 	https://mongoosejs.com/docs
 
 	https://rrawat.com/blog/group-in-mongodb	
@@ -30,6 +35,7 @@
 --- USE Studio 3T tool for Mongo databases management.
 
 ====== *** TIPS
+- you should cast date to ISODate() when you make queries in mongosh.
 - model(collectionName) is not working as expected in worker threads, so you have to use the model itself.
 ====== NoSQL databases 
 -- every item (document) in the database stands in its own, no relations between them
@@ -1096,6 +1102,95 @@ UpdateMenuTrx.updateMany(
 );
 
 
+--- use $reduce to get the sum of inner array , without $unwind it
+db.pos_orders.aggregate([
+  {
+    $match: { tenant_id: "28a249f3-2ff1-43e9-a64c-e367423d5077" }
+  },
+  {
+    $project: {
+      totalQuantity: {
+        $reduce: {
+          input: "$items",
+          initialValue: 0,
+          in: { $add: ["$$value", "$$this.quantity"] }
+        }
+      }
+    }
+  }
+]);
+
+--- update specific records in array field
+db.pos_orders.updateMany(
+  { 
+    tenant_id: "28a249f3-2ff1-43e9-a64c-e367423d5077", 
+    "items.item_discounts": { $exists: false } 
+  },
+  {
+    $set: { "items.$[].item_discounts": [] }
+  }
+);
+
+--- add element in array
+db.pos_orders.updateMany(
+  { tenant_id: "28a249f3-2ff1-43e9-a64c-e367423d5077" },
+  {
+    $push: {      
+        "items.$[].item_discounts": {
+          _id: ObjectId(),
+          promotion_id: ObjectId("66f27d7744ba23c5c95f1006"),
+          discount_value_type: "FIXED_VALUE_ON_EACH_ITEM",
+          discount_value: 4.0,
+          discount_amount: 4,
+        },      
+    },
+  }
+);
+
+----- how to perform cross join in mongodb 
+
+example: 
+db.settings_sales_types.aggregate([
+  {
+    $match: {
+      tenant_id: "28a249f3-2ff1-43e9-a64c-e367423d5077",
+    },
+  },
+  {
+    $lookup: {
+      from: "management_branches",
+      pipeline: [
+        {
+          $match: {
+            tenant_id: "28a249f3-2ff1-43e9-a64c-e367423d5077",
+          },
+        },
+      ], // No conditions; fetch all documents from branches
+      as: "branch_data",
+    },
+  },
+  {
+    $unwind: "$branch_data",
+  },
+  {
+    $project: {
+      _id: 0,
+      sales_type_name: "$name_en",
+      branch_name: "$branch_data.name_en",
+    },
+  },
+]);
+
+--- Using batchSize for Large Result Sets
+When dealing with large result sets, you can control the number of documents returned in each batch using the batchSize option.
+
+Example:	db.collection.find({}).batchSize(100)
+
+--- how to update all elements of array field
+db.users.updateMany(
+  {},
+  { $unset: { "skills.$[].deprecatedField": "" } }
+);
 ========== Validations
   drink: {
     type: String,

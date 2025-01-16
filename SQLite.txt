@@ -13,3 +13,13 @@
 - use `REAL` to store float data type
 
 - there is no BIGINT in sqlite because INTEGER can hold what BIGINT holds in other database engines
+
+======== Avoid SELECT *, even on a single-column tables
+- https://medium.com/@hnasr/avoid-select-even-on-a-single-column-tables-d6deed7b4aee
+
+- Using SELECT * means that the database optimizer cannot choose index-only scans.
+
+- Using SELECT * might cause database, network and protocol serialization overhead 
+	epsically when select blob fileds which is large in size.
+
+

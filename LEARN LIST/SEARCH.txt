@@ -15,7 +15,7 @@ https://www.freecodecamp.org/news/skills-you-need-to-become-a-backend-developer-
   Nginx, Microservices, Elastic search, Circuit breaker ,Refresh Tokens
 agile,scrum,kanaba
 SDLC (collect information, analysis, system design, developement, testing , deployment, production, maintainence)
-
+Terraform
 =============== Backend developer roadmap
 https://www.youtube.com/watch?v=b6zpvz1o1Ag
 

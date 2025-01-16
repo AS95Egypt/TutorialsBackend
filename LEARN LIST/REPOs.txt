@@ -2,6 +2,8 @@ https://www.interviewbit.com/blog/node-js-projects/
 
 https://github.com/goldbergyoni/nodebestpractices
 
+--- how to find Nodejs GitHub repos
+	https://chat.deepseek.com/a/chat/s/27542a4d-9383-441d-bf03-0a91008ad4f9
 
 === typescript codes 
 	https://github.com/tapascript/ts-gyan

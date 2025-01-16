@@ -2,6 +2,12 @@
 - what to cache
 	https://claude.ai/chat/b020b709-7844-493f-9d6f-8e8adc6b366b
 
+https://chatgpt.com/c/7c13b064-195e-40d3-8698-2672ed5bffb0	(last question)
+
+https://redis.io/learn/howtos/quick-start/cheat-sheet
+
+- Anas
+	https://www.notion.so/Redis-caching-952fd08ab889412dbe617bc35d8ff681
 ========
 - Redis can be used to persist database like nosql database
 - Redis can make apis faster by making less requests to database.
@@ -27,3 +33,12 @@
 
 === see example in Crystal-RMS-APIs
 - flushAll or flushDB to delete all keys
+
+--- set key in redis with expiry (nodejs)
+await client.set(`TKN:${employeeId.toString()}`, JSON.stringify(empInfo), {
+    EX: 60 * 60 * 3 /* 3 HOURS  */,
+    NX: true,
+  });
+
+--- delete key from redis (nodejs)
+

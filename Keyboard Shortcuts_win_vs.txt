@@ -46,6 +46,12 @@ https://www.youtube.com/watch?v=heXQnM99oAI
 --- Ctrl+ F12 		to find all occurance of a variable.
 
 --- mouse wheel + shift to scroll horizotally
+
+--- F11			full screen
+
+--- Shift + F11		full screen and hide menus (zen mode)
+
+--- Ctrl + Alt + K	toggle bookmarks
 =======
 
 --- windows + Space		Change the language 		

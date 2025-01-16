@@ -73,3 +73,5 @@ enumerable	لا تعد ولا تحصى
 underwhelming	مخيب للأمال
 diminishing 	تناقص - تقليص
 recurrence 	تكرار
+immense 	هائلة
+benign		حميدة

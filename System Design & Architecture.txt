@@ -1,8 +1,14 @@
 ======== Tutorials
+- https://dev.to/somadevtoo/8-system-design-couress-to-learn-distributed-system-architecture-2025-4j81?ref=dailydev
 
 - https://www.freecodecamp.org/news/learn-system-design-principles/
 
 - https://www.freecodecamp.org/news/learn-high-level-system-design-by-building-a-youtube-clone/
+
+- https://medium.com/javarevisited/top-8-youtube-channels-for-system-design-interview-preparation-970d103ea18d
+
+- Architecture Patterns for Beginners: MVC, MVP, and MVVM
+	https://dly.to/W4Do8fPDgv6
 
 ======== https://medium.com/@ben.dev.io/clean-architecture-in-node-js-39c3358d46f3
 - high-level modules (ex: root or main) should not depend on low-level modules.

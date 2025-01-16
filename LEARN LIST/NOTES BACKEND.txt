@@ -507,11 +507,24 @@ test('When customer spent more than 500$, should be classified as premium', () =
 --- Refactor regularly using static analysis tools
 	- static analysis tools helps by giving objective ways to improve code quality and keeps your code maintainable.
 	- You can add static analysis tools to your CI build to fail when it finds code smells.
+		- Adding these tools to your CI build will help automate the quality checking process. 
+	- after integrating these tools the build will fail if it detects code smells and inform the author on how to address the issue. 
 	- Its main selling points over plain linting are the ability to inspect quality 
 	   in the context of multiple files (e.g. detect duplications)
 	- perform advanced analysis (e.g. code complexity).
 	- use tool like sonarqube for code analysis https://www.sonarqube.org/
+	- "Code Smells" (bad coding practices) ex: (Duplicated Code, Long Methods, Long Parameter list)
+	- static analysis tools will complement lint tools like Eslint, 
+	   its more powerful because it focuses on finding code smells (duplicate code, complexity analysis, etc) in one file or multiple files.
 
- 
+--- Mock responses of external HTTP services
+	- ???
+
+--- Test your middlewares in isolation
+	- When a middleware holds some immense logic that spans many requests, it is worth testing it in isolation 
+	   without waking up the entire web framework. 
+	- This can be easily achieved by stubbing and spying on the {req, res, next} objects
+	- 
+	
 
 --- 

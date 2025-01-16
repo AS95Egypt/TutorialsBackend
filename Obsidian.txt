@@ -1,0 +1,45 @@
+- obsidian makes connecting many related topics together easier.
+- you should learn how to write notes and navigate between them.
+- its better to backup your vault on cloud like google drive or onedrive, so you can access it from any where.
+- make use of tags to navigate your network.
+
+- how to make tags ? 
+	type [[tagname]]
+	- in header of file write tags:  ,,,,	add tags you want
+	- tag will be created if not exist before.
+
+- move tag file (or any file) to a folder 
+	- open tag file then click ... and click move to folder and choose folder.
+
+- set folder structure 
+	tags
+	indexes
+
+- we use indexes to navigate large graphs easily.
+- indexes its a file where all files related to a tag is collected.
+	- when tag becomes index.
+
+tags are empty notes
+
+- personal knowledge management tool.
+- install Arabic font and use it in obsidian
+
+- use canvas to display mind maps, you can insert shapes and notes, ...
+
+- split right , split down
+
+- you can create your own template (has a predefined structure)
+	- in templates folder create a new note.
+	- and then you can link daily notes for example with this template
+
+--- Markdown
+- you can use markdown language to style the text
+	- or you can select the text you want to format and click format.
+- you can memorize formats syntax after using them many times.
+
+- [[note name]] this is a link
+
+- ingoing links, outgoing links.
+
+
+add tag #tagname

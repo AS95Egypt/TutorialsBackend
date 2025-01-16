@@ -1,0 +1,56 @@
+- What is Big O time complexity?
+	big O notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows.
+	OR it's a way to analyze the amount of time of our algorithm takes to run as the input grows. O is meant to be the whole operation, and n the input.
+
+- different functions with the same asymptotic growth rate may be represented using the same O notation.
+
+--- O(n) linear complexity
+	- it has to run through every item inside n at least once.
+	- as the array size (n) grows, the runtime grows in a linear fashion.
+	- Note: Imagine that your algorithm iterates through every item in your n exactly twice,
+		  resulting in your time complexity of O(2n). We simplify it by saying it is O(n),
+		  because the priority of the Big O notation is to convey the shape of the growth in run time.
+	ex: Given an unsorted array n, write a function that will return the biggest value.
+
+--- O(1) constant time.
+	- the time does not grow with the input.
+	- ex: access array element by index 	arr[1];
+		appending items to an array, removing (pop), 
+		using Hash maps (or Dictionaries) where we simply lookup using an index.
+
+--- O(n^2) quadratic complexity
+	- ex: Nested loop, or loop through elements of 2D array.
+		calculate every possible combination when using two dices of the given size  dice_combination(6)
+
+--- O(n*m) if dices have different sides
+	- two_dice_combinations(sides1, sides2)	-> two_dice_combinations(6,8) // all possible combination
+	- it will be O(n^3) algorithm if we had three dice.
+
+--- O(log n)
+	- ex: binary search.
+	- we divide the loop in half for the next iteration.
+	- The log n part then becomes how many times can we divide n by 2 to get the result.
+		- so logarithms means how many times you divide by log factor  log2 8 is 3   or 2^3 = 8
+	- This is one of the best algorithms since the run time grows very slowly.
+	- a binary search can be used when we have a sorted array where we want to find the index of a specific value.
+	- see binary search code here 
+		https://dev.to/alvbarros/learn-big-o-notation-once-and-for-all-hm9?ref=dailydev#:~:text=a%20specific%20value.-,Given%20a,-sorted%20array%2C%20find
+
+--- O(n log n)
+	- its commonly found in sorting algorithms.  ex: (Merge sort, Selection sort, Insertion sort)
+	- for Merge sort basically it works by dividing the array into two halves recursively (log n divisions).
+	   then merges the halves back together in linear time (O(n) for each merge).
+	- see merge sort code 
+		https://dev.to/alvbarros/learn-big-o-notation-once-and-for-all-hm9?ref=dailydev#:~:text=def-,merge_sort,-(arr)%3A
+
+--- O(2^n)
+	- found when we have a recursion algorithm that branches out in two ways.
+	- ex: bubble sort
+
+
+--- O(n!) 
+	- ! means, we simply multiply the number by every number - 1 until we get to 1
+		5! = 5 * 4 * 3 * 2 = 120
+	- permutations  تباديل 	like `Traveling Salesman Problem`
+	-  its very complicated and this is extremely rare anyways.
+	- because if you have an algorithm of O(n!) you most definitely don't have the optimal solution.

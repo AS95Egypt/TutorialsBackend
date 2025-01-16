@@ -19,6 +19,8 @@
 امن المعلومات - محمد الشريف 
 	https://www.youtube.com/watch?v=-fXl4AXunwo
 
+==> how to protect nodejs application
+	https://speakerdeck.com/ckarande/top-overlooked-security-threats-to-node-dot-js-web-applications?slide=4
 
 ==> IMPORTANT security notes
 	https://dev.to/appsignal/security-best-practices-for-your-nodejs-application-37ip?ref=dailydev

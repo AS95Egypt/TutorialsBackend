@@ -261,6 +261,26 @@ catch(error){
 	- you program should not continue operating if there is an error.
 - providing a finally{} block without a catch block will cause your errors to be swallowed.
 
+==== Javascript currying
+- Currying is a method of making functions more flexible. 
+- with currying you can all pass all paramters to a function or pass only subset of the parameters 
+	and receive a function back that waits for the remainder of the arguments.
+- declare currying function
+var firstCurry = function(word){
+  return function(user){
+    return [word, ", ", user],join("");
+  }
+}
+
+- you can call it like this 
+	var helloUser = firstCurry("hello");
+	helloUser("ahmed");
+
+- or directly like this
+	firstCurry("hello")("ahmed");
+
+- currying allows you to create functions factories where the outer functions let you partially configure the inner one.
+- In real-world usage, this idea can be a help when you need to create many functions that vary according to certain parameters.
 ==== optinal parameters
 function addItem(itemname= {item: 'milk'}, amount = 1){		// so you don't have check if parameter is undefined
   console.log(itemname, amount);
@@ -275,6 +295,52 @@ function printargs(){
 }
 
 printargs(1,2,'g', 'd', true);
+
+==== JavaScript IIFE
+- An immediately invoked function expression (IIFE).
+- is a function that is executed as soon as it is created. (self-invoking anonymous function)
+- It has no connection with any events or asynchronous execution.
+- it is used to limit the scope of a variable made via var.
+
+(function(){ /* all code here */ })();
+
+- it helps in situations whey you want to call a function using await not inside an async function block.
+	This happens sometimes in files that you want to be executable directly and also imported as a module.
+
+(async function(){ await callAsyncFunction() })();
+
+==== JavaScript memoization
+- Memoization is an optimization technique that speeds up function execution by storing results of expensive operations 
+and returning the cached results when the same set of inputs occur again.
+
+- JavaScript objects behave like associative arrays, making it easy to implement memoization in JavaScript. 
+- This technique is particularly useful when dealing with recursive functions 
+	or algorithms with many repeated sub-problems.
+- Memoization can significantly improve the performance of your code by reducing the number of expensive calculations.
+ex1: 
+const memo = {};  
+
+function add(a, b) {  
+  const key = `${a},${b}`;  
+  
+  // Check if the result is already stored in the memo object  
+  if (key in memo) {  
+    return memo[key]; // Return the stored result  
+  }  
+  
+  // Calculate the result and store it in the memo object  
+  const result = a + b;  
+  memo[key] = result;  
+  return result;  
+}  
+
+console.log(add(2, 3)); // Output: 5 (and stores the result in memo)  
+console.log(add(2, 3)); // Output: 5 (returns the stored result from memo)  
+
+ex2: 
+https://dev.to/usman_awan/10-javascript-concepts-every-node-developer-must-master-2na?ref=dailydev
+
+==== JavaScript apply, call, and bind methods
 
 ---- convert the passed arugments to array 
 function printargs(){
@@ -1193,6 +1259,8 @@ const arr = [0, 1, 2, 3, 5, 6, 7, 8];
 syntax:		arr.splice(index, itemsToDelete, item1ToAdd, item2ToAdd, ...)
 arr.splice(4, 0, 4);	=> [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
+trx.branches[i].devices.splice(j, 1);
+
 -> Using splice will mutate the original array, not create a new one.
 
 --- check if object is array 
@@ -1504,6 +1572,11 @@ console.log(anotherArray); // [1, 2, 3, 8, 5]
 
 --- use Promise.all to wrap/execute list of promises, make .map, .foreach async
 	Promise.all(userIds.map(getUser)).catch(console.log)
+
+--- handle any number of arguments in a function 
+function sum(...numbers){
+   return numbers.reduce((total,num)=> total+num,0);
+}
 
 // 👍 now the line below is in the stacktrace
 Promise.all(userIds.map(async id => await getUser(id))).catch(console.log)

@@ -19,7 +19,14 @@
 
 	https://medium.com/@arnaudrinquin/build-modular-application-with-npm-local-modules-dfc5ff047bcc
 
-========= Seprate common function in RMS system in packages
+https://dly.to/UWgVaTA7DVx
+
+========= Packages to Drop
+- dotenv
+- bcrypt
+- mongoose paginate
+- 
+========= Separate common function in RMS system in packages
 Like:
 	- Database 		`rms-db`	ex: Models, Repos
 	- Core functionalities  `rms-core`	
@@ -33,8 +40,8 @@ Like:
 
 ========= how to check for packages updates and update them
 === way 1
-- install package `npm-check-update` globally (its used to check for udpates (report), and update pacakges)
-	npm install npm-check-update -g
+- install package `npm-check-updates` globally (its used to check for udpates (report), and update pacakges)
+	npm i npm-check-updates -g
 
 - list available updates 
 	ncu
@@ -94,6 +101,13 @@ const { promisify } = require('util');
 =========== Cloudinary 
  optimize, transform, upload and manage your cloud's assets
 
+=========== decimal.js
+npm i decimal.js
+	to perform accurate caculation and avoid fractions missing values.
+
+--- Alternatives
+npm i mathjs
+npm i big.js
 =========== moment
 A JavaScript date library for parsing, validating, manipulating, and formatting dates.
 

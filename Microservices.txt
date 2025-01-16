@@ -1,4 +1,6 @@
 ========= Tutorials
+- Books, Courses
+	https://medium.com/javarevisited/10-best-resources-to-learn-software-architecture-in-2025-2524ac91dc76
 - https://www.freecodecamp.org/news/solid-principles-for-microservices/
 
 - https://www.freecodecamp.org/news/how-to-deal-with-traffic-surges-in-distributed-systems/
@@ -8,4 +10,6 @@
 - https://www.freecodecamp.org/news/build-a-custom-api-gateway-with-node-js/
 
 - https://www.freecodecamp.org/news/serverless-node-js-tutorial/
+
+- https://dawar.hashnode.dev/leveraging-service-discovery-for-robust-microservice-monitoring-in-amazon-ecs-a-comprehensive-guide?ref=dailydev
 ========= 
