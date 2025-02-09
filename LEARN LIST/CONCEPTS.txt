@@ -250,3 +250,5 @@ but only a small portion of users can see it. This is often done in secret (or "
 without public announcement.
 
 ====== thundering herd problem 
+
+====== CPU throttling

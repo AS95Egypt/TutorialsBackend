@@ -3,6 +3,8 @@
 - its better to backup your vault on cloud like google drive or onedrive, so you can access it from any where.
 - make use of tags to navigate your network.
 
+- create new vault which will hold all of your notes.
+
 - how to make tags ? 
 	type [[tagname]]
 	- in header of file write tags:  ,,,,	add tags you want
@@ -39,7 +41,85 @@ tags are empty notes
 
 - [[note name]] this is a link
 
+**BOLD**
+*italic*
+
+~~line through~~
+
+==highlighted text==
+
+Blockquotes 
+	> "quoted text"-author name
+
+// to make a list
+- item1
+- item2
+	- item 2.1	press tab to make a sub list
+
+// make checklist
+- [ ] Learn REST API best practices
+---
 - ingoing links, outgoing links.
 
+- always refer to topics as links like Wikipedia.  ex words like: Network, JavaScript.
+
+- when click tag it will show all notes with this tag.
 
 add tag #tagname
+
+# Heading 1	with space.	to ###### Heading 6
+
+- star or bookmark note.
+
+- you can sort notes ASC, DESC (...)
+
+- you can search in notes (names), or in notes text.
+
+- show in system explorer for note.
+
+- you can split a note and then set right to preview mode and left to edit mode. in order to show preview direct without having to switch mode.
+	- make sure you click `link with pane`	to make the note on left and right scroll together.
+
+- you can customize shortcuts from hotkeys in settings.
+
+- open command palette  press (ctrl+p)	and search in the available features.
+
+
+- adding hyperlink
+	[github page](link or url)
+
+--- settings
+ - files and links 
+	automatically update internal links.
+
+ - core plugins
+	- Tag pane	- 
+
+	- preview pane will show note content when hover on link or tag
+
+- star of fav note.
+
+- when you update note name it will update the link.
+
+- shortcuts
+
+- in edit mode in order to go to link - press ctrl and click
+
+- ctrl + N	to create a new note
+
+- ctrl + E	to toggle between edit and preview mode.
+
+- ctrl + o 	to search in notes.
+
+- ctrl + B	to make selected text bold
+
+- ctrl + i	to make selected text italic
+
+- ctrl + shift + f 	to search text in all notes.
+	- specify search type file: , tag: , ...
+
+- ctrl+ alt + -> <-	to move forward or backward in opened notes.
+
+- in preview mode when press ctrl with click on link it will open linked note side by side.
+
+- you can sort notes aphetically or by modification
